@@ -6,13 +6,11 @@
 # doivent rester identiques à ceux du schéma dans src/content.config.ts : les
 # renommer d'un côté sans l'autre casse la lecture au build.
 #
-# ⚠️ Avant la mise en production, remplacer « VOTRE-COMPTE/estailes » ci-dessous
-#    par le vrai dépôt GitHub, et vérifier que la branche est bien « main ».
 # =============================================================================
 
 backend:
   name: github
-  repo: VOTRE-COMPTE/estailes
+  repo: gbugnon/estailes
   branch: main
   # Sveltia gère l'authentification GitHub sans serveur tiers. Aucune clé à
   # stocker ici : Estelle se connecte avec son propre compte GitHub.
