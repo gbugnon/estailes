@@ -1,0 +1,143 @@
+---
+import Icon from './Icon.astro';
+import Photo from './Photo.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  prestation: CollectionEntry<'prestations'>;
+  /** Chargement prioritaire pour les cartes visibles au premier écran. */
+  eager?: boolean;
+}
+
+const { prestation, eager = false } = Astro.props;
+const { titre, sous_titre, icone, extrait, image, image_alt, image_position } = prestation.data;
+const href = `/prestations/${prestation.id}`;
+---
+
+<article class="carte">
+  <div class="carte__media">
+    <Photo
+      src={image}
+      alt={image_alt}
+      position={image_position}
+      width={640}
+      height={480}
+      sizes="(min-width: 68rem) 25vw, (min-width: 34rem) 50vw, 100vw"
+      loading={eager ? 'eager' : 'lazy'}
+    />
+    {/* Pastille ronde à cheval sur l'image — construite en CSS, jamais aplatie
+        dans la photo, pour rester nette et suivre la mise en page. */}
+    <span class="carte__pastille">
+      <Icon nom={icone} taille={26} />
+    </span>
+  </div>
+
+  <div class="carte__corps">
+    <h3 class="carte__titre">
+      <a href={href}>{titre}</a>
+    </h3>
+    {sous_titre && <p class="carte__sous-titre">{sous_titre}</p>}
+    <p class="carte__extrait">{extrait}</p>
+    <span class="link-more carte__lien" aria-hidden="true">En savoir plus</span>
+  </div>
+</article>
+
+<style>
+  .carte {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    transition:
+      transform 0.35s var(--ease),
+      box-shadow 0.35s var(--ease),
+      border-color 0.35s var(--ease);
+  }
+
+  .carte:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lift);
+    border-color: var(--gold-line);
+  }
+
+  .carte__media {
+    position: relative;
+  }
+
+  .carte__media :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+  }
+
+  .carte__pastille {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    translate: -50% 50%;
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: var(--panel);
+    border: 1px solid var(--gold-line);
+    color: var(--gold-text);
+    box-shadow: 0 4px 14px -6px rgb(55 52 46 / 30%);
+    transition: color 0.35s var(--ease), background-color 0.35s var(--ease);
+  }
+
+  .carte:hover .carte__pastille {
+    background: var(--sage);
+    border-color: var(--sage);
+    color: #fff;
+  }
+
+  .carte__corps {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 2.6rem 1.5rem 1.6rem;
+    text-align: center;
+  }
+
+  .carte__titre {
+    font-size: var(--step-2);
+    margin-bottom: 0.3rem;
+  }
+
+  .carte__titre a {
+    text-decoration: none;
+  }
+
+  /* Toute la carte devient cliquable, mais seul le titre reste focusable :
+     un lien par carte, comme attendu au clavier et au lecteur d'écran. */
+  .carte__titre a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-card);
+  }
+
+  .carte__sous-titre {
+    font-size: var(--step--1);
+    color: var(--gold-text);
+    margin-bottom: 0.7rem;
+  }
+
+  .carte__extrait {
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+    line-height: 1.55;
+  }
+
+  .carte__lien {
+    margin-top: auto;
+    padding-top: var(--space-s);
+    justify-content: center;
+  }
+</style>

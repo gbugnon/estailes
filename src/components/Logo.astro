@@ -1,0 +1,78 @@
+---
+/**
+ * Logo Est'ailes — entièrement vectoriel.
+ * L'arc et les étincelles sont des tracés SVG ; le mot est du vrai texte rendu
+ * en Parisienne, ce qui le garde net à toute taille et lisible par les lecteurs
+ * d'écran via <title>.
+ */
+interface Props {
+  /** Variante claire pour les fonds sombres (bande CTA, pied de page). */
+  clair?: boolean;
+  baseline?: string;
+  class?: string;
+}
+
+const { clair = false, baseline, class: className } = Astro.props;
+
+const encre = clair ? '#FFFFFF' : 'var(--ink)';
+const or = clair ? 'rgba(255,255,255,0.65)' : 'var(--gold)';
+
+/** Étoile à quatre branches, concave — le motif d'étincelle du site. */
+function etoile(cx: number, cy: number, s: number) {
+  const c = s * 0.26;
+  return [
+    `M${cx} ${cy - s}`,
+    `C${cx} ${cy - c} ${cx + c} ${cy} ${cx + s} ${cy}`,
+    `C${cx + c} ${cy} ${cx} ${cy + c} ${cx} ${cy + s}`,
+    `C${cx} ${cy + c} ${cx - c} ${cy} ${cx - s} ${cy}`,
+    `C${cx - c} ${cy} ${cx} ${cy - c} ${cx} ${cy - s}`,
+    'Z',
+  ].join(' ');
+}
+---
+
+<span class:list={['logo', className]}>
+  <svg class="logo__svg" viewBox="0 0 210 76" role="img" aria-label="Est'ailes">
+    <path
+      class="logo__arc"
+      d="M150 11 A73 30 0 1 0 150 65"
+      fill="none"
+      stroke={or}
+      stroke-width="1.1"
+      stroke-linecap="round"
+    />
+    <path d={etoile(24, 13, 6)} fill={or} />
+    <path d={etoile(40, 8, 3.4)} fill={or} opacity="0.8" />
+    <path d={etoile(160, 20, 4)} fill={or} opacity="0.7" />
+    <text class="logo__mot" x="34" y="52" fill={encre}>Est'ailes</text>
+  </svg>
+  {baseline && <span class="logo__baseline">{baseline}</span>}
+</span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    line-height: 1;
+  }
+
+  .logo__svg {
+    width: var(--logo-w, 150px);
+    height: auto;
+    overflow: visible;
+  }
+
+  .logo__mot {
+    font-family: var(--font-script);
+    font-size: 44px;
+  }
+
+  .logo__baseline {
+    font-size: 0.62rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    padding-left: 0.9rem;
+  }
+</style>

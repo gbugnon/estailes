@@ -1,0 +1,265 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+
+const liens = [
+  { texte: 'Accueil', href: '/' },
+  { texte: 'À propos', href: '/a-propos' },
+  { texte: 'Prestations', href: '/prestations' },
+  { texte: 'Ateliers', href: '/ateliers' },
+  { texte: 'Tarifs', href: '/tarifs' },
+  { texte: 'Contact', href: '/contact' },
+];
+
+const chemin = Astro.url.pathname.replace(/\/$/, '') || '/';
+const estActif = (href: string) =>
+  href === '/' ? chemin === '/' : chemin === href || chemin.startsWith(href + '/');
+---
+
+<header class="entete">
+  <div class="wrap entete__inner">
+    <a href="/" class="entete__logo" aria-label="Est'ailes — accueil">
+      <Logo />
+    </a>
+
+    <nav class="nav" id="nav-principal" aria-label="Navigation principale">
+      <ul class="nav__liste">
+        {
+          liens.map((lien) => (
+            <li>
+              <a
+                href={lien.href}
+                class:list={['nav__lien', estActif(lien.href) && 'is-actif']}
+                aria-current={estActif(lien.href) ? 'page' : undefined}
+              >
+                {lien.texte}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a href="/rendez-vous" class="btn btn--primary nav__cta">
+        Prendre rendez-vous
+        <Icon nom="fleche" taille={15} />
+      </a>
+    </nav>
+
+    <button
+      class="burger"
+      type="button"
+      aria-expanded="false"
+      aria-controls="nav-principal"
+      aria-label="Ouvrir le menu"
+    >
+      <span class="burger__trait"></span>
+      <span class="burger__trait"></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .entete {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: color-mix(in srgb, var(--cream) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+    transition:
+      border-color 0.3s var(--ease),
+      background-color 0.3s var(--ease);
+  }
+
+  .entete.is-collee {
+    border-bottom-color: var(--line);
+    background: color-mix(in srgb, var(--cream) 96%, transparent);
+  }
+
+  .entete__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-m);
+    min-height: 5.5rem;
+  }
+
+  .entete__logo {
+    --logo-w: 122px;
+
+    display: block;
+    flex: none;
+    text-decoration: none;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.25rem, 2.5vw, 2.5rem);
+  }
+
+  .nav__liste {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 1.9rem);
+    list-style: none;
+    padding: 0;
+  }
+
+  .nav__lien {
+    position: relative;
+    font-size: var(--step--1);
+    text-decoration: none;
+    color: var(--ink);
+    padding-block: 0.4rem;
+    white-space: nowrap;
+  }
+
+  /* Le trait doré est le repère de page courante — il pousse depuis la gauche. */
+  .nav__lien::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    background: var(--gold-text);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s var(--ease);
+  }
+
+  .nav__lien:hover::after,
+  .nav__lien.is-actif::after {
+    transform: scaleX(1);
+  }
+
+  .burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 44px;
+    height: 44px;
+    padding: 0 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .burger__trait {
+    display: block;
+    height: 1.5px;
+    width: 100%;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform 0.3s var(--ease), opacity 0.2s var(--ease);
+  }
+
+  .burger[aria-expanded='true'] .burger__trait:first-child {
+    transform: translateY(3.75px) rotate(45deg);
+  }
+
+  .burger[aria-expanded='true'] .burger__trait:last-child {
+    transform: translateY(-3.75px) rotate(-45deg);
+  }
+
+  @media (width < 62rem) {
+    .entete__inner {
+      min-height: 4.75rem;
+    }
+
+    .burger {
+      display: flex;
+    }
+
+    .nav {
+      position: fixed;
+      inset: 4.75rem 0 auto;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: var(--space-s) 1.25rem var(--space-m);
+      background: var(--cream);
+      border-bottom: 1px solid var(--line);
+      box-shadow: var(--shadow-card);
+
+      /* Fermé par défaut : replié vers le haut, hors du flux du clavier. */
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition:
+        opacity 0.25s var(--ease),
+        transform 0.25s var(--ease),
+        visibility 0.25s;
+    }
+
+    .nav.is-ouvert {
+      visibility: visible;
+      opacity: 1;
+      transform: none;
+    }
+
+    .nav__liste {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .nav__lien {
+      display: block;
+      padding: 0.9rem 0.25rem;
+      border-bottom: 1px solid var(--line);
+      font-size: var(--step-0);
+    }
+
+    .nav__lien::after {
+      display: none;
+    }
+
+    .nav__lien.is-actif {
+      color: var(--gold-text);
+    }
+
+    .nav__cta {
+      margin-top: var(--space-s);
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  const entete = document.querySelector('.entete');
+  const burger = document.querySelector<HTMLButtonElement>('.burger');
+  const nav = document.querySelector<HTMLElement>('#nav-principal');
+
+  if (burger && nav) {
+    const basculer = (ouvrir: boolean) => {
+      burger.setAttribute('aria-expanded', String(ouvrir));
+      burger.setAttribute('aria-label', ouvrir ? 'Fermer le menu' : 'Ouvrir le menu');
+      nav.classList.toggle('is-ouvert', ouvrir);
+    };
+
+    burger.addEventListener('click', () => {
+      basculer(burger.getAttribute('aria-expanded') !== 'true');
+    });
+
+    // Échap referme et rend le focus au bouton.
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && burger.getAttribute('aria-expanded') === 'true') {
+        basculer(false);
+        burger.focus();
+      }
+    });
+
+    // Repasser en desktop doit remettre la navigation dans un état propre.
+    matchMedia('(width >= 62rem)').addEventListener('change', (e) => {
+      if (e.matches) basculer(false);
+    });
+  }
+
+  if (entete) {
+    const surDefilement = () => entete.classList.toggle('is-collee', window.scrollY > 8);
+    surDefilement();
+    window.addEventListener('scroll', surDefilement, { passive: true });
+  }
+</script>

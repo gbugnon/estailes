@@ -1,0 +1,225 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Valeurs from '../components/Valeurs.astro';
+import PrestationCard from '../components/PrestationCard.astro';
+import Photo from '../components/Photo.astro';
+import Icon from '../components/Icon.astro';
+import Sparkles from '../components/Sparkles.astro';
+import { parametres } from '../lib/parametres';
+
+const page = await getEntry('pages', 'accueil');
+if (!page) throw new Error('Contenu manquant : src/content/pages/accueil.md');
+const c = page.data;
+
+const valeurs = (await getCollection('valeurs')).sort((a, b) => a.data.ordre - b.data.ordre);
+const prestations = (await getCollection('prestations')).sort(
+  (a, b) => a.data.ordre - b.data.ordre,
+);
+---
+
+<Base titre={c.titre} description={c.meta_description}>
+  <Hero
+    titre={c.hero_titre}
+    script={c.hero_script}
+    intro={c.hero_intro}
+    image={c.hero_image}
+    imageAlt={c.hero_image_alt}
+    imagePosition={c.hero_image_position}
+    ctaTexte={c.hero_cta_texte}
+    ctaLien={c.hero_cta_lien}
+  />
+
+  {
+    parametres.asca_rme_actif && parametres.asca_rme_texte && (
+      <aside class="agrement">
+        <div class="wrap agrement__inner">
+          <Icon nom="respect" taille={22} />
+          <p>{parametres.asca_rme_texte}</p>
+        </div>
+      </aside>
+    )
+  }
+
+  {
+    c.valeurs_titre && (
+      <Valeurs titre={c.valeurs_titre} intro={c.valeurs_intro} valeurs={valeurs} />
+    )
+  }
+
+  <section class="prestations">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>{c.prestations_titre}</h2>
+        {c.prestations_intro && <p>{c.prestations_intro}</p>}
+      </div>
+
+      <div class="prestations__grille">
+        {
+          prestations.map((prestation, i) => (
+            <div class="reveal" style={`transition-delay:${i * 80}ms`}>
+              <PrestationCard prestation={prestation} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {
+    c.apropos_titre && (
+      <section class="apropos">
+        <div class="wrap apropos__inner">
+          {c.apropos_image && (
+            <div class="apropos__media reveal">
+              <Photo
+                src={c.apropos_image}
+                alt={c.apropos_image_alt ?? ''}
+                position={c.apropos_image_position}
+                width={700}
+                height={620}
+                sizes="(min-width: 62rem) 48vw, 100vw"
+              />
+            </div>
+          )}
+
+          <div class="apropos__texte reveal">
+            {c.apropos_surtitre && <p class="eyebrow">{c.apropos_surtitre}</p>}
+            <h2 class="apropos__titre">
+              {c.apropos_titre}
+              {c.apropos_script && <span class="script apropos__script">{c.apropos_script}</span>}
+            </h2>
+            {c.apropos_texte && <p class="apropos__corps">{c.apropos_texte}</p>}
+            {c.apropos_cta_texte && c.apropos_cta_lien && (
+              <a href={c.apropos_cta_lien} class="btn btn--primary apropos__cta">
+                {c.apropos_cta_texte}
+                <Icon nom="fleche" taille={15} />
+              </a>
+            )}
+          </div>
+
+          <Sparkles
+            class="apropos__etincelles"
+            etincelles={[
+              { x: 60, y: 18, r: 9, opacite: 0.6 },
+              { x: 94, y: 44, r: 12, opacite: 0.5 },
+              { x: 88, y: 74, r: 6, opacite: 0.4 },
+            ]}
+          />
+        </div>
+      </section>
+    )
+  }
+</Base>
+
+<style>
+  /* Bandeau d'agrément ASCA / RME — n'apparaît que si le drapeau est activé
+     dans les paramètres, pour ne jamais publier une reconnaissance non vérifiée. */
+  .agrement {
+    background: var(--sage-tint);
+    border-block: 1px solid var(--line);
+    padding-block: 1rem;
+  }
+
+  .agrement__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    text-align: center;
+    font-size: var(--step--1);
+    color: var(--ink);
+  }
+
+  .agrement__inner :global(svg) {
+    flex: none;
+    color: var(--sage);
+  }
+
+  .prestations {
+    padding-block: var(--space-xl);
+  }
+
+  /* Quatre prestations : une seule colonne, puis 2×2, puis la rangée de
+     quatre de la maquette. Jamais d'orphelin en 3+1. */
+  .prestations__grille {
+    display: grid;
+    gap: var(--space-m) var(--space-s);
+    grid-template-columns: 1fr;
+  }
+
+  @media (width >= 34rem) {
+    .prestations__grille {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (width >= 68rem) {
+    .prestations__grille {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .apropos {
+    position: relative;
+    background: var(--cream-deep);
+    border-block: 1px solid var(--line);
+    padding-block: var(--space-xl);
+    overflow: hidden;
+  }
+
+  .apropos__inner {
+    position: relative;
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+
+  .apropos__media :global(img) {
+    width: 100%;
+    aspect-ratio: 7 / 6;
+    object-fit: cover;
+    border-radius: 12px 999px 999px 12px;
+  }
+
+  .apropos__texte {
+    position: relative;
+    z-index: 3;
+  }
+
+  .apropos__titre {
+    margin-top: 0.65rem;
+    font-size: var(--step-4);
+  }
+
+  .apropos__script {
+    margin-top: 0.05em;
+  }
+
+  .apropos__corps {
+    margin-top: var(--space-s);
+    color: var(--ink-muted);
+    max-width: 32rem;
+  }
+
+  .apropos__cta {
+    margin-top: var(--space-m);
+  }
+
+  @media (width >= 62rem) {
+    .apropos__inner {
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: var(--space-xl);
+    }
+
+    /* La photo file jusqu'au bord gauche de la fenêtre. */
+    .apropos__media {
+      margin-left: calc(50% - 50vw);
+    }
+
+    .apropos__media :global(img) {
+      border-radius: 0 999px 999px 0;
+    }
+  }
+</style>

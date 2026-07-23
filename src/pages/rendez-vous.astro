@@ -1,0 +1,159 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Icon from '../components/Icon.astro';
+import { parametres as p } from '../lib/parametres';
+
+const page = await getEntry('pages', 'rendez-vous');
+if (!page) throw new Error('Contenu manquant : src/content/pages/rendez-vous.md');
+const c = page.data;
+const { Content } = await render(page);
+
+/**
+ * L'unique bascule du système de réservation.
+ *
+ * Tant que `reservation_embed` est vide, la page propose le formulaire et le
+ * téléphone. Le jour où un agenda en ligne est mis en place, il suffit de
+ * coller son code d'intégration dans src/content/pages/rendez-vous.md (ou via
+ * le CMS) : la page bascule seule, aucun autre fichier n'est à toucher.
+ */
+const agendaEnLigne = Boolean(c.reservation_embed?.trim());
+---
+
+<Base titre={c.titre} description={c.meta_description} sansCta>
+  <PageHero titre={c.hero_titre} script={c.hero_script} intro={c.hero_intro} />
+
+  <section class="rdv">
+    <div class="wrap rdv__grille">
+      <div class="reveal">
+        {
+          agendaEnLigne ? (
+            <div class="agenda">
+              <h2 class="agenda__titre">Choisir un créneau</h2>
+              <div class="agenda__embed" set:html={c.reservation_embed} />
+            </div>
+          ) : (
+            <ContactForm titre="Demander un rendez-vous" />
+          )
+        }
+      </div>
+
+      <aside class="cote reveal">
+        <div class="appel">
+          <span class="appel__icone"><Icon nom="telephone" taille={22} /></span>
+          <h2 class="appel__titre">Ou appelez-moi</h2>
+          <a href={`tel:${p.telephone_lien}`} class="appel__numero">{p.telephone}</a>
+          <p class="appel__note">
+            Si je suis en séance, laissez un message : je rappelle en fin de journée.
+          </p>
+        </div>
+
+        <div class="rich cote__texte">
+          <Content />
+        </div>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .rdv {
+    padding-bottom: var(--space-xl);
+  }
+
+  .rdv__grille {
+    display: grid;
+    gap: var(--space-l);
+    align-items: start;
+  }
+
+  .agenda {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    padding: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+    box-shadow: var(--shadow-card);
+  }
+
+  .agenda__titre {
+    font-size: var(--step-3);
+    margin-bottom: var(--space-s);
+  }
+
+  /* Le module de réservation doit défiler seul, jamais la page. */
+  .agenda__embed {
+    overflow-x: auto;
+    min-height: 30rem;
+  }
+
+  .agenda__embed :global(iframe) {
+    width: 100%;
+    min-height: 30rem;
+    border: 0;
+  }
+
+  .appel {
+    background: var(--sage);
+    color: #fff;
+    border-radius: var(--radius-card);
+    padding: var(--space-m);
+    text-align: center;
+  }
+
+  .appel__icone {
+    display: inline-grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 15%);
+    margin-bottom: 0.85rem;
+  }
+
+  .appel__titre {
+    color: #fff;
+    font-size: var(--step-2);
+    margin-bottom: 0.5rem;
+  }
+
+  .appel__numero {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-variation-settings: 'SOFT' 60;
+    font-weight: 300;
+    font-size: var(--step-3);
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgb(255 255 255 / 45%);
+  }
+
+  .appel__numero:hover {
+    border-bottom-color: #fff;
+  }
+
+  .appel__note {
+    margin-top: 0.9rem;
+    font-size: var(--step--1);
+    color: rgb(255 255 255 / 85%);
+  }
+
+  .cote__texte {
+    margin-top: var(--space-m);
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+  }
+
+  .cote__texte :global(h2) {
+    font-size: var(--step-1);
+    color: var(--ink);
+  }
+
+  @media (width >= 58rem) {
+    .rdv__grille {
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: var(--space-xl);
+    }
+  }
+</style>

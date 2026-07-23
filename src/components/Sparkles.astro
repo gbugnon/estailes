@@ -1,0 +1,85 @@
+---
+/**
+ * Étincelles dorées en surcouche SVG.
+ *
+ * Volontairement séparées des photos : le cahier des charges impose qu'elles
+ * puissent se replacer seules quand la mise en page change. Ne jamais les
+ * incruster dans une image.
+ */
+interface Etincelle {
+  /** Position en pourcentage de la boîte parente. */
+  x: number;
+  y: number;
+  /** Rayon en pixels. */
+  r: number;
+  opacite?: number;
+}
+
+interface Props {
+  etincelles: Etincelle[];
+  class?: string;
+}
+
+const { etincelles, class: className } = Astro.props;
+
+function etoile(r: number) {
+  const c = r * 0.26;
+  return `M0 ${-r} C0 ${-c} ${c} 0 ${r} 0 C${c} 0 0 ${c} 0 ${r} C0 ${c} ${-c} 0 ${-r} 0 C${-c} 0 0 ${-c} 0 ${-r} Z`;
+}
+---
+
+<div class:list={['etincelles', className]} aria-hidden="true">
+  {
+    etincelles.map((e) => (
+      <svg
+        class="etincelle"
+        style={`left:${e.x}%;top:${e.y}%;width:${e.r * 2}px;height:${e.r * 2}px;opacity:${e.opacite ?? 1}`}
+        viewBox={`${-e.r} ${-e.r} ${e.r * 2} ${e.r * 2}`}
+      >
+        <path d={etoile(e.r)} fill="currentColor" />
+      </svg>
+    ))
+  }
+</div>
+
+<style>
+  .etincelles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    color: var(--gold);
+    z-index: 2;
+  }
+
+  .etincelle {
+    position: absolute;
+    translate: -50% -50%;
+    overflow: visible;
+    animation: scintiller 5s var(--ease) infinite;
+  }
+
+  .etincelle:nth-child(2n) {
+    animation-delay: -1.7s;
+  }
+
+  .etincelle:nth-child(3n) {
+    animation-delay: -3.2s;
+  }
+
+  @keyframes scintiller {
+    0%,
+    100% {
+      opacity: inherit;
+      scale: 1;
+    }
+    50% {
+      scale: 0.82;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .etincelle {
+      animation: none;
+    }
+  }
+</style>

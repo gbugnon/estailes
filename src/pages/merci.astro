@@ -1,0 +1,91 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Sparkles from '../components/Sparkles.astro';
+import { parametres as p } from '../lib/parametres';
+---
+
+<Base
+  titre="Message envoyé"
+  description="Votre message a bien été envoyé à Est'ailes. Réponse sous 48 heures, du lundi au vendredi."
+  sansCta
+>
+  <section class="merci">
+    <Sparkles
+      class="merci__etincelles"
+      etincelles={[
+        { x: 14, y: 24, r: 10, opacite: 0.5 },
+        { x: 86, y: 60, r: 12, opacite: 0.45 },
+        { x: 78, y: 20, r: 6, opacite: 0.35 },
+      ]}
+    />
+
+    <div class="wrap merci__inner">
+      <span class="merci__icone"><Icon nom="coeur" taille={34} /></span>
+
+      <h1>
+        Merci,
+        <span class="script">votre message est parti</span>
+      </h1>
+
+      <p class="merci__texte">
+        Je vous réponds sous 48 heures, du lundi au vendredi. Si votre demande est urgente,
+        appelez-moi plutôt au <a href={`tel:${p.telephone_lien}`}>{p.telephone}</a>.
+      </p>
+
+      <div class="merci__actions">
+        <a href="/" class="btn btn--primary">
+          Retour à l’accueil
+          <Icon nom="fleche" taille={15} />
+        </a>
+        <a href="/prestations" class="btn btn--ghost">Voir les prestations</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .merci {
+    position: relative;
+    padding-block: var(--space-2xl);
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .merci__inner {
+    position: relative;
+    z-index: 3;
+    max-width: 36rem;
+  }
+
+  .merci__icone {
+    display: inline-grid;
+    place-items: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    background: var(--sage-tint);
+    color: var(--sage);
+    margin-bottom: var(--space-s);
+  }
+
+  .merci__texte {
+    margin-top: var(--space-s);
+    color: var(--ink-muted);
+  }
+
+  .merci__texte a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--gold-line);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .merci__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    justify-content: center;
+    margin-top: var(--space-m);
+  }
+</style>

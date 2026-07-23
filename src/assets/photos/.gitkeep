@@ -1,0 +1,8 @@
+# Dossier des vraies photos (optimisées automatiquement au build).
+#
+# Les photos téléversées depuis le CMS atterrissent ici. Chaque image y est
+# redimensionnée et convertie en WebP par Astro, puis servie en srcset
+# responsive — voir src/components/Photo.astro.
+#
+# Les illustrations provisoires restent dans public/images/ : elles s'affichent
+# telles quelles tant qu'aucune vraie photo ne les remplace.

@@ -1,0 +1,39 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+
+const page = await getEntry('pages', 'a-propos');
+if (!page) throw new Error('Contenu manquant : src/content/pages/a-propos.md');
+const c = page.data;
+const { Content } = await render(page);
+---
+
+<Base titre={c.titre} description={c.meta_description}>
+  <PageHero
+    titre={c.hero_titre}
+    script={c.hero_script}
+    intro={c.hero_intro}
+    image={c.hero_image}
+    imageAlt={c.hero_image_alt}
+    imagePosition={c.hero_image_position}
+  />
+
+  <section class="corps">
+    <div class="wrap">
+      <div class="rich prose reveal">
+        <Content />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .corps {
+    padding-block: 0 var(--space-xl);
+  }
+
+  .corps .prose {
+    margin-inline: auto;
+  }
+</style>

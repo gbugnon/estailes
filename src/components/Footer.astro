@@ -1,0 +1,272 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { parametres as p } from '../lib/parametres';
+
+const annee = new Date().getFullYear();
+
+const navigation = [
+  { texte: 'Accueil', href: '/' },
+  { texte: 'À propos', href: '/a-propos' },
+  { texte: 'Prestations', href: '/prestations' },
+  { texte: 'Ateliers', href: '/ateliers' },
+  { texte: 'Tarifs', href: '/tarifs' },
+  { texte: 'Contact', href: '/contact' },
+];
+
+const libelleReseau = {
+  facebook: 'Facebook',
+  instagram: 'Instagram',
+  linkedin: 'LinkedIn',
+} as const;
+---
+
+<footer class="pied">
+  <div class="wrap pied__grille">
+    <div class="pied__marque">
+      <Logo baseline={p.accroche} />
+      {
+        p.reseaux.length > 0 && (
+          <ul class="reseaux">
+            {p.reseaux.map((r) => (
+              <li>
+                <a
+                  href={r.url}
+                  class="reseaux__lien"
+                  aria-label={`Est'ailes sur ${libelleReseau[r.nom]}`}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <Icon nom={r.nom} taille={17} />
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+
+    <nav class="pied__col" aria-label="Navigation de pied de page">
+      <h2 class="pied__titre">Navigation</h2>
+      <ul class="pied__liens">
+        {
+          navigation.map((lien) => (
+            <li>
+              <a href={lien.href}>{lien.texte}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="pied__col">
+      <h2 class="pied__titre">Informations</h2>
+      <ul class="infos">
+        <li>
+          <Icon nom="lieu" taille={16} />
+          <span>{p.adresse_ligne1}<br />{p.adresse_ligne2}</span>
+        </li>
+        <li>
+          <Icon nom="telephone" taille={16} />
+          <a href={`tel:${p.telephone_lien}`}>{p.telephone}</a>
+        </li>
+        <li>
+          <Icon nom="email" taille={16} />
+          <a href={`mailto:${p.email}`}>{p.email}</a>
+        </li>
+        {
+          p.horaires && (
+            <li>
+              <Icon nom="agenda" taille={16} />
+              <span>{p.horaires}</span>
+            </li>
+          )
+        }
+      </ul>
+    </div>
+
+    {
+      p.citation && (
+        <figure class="citation">
+          <svg class="citation__guillemet" viewBox="0 0 32 24" aria-hidden="true">
+            <path
+              d="M13 24H2.6C.9 24 0 23 0 21.2V13C0 5.9 4 1.2 11.6 0l1.4 3.4C8.7 4.9 6.5 7.4 6.5 11H10c2 0 3 1 3 2.9v7.3c0 1.9-.9 2.8-3 2.8Zm18 0H20.6c-1.7 0-2.6-1-2.6-2.8V13C18 5.9 22 1.2 29.6 0L31 3.4C26.7 4.9 24.5 7.4 24.5 11H28c2 0 3 1 3 2.9v7.3c0 1.9-.9 2.8-3 2.8Z"
+              fill="currentColor"
+            />
+          </svg>
+          <blockquote>{p.citation}</blockquote>
+          {p.citation_auteur && <figcaption>— {p.citation_auteur}</figcaption>}
+        </figure>
+      )
+    }
+  </div>
+
+  <div class="wrap pied__bas">
+    <p>© {annee} Est'ailes — Tous droits réservés</p>
+    <ul>
+      <li><a href="/mentions-legales">Mentions légales</a></li>
+      <li><a href="/politique-de-confidentialite">Politique de confidentialité</a></li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .pied {
+    background: var(--cream);
+    border-top: 1px solid var(--line);
+    padding-top: var(--space-xl);
+    font-size: var(--step--1);
+  }
+
+  .pied__grille {
+    display: grid;
+    gap: var(--space-l) var(--space-m);
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    padding-bottom: var(--space-l);
+  }
+
+  .pied__marque {
+    --logo-w: 138px;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    align-items: flex-start;
+  }
+
+  .pied__titre {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.9rem;
+    color: var(--ink);
+  }
+
+  .pied__liens,
+  .infos,
+  .reseaux {
+    list-style: none;
+    padding: 0;
+  }
+
+  .pied__liens li + li {
+    margin-top: 0.45rem;
+  }
+
+  .pied__liens a,
+  .infos a {
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: color 0.2s var(--ease);
+  }
+
+  .pied__liens a:hover,
+  .infos a:hover {
+    color: var(--gold-text);
+  }
+
+  .infos li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    color: var(--ink-muted);
+  }
+
+  .infos li + li {
+    margin-top: 0.7rem;
+  }
+
+  .infos :global(svg) {
+    flex: none;
+    margin-top: 0.15em;
+    color: var(--gold);
+  }
+
+  .reseaux {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .reseaux__lien {
+    display: grid;
+    place-items: center;
+    width: 2.15rem;
+    height: 2.15rem;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--ink-muted);
+    transition:
+      color 0.25s var(--ease),
+      border-color 0.25s var(--ease),
+      background-color 0.25s var(--ease);
+  }
+
+  .reseaux__lien:hover {
+    color: #fff;
+    background: var(--sage);
+    border-color: var(--sage);
+  }
+
+  .citation {
+    position: relative;
+    padding-left: 1.9rem;
+    color: var(--ink-muted);
+  }
+
+  .citation__guillemet {
+    position: absolute;
+    top: 0.15rem;
+    left: 0;
+    width: 1.3rem;
+    color: var(--gold-line);
+  }
+
+  .citation blockquote {
+    font-family: var(--font-display);
+    font-variation-settings: 'SOFT' 60;
+    font-size: var(--step-1);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+
+  .citation figcaption {
+    margin-top: 0.6rem;
+    font-family: var(--font-script);
+    font-size: var(--step-1);
+    color: var(--gold-text);
+  }
+
+  .pied__bas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem var(--space-m);
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 1.15rem;
+    border-top: 1px solid var(--line);
+    color: var(--ink-muted);
+    font-size: 0.8rem;
+  }
+
+  .pied__bas ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .pied__bas a {
+    color: var(--ink-muted);
+    text-decoration: none;
+  }
+
+  .pied__bas a:hover {
+    color: var(--gold-text);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+</style>

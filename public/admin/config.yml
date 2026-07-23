@@ -1,0 +1,371 @@
+# =============================================================================
+# Sveltia CMS — configuration de l'espace d'édition d'Est'ailes
+#
+# Ce fichier décrit ce qu'Estelle peut modifier depuis /admin. Chaque collection
+# correspond à un dossier de src/content/. Les noms de champs (widget « name »)
+# doivent rester identiques à ceux du schéma dans src/content.config.ts : les
+# renommer d'un côté sans l'autre casse la lecture au build.
+#
+# ⚠️ Avant la mise en production, remplacer « VOTRE-COMPTE/estailes » ci-dessous
+#    par le vrai dépôt GitHub, et vérifier que la branche est bien « main ».
+# =============================================================================
+
+backend:
+  name: github
+  repo: VOTRE-COMPTE/estailes
+  branch: main
+  # Sveltia gère l'authentification GitHub sans serveur tiers. Aucune clé à
+  # stocker ici : Estelle se connecte avec son propre compte GitHub.
+
+# Les photos téléversées atterrissent dans src/assets/photos/ : Astro les
+# redimensionne et les convertit en WebP au build (voir src/components/Photo.astro).
+# Les illustrations provisoires restent dans public/images/ et continuent de
+# s'afficher telles quelles tant qu'aucune vraie photo ne les remplace.
+media_folder: src/assets/photos
+public_folder: /src/assets/photos
+
+# Interface en français.
+locale: fr
+
+site_url: https://estailes.ch
+display_url: https://estailes.ch
+logo_url: /favicon.svg
+
+# Réglage de cadrage réutilisé par chaque photo. Une photo est souvent recadrée
+# dans un cercle ou un arc : ceci indique quelle partie garder visible, pour
+# qu'un visage ne se retrouve jamais coupé.
+cadrage: &cadrage
+  widget: select
+  required: false
+  default: centre
+  options:
+    - { label: Centrée, value: centre }
+    - { label: Vers le haut, value: haut }
+    - { label: Vers le bas, value: bas }
+    - { label: Vers la gauche, value: gauche }
+    - { label: Vers la droite, value: droite }
+    - { label: Haut gauche, value: haut-gauche }
+    - { label: Haut droite, value: haut-droite }
+    - { label: Bas gauche, value: bas-gauche }
+    - { label: Bas droite, value: bas-droite }
+  hint: 'Quelle partie de la photo garder visible si elle est recadrée (cercle, arc).'
+
+collections:
+  # ---------------------------------------------------------------------------
+  # Prestations — 4 fiches (réflexologie, crânien, énergétique, ateliers)
+  # ---------------------------------------------------------------------------
+  - name: prestations
+    label: Prestations
+    label_singular: Prestation
+    folder: src/content/prestations
+    extension: md
+    format: frontmatter
+    create: true
+    slug: '{{slug}}'
+    summary: '{{titre}} (ordre {{ordre}})'
+    sortable_fields: [ordre, titre]
+    fields:
+      - { name: titre, label: Titre, widget: string }
+      - {
+          name: sous_titre,
+          label: Sous-titre,
+          widget: string,
+          required: false,
+          hint: 'Court, sous le titre — ex. « Pieds · Détente profonde »',
+        }
+      - name: icone
+        label: Icône
+        widget: select
+        options: [pieds, tete, energie, famille, coeur, temps, presence, liens, respect, nature, douceur]
+        hint: 'Icône ronde affichée sur la fiche.'
+      - {
+          name: extrait,
+          label: Extrait,
+          widget: text,
+          hint: 'Une ou deux phrases affichées sur la carte de la page d’accueil.',
+        }
+      - {
+          name: image,
+          label: Photo,
+          widget: image,
+          hint: 'Format paysage (4:3 conseillé). Elle est optimisée automatiquement.',
+        }
+      - {
+          name: image_alt,
+          label: Description de la photo,
+          widget: string,
+          hint: 'Décrit la photo pour les personnes malvoyantes et pour Google.',
+        }
+      - <<: *cadrage
+        name: image_position
+        label: Cadrage de la photo
+      - { name: duree, label: Durée, widget: string, required: false, hint: 'ex. « 60 minutes »' }
+      - { name: prix, label: Tarif, widget: string, required: false, hint: 'ex. « CHF 100.– »' }
+      - {
+          name: ordre,
+          label: Ordre d’affichage,
+          widget: number,
+          value_type: int,
+          min: 1,
+          hint: '1 en premier, puis 2, 3, 4…',
+        }
+      - {
+          name: meta_description,
+          label: Description pour Google,
+          widget: text,
+          pattern: ['^.{0,160}$', '160 caractères maximum'],
+          hint: 'Résumé affiché dans les résultats de recherche (≤ 160 caractères).',
+        }
+      - {
+          name: body,
+          label: Contenu de la page,
+          widget: markdown,
+          hint: 'Le texte complet de la fiche prestation.',
+        }
+
+  # ---------------------------------------------------------------------------
+  # Valeurs — 7 items de la rangée « Ce qui guide mes accompagnements »
+  # ---------------------------------------------------------------------------
+  - name: valeurs
+    label: Valeurs
+    label_singular: Valeur
+    folder: src/content/valeurs
+    extension: md
+    format: frontmatter
+    create: true
+    slug: '{{ordre}}-{{slug}}'
+    summary: '{{titre}} (ordre {{ordre}})'
+    sortable_fields: [ordre, titre]
+    fields:
+      - { name: titre, label: Titre, widget: string }
+      - { name: description, label: Description, widget: text }
+      - name: icone
+        label: Icône
+        widget: select
+        options: [coeur, temps, presence, liens, respect, nature, douceur, pieds, tete, energie, famille]
+      - { name: ordre, label: Ordre d’affichage, widget: number, value_type: int, min: 1 }
+
+  # ---------------------------------------------------------------------------
+  # Pages — contenu propre à chaque page. Fichiers fixes (pas de création).
+  # ---------------------------------------------------------------------------
+  - name: pages
+    label: Pages
+    editor: { preview: false }
+    files:
+      - name: accueil
+        label: Accueil
+        file: src/content/pages/accueil.md
+        fields:
+          - { name: titre, label: Nom de la page, widget: hidden, default: Accueil }
+          - { name: meta_description, label: Description pour Google, widget: text }
+          - { name: hero_titre, label: Titre principal, widget: string }
+          - {
+              name: hero_script,
+              label: Accroche manuscrite,
+              widget: string,
+              required: false,
+              hint: 'Affichée dans la police manuscrite dorée.',
+            }
+          - { name: hero_intro, label: Introduction, widget: text, required: false }
+          - { name: hero_cta_texte, label: 'Bouton — texte', widget: string, required: false }
+          - {
+              name: hero_cta_lien,
+              label: 'Bouton — lien',
+              widget: string,
+              required: false,
+              hint: 'ex. /prestations',
+            }
+          - { name: hero_image, label: 'Photo d’en-tête', widget: image, required: false }
+          - { name: hero_image_alt, label: 'Description de la photo', widget: string, required: false }
+          - <<: *cadrage
+            name: hero_image_position
+            label: 'Cadrage de la photo d’en-tête'
+          - { name: valeurs_titre, label: 'Valeurs — titre', widget: string, required: false }
+          - { name: valeurs_intro, label: 'Valeurs — introduction', widget: text, required: false }
+          - { name: prestations_titre, label: 'Prestations — titre', widget: string, required: false }
+          - { name: prestations_intro, label: 'Prestations — introduction', widget: text, required: false }
+          - { name: apropos_surtitre, label: 'À propos — surtitre', widget: string, required: false }
+          - { name: apropos_titre, label: 'À propos — titre', widget: string, required: false }
+          - { name: apropos_script, label: 'À propos — accroche manuscrite', widget: string, required: false }
+          - { name: apropos_texte, label: 'À propos — texte', widget: text, required: false }
+          - { name: apropos_cta_texte, label: 'À propos — bouton (texte)', widget: string, required: false }
+          - { name: apropos_cta_lien, label: 'À propos — bouton (lien)', widget: string, required: false }
+          - { name: apropos_image, label: 'À propos — photo', widget: image, required: false }
+          - { name: apropos_image_alt, label: 'À propos — description photo', widget: string, required: false }
+          - <<: *cadrage
+            name: apropos_image_position
+            label: 'À propos — cadrage de la photo'
+
+      - name: a-propos
+        label: À propos
+        file: src/content/pages/a-propos.md
+        fields:
+          - { name: titre, label: Nom de la page, widget: hidden, default: À propos }
+          - { name: meta_description, label: Description pour Google, widget: text }
+          - { name: hero_titre, label: Titre principal, widget: string }
+          - { name: hero_script, label: Accroche manuscrite, widget: string, required: false }
+          - { name: hero_intro, label: Introduction, widget: text, required: false }
+          - { name: hero_image, label: 'Photo (portrait)', widget: image, required: false }
+          - { name: hero_image_alt, label: 'Description de la photo', widget: string, required: false }
+          - <<: *cadrage
+            name: hero_image_position
+            label: Cadrage de la photo
+          - { name: body, label: 'Contenu de la page', widget: markdown }
+
+      - name: prestations
+        label: 'Prestations (en-tête)'
+        file: src/content/pages/prestations.md
+        fields:
+          - { name: titre, label: Nom de la page, widget: hidden, default: Prestations }
+          - { name: meta_description, label: Description pour Google, widget: text }
+          - { name: hero_titre, label: Titre principal, widget: string }
+          - { name: hero_script, label: Accroche manuscrite, widget: string, required: false }
+          - { name: hero_intro, label: Introduction, widget: text, required: false }
+
+      - name: ateliers
+        label: Ateliers
+        file: src/content/pages/ateliers.md
+        fields:
+          - { name: titre, label: Nom de la page, widget: hidden, default: Ateliers }
+          - { name: meta_description, label: Description pour Google, widget: text }
+          - { name: hero_titre, label: Titre principal, widget: string }
+          - { name: hero_script, label: Accroche manuscrite, widget: string, required: false }
+          - { name: hero_intro, label: Introduction, widget: text, required: false }
+          - name: ateliers
+            label: Ateliers proposés
+            label_singular: Atelier
+            widget: list
+            required: false
+            fields:
+              - { name: titre, label: Titre, widget: string }
+              - {
+                  name: public,
+                  label: Public,
+                  widget: string,
+                  required: false,
+                  hint: 'ex. « De 6 semaines à la marche »',
+                }
+              - { name: duree, label: Durée, widget: string, required: false }
+              - { name: description, label: Description, widget: text }
+          - { name: body, label: 'Texte complémentaire', widget: markdown }
+
+      - name: tarifs
+        label: Tarifs
+        file: src/content/pages/tarifs.md
+        fields:
+          - { name: titre, label: Nom de la page, widget: hidden, default: Tarifs }
+          - { name: meta_description, label: Description pour Google, widget: text }
+          - { name: hero_titre, label: Titre principal, widget: string }
+          - { name: hero_script, label: Accroche manuscrite, widget: string, required: false }
+          - { name: hero_intro, label: Introduction, widget: text, required: false }
+          - name: tarifs
+            label: Grille tarifaire
+            label_singular: Ligne
+            widget: list
+            required: false
+            fields:
+              - { name: prestation, label: Prestation, widget: string }
+              - { name: duree, label: Durée, widget: string, required: false }
+              - { name: prix, label: Prix, widget: string }
+              - { name: note, label: Note, widget: string, required: false }
+          - { name: tarifs_note, label: 'Mention sous la grille', widget: text, required: false }
+          - { name: body, label: 'Texte complémentaire', widget: markdown }
+
+      - name: contact
+        label: Contact
+        file: src/content/pages/contact.md
+        fields:
+          - { name: titre, label: Nom de la page, widget: hidden, default: Contact }
+          - { name: meta_description, label: Description pour Google, widget: text }
+          - { name: hero_titre, label: Titre principal, widget: string }
+          - { name: hero_script, label: Accroche manuscrite, widget: string, required: false }
+          - { name: hero_intro, label: Introduction, widget: text, required: false }
+          - { name: body, label: 'Texte (accès, délais…)', widget: markdown }
+
+      - name: rendez-vous
+        label: Prendre rendez-vous
+        file: src/content/pages/rendez-vous.md
+        fields:
+          - { name: titre, label: Nom de la page, widget: hidden, default: Prendre rendez-vous }
+          - { name: meta_description, label: Description pour Google, widget: text }
+          - { name: hero_titre, label: Titre principal, widget: string }
+          - { name: hero_script, label: Accroche manuscrite, widget: string, required: false }
+          - { name: hero_intro, label: Introduction, widget: text, required: false }
+          - name: reservation_embed
+            label: 'Agenda en ligne (code d’intégration)'
+            widget: text
+            required: false
+            hint: >-
+              Laisser vide pour afficher le formulaire de contact. Le jour où vous
+              ouvrez un agenda en ligne (Cal.com, Calendly…), collez ici le code
+              fourni par le service : la page bascule seule.
+          - { name: body, label: 'Texte (ce qui se passe ensuite)', widget: markdown }
+
+      - name: mentions-legales
+        label: Mentions légales
+        file: src/content/pages/mentions-legales.md
+        fields:
+          - { name: titre, label: Nom de la page, widget: hidden, default: Mentions légales }
+          - { name: meta_description, label: Description pour Google, widget: text }
+          - { name: hero_titre, label: Titre principal, widget: string }
+          - { name: hero_intro, label: Introduction, widget: text, required: false }
+          - { name: body, label: Contenu, widget: markdown }
+
+      - name: confidentialite
+        label: Politique de confidentialité
+        file: src/content/pages/politique-de-confidentialite.md
+        fields:
+          - { name: titre, label: Nom de la page, widget: hidden, default: Politique de confidentialité }
+          - { name: meta_description, label: Description pour Google, widget: text }
+          - { name: hero_titre, label: Titre principal, widget: string }
+          - { name: hero_intro, label: Introduction, widget: text, required: false }
+          - { name: body, label: Contenu, widget: markdown }
+
+  # ---------------------------------------------------------------------------
+  # Paramètres — coordonnées, réseaux, bandeau d'appel à l'action.
+  # ---------------------------------------------------------------------------
+  - name: parametres
+    label: Paramètres du site
+    editor: { preview: false }
+    files:
+      - name: general
+        label: Coordonnées & réglages
+        file: src/content/parametres/site.json
+        fields:
+          - { name: nom_site, label: Nom du site, widget: string }
+          - { name: accroche, label: Accroche, widget: string }
+          - { name: telephone, label: Téléphone (affiché), widget: string }
+          - {
+              name: telephone_lien,
+              label: 'Téléphone (format lien)',
+              widget: string,
+              hint: 'Sans espaces, avec l’indicatif — ex. +41791234567',
+            }
+          - { name: email, label: E-mail, widget: string }
+          - { name: adresse_ligne1, label: 'Adresse — ligne 1', widget: string }
+          - { name: adresse_ligne2, label: 'Adresse — ligne 2', widget: string }
+          - { name: horaires, label: Disponibilités, widget: string, required: false }
+          - { name: citation, label: 'Citation (pied de page)', widget: text, required: false }
+          - { name: citation_auteur, label: 'Citation — signature', widget: string, required: false }
+          - { name: cta_titre, label: 'Bandeau — titre', widget: string }
+          - { name: cta_script, label: 'Bandeau — accroche manuscrite', widget: string, required: false }
+          - { name: cta_texte, label: 'Bandeau — texte', widget: text }
+          - { name: cta_bouton, label: 'Bandeau — bouton', widget: string }
+          - name: asca_rme_actif
+            label: 'Afficher le bandeau ASCA / RME'
+            widget: boolean
+            default: false
+            hint: >-
+              À n’activer qu’une fois l’agrément ASCA / RME réellement obtenu :
+              il conditionne le remboursement par les assurances complémentaires.
+          - { name: asca_rme_texte, label: 'Texte ASCA / RME', widget: text, required: false }
+          - name: reseaux
+            label: Réseaux sociaux
+            widget: list
+            required: false
+            fields:
+              - name: nom
+                label: Réseau
+                widget: select
+                options: [facebook, instagram, linkedin]
+              - { name: url, label: 'Adresse (URL)', widget: string }

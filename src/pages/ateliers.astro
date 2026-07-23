@@ -1,0 +1,115 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+
+const page = await getEntry('pages', 'ateliers');
+if (!page) throw new Error('Contenu manquant : src/content/pages/ateliers.md');
+const c = page.data;
+const { Content } = await render(page);
+---
+
+<Base titre={c.titre} description={c.meta_description}>
+  <PageHero titre={c.hero_titre} script={c.hero_script} intro={c.hero_intro} />
+
+  {
+    c.ateliers && c.ateliers.length > 0 && (
+      <section class="ateliers">
+        <div class="wrap">
+          <ul class="ateliers__liste">
+            {c.ateliers.map((atelier, i) => (
+              <li class="atelier reveal" style={`transition-delay:${i * 80}ms`}>
+                <span class="atelier__icone">
+                  <Icon nom="famille" taille={26} />
+                </span>
+                <div>
+                  <h2 class="atelier__titre">{atelier.titre}</h2>
+                  <p class="atelier__meta">
+                    {atelier.public}
+                    {atelier.public && atelier.duree && <span aria-hidden="true"> · </span>}
+                    {atelier.duree}
+                  </p>
+                  <p class="atelier__desc">{atelier.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="corps">
+    <div class="wrap">
+      <div class="rich prose reveal">
+        <Content />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ateliers {
+    padding-bottom: var(--space-l);
+  }
+
+  .ateliers__liste {
+    display: grid;
+    gap: var(--space-s);
+    list-style: none;
+    padding: 0;
+  }
+
+  .atelier {
+    display: flex;
+    gap: var(--space-s);
+    padding: clamp(1.25rem, 1rem + 1.4vw, 1.9rem);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .atelier__icone {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    background: var(--sage-tint);
+    color: var(--sage);
+  }
+
+  .atelier__titre {
+    font-size: var(--step-2);
+  }
+
+  .atelier__meta {
+    margin-top: 0.25rem;
+    font-size: var(--step--1);
+    color: var(--gold-text);
+  }
+
+  .atelier__desc {
+    margin-top: 0.7rem;
+    color: var(--ink-muted);
+    max-width: 44rem;
+  }
+
+  .corps {
+    padding-bottom: var(--space-xl);
+  }
+
+  .corps .prose {
+    margin-inline: auto;
+  }
+
+  @media (width < 34rem) {
+    .atelier {
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+  }
+</style>

@@ -1,0 +1,23 @@
+{
+  "nom_site": "Est'ailes",
+  "accroche": "Retrouver son harmonie intérieure",
+  "telephone": "+41 79 123 45 67",
+  "telephone_lien": "+41791234567",
+  "email": "contact@estailes.ch",
+  "adresse_ligne1": "Lentigny",
+  "adresse_ligne2": "Canton de Fribourg, Suisse",
+  "horaires": "Sur rendez-vous, du lundi au vendredi",
+  "citation": "Parce que chaque histoire est unique, chaque accompagnement l'est aussi.",
+  "citation_auteur": "Estelle",
+  "cta_titre": "Le premier pas vers vous",
+  "cta_script": "commence ici.",
+  "cta_texte": "Je vous accueille à Lentigny ou à distance, avec bienveillance et simplicité.",
+  "cta_bouton": "Prendre rendez-vous",
+  "asca_rme_actif": false,
+  "asca_rme_texte": "Praticienne agréée ASCA et RME : mes séances de réflexologie et de massage crânien sont remboursées par la plupart des assurances complémentaires. Vérifiez votre couverture auprès de votre caisse.",
+  "reseaux": [
+    { "nom": "facebook", "url": "https://www.facebook.com/estailes" },
+    { "nom": "instagram", "url": "https://www.instagram.com/estailes" },
+    { "nom": "linkedin", "url": "https://www.linkedin.com/in/estailes" }
+  ]
+}

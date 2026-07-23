@@ -1,0 +1,119 @@
+---
+import Sparkles from './Sparkles.astro';
+import Photo from './Photo.astro';
+import type { PositionPhoto } from './Photo.astro';
+
+interface Props {
+  titre: string;
+  script?: string;
+  intro?: string;
+  image?: string;
+  imageAlt?: string;
+  imagePosition?: PositionPhoto;
+}
+
+const { titre, script, intro, image, imageAlt = '', imagePosition } = Astro.props;
+const avecImage = Boolean(image);
+---
+
+<section class:list={['tete', avecImage && 'tete--image']}>
+  <Sparkles
+    class="tete__etincelles"
+    etincelles={[
+      { x: 8, y: 30, r: 8, opacite: 0.55 },
+      { x: 93, y: 58, r: 10, opacite: 0.45 },
+      { x: 86, y: 22, r: 5, opacite: 0.35 },
+    ]}
+  />
+
+  <div class="wrap tete__inner">
+    <div class="tete__texte">
+      <h1>
+        {titre}
+        {script && <span class="script tete__script">{script}</span>}
+      </h1>
+      {intro && <p class="tete__intro">{intro}</p>}
+    </div>
+
+    {
+      image && (
+        <div class="tete__media">
+          <Photo
+            src={image}
+            alt={imageAlt}
+            position={imagePosition}
+            width={720}
+            height={720}
+            sizes="(min-width: 56rem) 33vw, 100vw"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .tete {
+    position: relative;
+    padding-block: var(--space-xl);
+    background: var(--cream);
+    overflow: hidden;
+  }
+
+  .tete__inner {
+    position: relative;
+    z-index: 3;
+  }
+
+  .tete__texte {
+    max-width: 42rem;
+  }
+
+  .tete h1 {
+    font-size: var(--step-6);
+  }
+
+  .tete__script {
+    margin-top: 0.05em;
+  }
+
+  .tete__intro {
+    margin-top: var(--space-s);
+    color: var(--ink-muted);
+    font-size: var(--step-1);
+    max-width: 34rem;
+  }
+
+  /* Sans photo, l'en-tête se centre : il n'y a rien pour équilibrer à droite. */
+  .tete:not(.tete--image) .tete__texte {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .tete:not(.tete--image) .tete__intro {
+    margin-inline: auto;
+  }
+
+  .tete__media :global(img) {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+  }
+
+  .tete--image .tete__inner {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+
+  @media (width >= 56rem) {
+    .tete--image .tete__inner {
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+      gap: var(--space-xl);
+    }
+  }
+</style>

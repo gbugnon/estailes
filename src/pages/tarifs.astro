@@ -1,0 +1,153 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import { parametres } from '../lib/parametres';
+
+const page = await getEntry('pages', 'tarifs');
+if (!page) throw new Error('Contenu manquant : src/content/pages/tarifs.md');
+const c = page.data;
+const { Content } = await render(page);
+---
+
+<Base titre={c.titre} description={c.meta_description}>
+  <PageHero titre={c.hero_titre} script={c.hero_script} intro={c.hero_intro} />
+
+  {
+    parametres.asca_rme_actif && parametres.asca_rme_texte && (
+      <section class="agrement">
+        <div class="wrap agrement__inner">
+          <Icon nom="respect" taille={24} />
+          <p>{parametres.asca_rme_texte}</p>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    c.tarifs && c.tarifs.length > 0 && (
+      <section class="grille-tarifs">
+        <div class="wrap">
+          <ul class="tarifs reveal">
+            {c.tarifs.map((ligne) => (
+              <li class="tarif">
+                <div class="tarif__gauche">
+                  <h2 class="tarif__nom">{ligne.prestation}</h2>
+                  {ligne.note && <p class="tarif__note">{ligne.note}</p>}
+                </div>
+                {ligne.duree && <p class="tarif__duree">{ligne.duree}</p>}
+                <p class="tarif__prix">{ligne.prix}</p>
+              </li>
+            ))}
+          </ul>
+
+          {c.tarifs_note && <p class="tarifs__mention">{c.tarifs_note}</p>}
+        </div>
+      </section>
+    )
+  }
+
+  <section class="corps">
+    <div class="wrap">
+      <div class="rich prose reveal">
+        <Content />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .agrement {
+    background: var(--sage-tint);
+    border-block: 1px solid var(--line);
+    padding-block: var(--space-s);
+  }
+
+  .agrement__inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 48rem;
+    margin-inline: auto;
+    font-size: var(--step--1);
+  }
+
+  .agrement__inner :global(svg) {
+    flex: none;
+    color: var(--sage);
+  }
+
+  .grille-tarifs {
+    padding-block: 0 var(--space-l);
+  }
+
+  .tarifs {
+    list-style: none;
+    padding: 0;
+    max-width: 48rem;
+    margin-inline: auto;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .tarif {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.25rem 1rem;
+    align-items: baseline;
+    padding: 1.15rem clamp(1.1rem, 0.8rem + 1.4vw, 1.9rem);
+  }
+
+  .tarif + .tarif {
+    border-top: 1px solid var(--line);
+  }
+
+  .tarif__nom {
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.4;
+  }
+
+  .tarif__note {
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    margin-top: 0.15rem;
+  }
+
+  .tarif__duree {
+    grid-column: 1;
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+  }
+
+  .tarif__prix {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    font-family: var(--font-display);
+    font-variation-settings: 'SOFT' 60;
+    font-weight: 300;
+    font-size: var(--step-3);
+    white-space: nowrap;
+  }
+
+  .tarifs__mention {
+    max-width: 48rem;
+    margin: var(--space-s) auto 0;
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+  }
+
+  .corps {
+    padding-bottom: var(--space-xl);
+  }
+
+  .corps .prose {
+    margin-inline: auto;
+  }
+</style>

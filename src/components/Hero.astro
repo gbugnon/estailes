@@ -1,0 +1,174 @@
+---
+import Icon from './Icon.astro';
+import Sparkles from './Sparkles.astro';
+import Photo from './Photo.astro';
+import type { PositionPhoto } from './Photo.astro';
+
+interface Props {
+  titre: string;
+  script?: string;
+  intro?: string;
+  image?: string;
+  imageAlt?: string;
+  imagePosition?: PositionPhoto;
+  ctaTexte?: string;
+  ctaLien?: string;
+}
+
+const {
+  titre,
+  script,
+  intro,
+  image,
+  imageAlt = '',
+  imagePosition,
+  ctaTexte,
+  ctaLien,
+} = Astro.props;
+
+// hero_intro accepte plusieurs paragraphes séparés par une ligne vide.
+const paragraphes = intro?.split(/\n{2,}/).filter(Boolean) ?? [];
+---
+
+<section class="hero">
+  <div class="wrap hero__inner">
+    <div class="hero__texte">
+      <h1 class="hero__titre">
+        {titre}
+        {script && <span class="script hero__script">{script}</span>}
+      </h1>
+
+      {paragraphes.map((para) => <p class="hero__intro">{para}</p>)}
+
+      {
+        ctaTexte && ctaLien && (
+          <a href={ctaLien} class="btn btn--primary hero__cta">
+            {ctaTexte}
+            <Icon nom="fleche" taille={15} />
+          </a>
+        )
+      }
+    </div>
+
+    {
+      image && (
+        <div class="hero__media">
+          <svg class="hero__arc" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="99" fill="none" stroke="var(--gold-line)" stroke-width="0.7" />
+          </svg>
+          <Photo
+            src={image}
+            alt={imageAlt}
+            position={imagePosition}
+            width={880}
+            height={700}
+            sizes="(min-width: 62rem) 55vw, 100vw"
+            loading="eager"
+            fetchpriority="high"
+          />
+          <Sparkles
+            class="hero__etincelles"
+            etincelles={[
+              { x: 2, y: 22, r: 10, opacite: 0.9 },
+              { x: -4, y: 46, r: 5, opacite: 0.6 },
+              { x: 7, y: 68, r: 7, opacite: 0.75 },
+            ]}
+          />
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding-block: var(--space-l) var(--space-xl);
+    overflow: hidden;
+  }
+
+  .hero__inner {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+
+  .hero__titre {
+    margin-bottom: var(--space-s);
+  }
+
+  .hero__script {
+    margin-top: 0.08em;
+  }
+
+  .hero__intro {
+    color: var(--ink-muted);
+    max-width: 32rem;
+  }
+
+  .hero__intro + .hero__intro {
+    margin-top: 0.9rem;
+  }
+
+  .hero__cta {
+    margin-top: var(--space-m);
+  }
+
+  .hero__media {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .hero__media :global(img) {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
+    border-radius: 999px 12px 12px 999px;
+  }
+
+  /* Le grand cercle doré déborde à gauche de la photo et passe dessous.
+     C'est une surcouche SVG, jamais un élément incrusté dans l'image. */
+  .hero__arc {
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    left: -26%;
+    width: 78%;
+    aspect-ratio: 1;
+    translate: 0 -50%;
+    overflow: visible;
+  }
+
+  .hero__etincelles {
+    z-index: 2;
+  }
+
+  @media (width < 48rem) {
+    .hero__media :global(img) {
+      border-radius: 140px 10px 10px 140px;
+    }
+  }
+
+  @media (width >= 62rem) {
+    .hero {
+      padding-block: var(--space-m) var(--space-2xl);
+    }
+
+    .hero__inner {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      gap: var(--space-xl);
+    }
+
+    /* La photo file jusqu'au bord droit de la fenêtre, comme sur la maquette. */
+    .hero__media {
+      margin-right: calc(50% - 50vw);
+    }
+
+    .hero__media :global(img) {
+      aspect-ratio: 4 / 3;
+      border-radius: 999px 0 0 999px;
+    }
+  }
+</style>

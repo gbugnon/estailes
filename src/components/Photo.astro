@@ -1,0 +1,119 @@
+---
+/**
+ * Rendu unifié des photos de contenu — le seul endroit qui sait afficher une
+ * image du site. Gère deux choses à la fois :
+ *
+ *  1. OPTIMISATION — une vraie photo déposée dans src/assets/photos/ passe par
+ *     le composant <Image> d'Astro : redimensionnée, convertie en WebP, avec un
+ *     srcset responsive. Les illustrations provisoires (SVG dans public/images/)
+ *     ne s'y trouvent pas : elles retombent sur un <img> simple, sans
+ *     rastérisation inutile. Résultat : les placeholders fonctionnent
+ *     aujourd'hui, et chaque photo réelle téléversée est optimisée sans étape
+ *     manuelle.
+ *
+ *  2. CADRAGE — `position` fixe le point focal (object-position) pour qu'un
+ *     visage ou un sujet ne soit pas coupé quand la photo est recadrée dans un
+ *     cercle ou un arc.
+ *
+ * Le contenu ne stocke qu'une chaîne (chemin ou nom de fichier) : robuste, sans
+ * chemins relatifs fragiles. On reconnaît une vraie photo à son nom de fichier.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+/** Mots-clés de cadrage exposés dans le CMS → valeur CSS object-position. */
+const POSITIONS = {
+  centre: '50% 50%',
+  haut: '50% 0%',
+  bas: '50% 100%',
+  gauche: '0% 50%',
+  droite: '100% 50%',
+  'haut-gauche': '0% 0%',
+  'haut-droite': '100% 0%',
+  'bas-gauche': '0% 100%',
+  'bas-droite': '100% 100%',
+} as const;
+
+export type PositionPhoto = keyof typeof POSITIONS;
+
+interface Props {
+  /** Valeur stockée dans le contenu (ex. « /src/assets/photos/salle.jpg »). */
+  src: string;
+  alt: string;
+  /** Point focal si la photo est recadrée. Par défaut : centrée. */
+  position?: PositionPhoto;
+  /** Dimensions intrinsèques — réservent la place et fixent le ratio. */
+  width: number;
+  height: number;
+  /** Largeur d'affichage réelle, pour que le navigateur choisisse la bonne source. */
+  sizes?: string;
+  class?: string;
+  loading?: 'eager' | 'lazy';
+  fetchpriority?: 'high' | 'auto';
+}
+
+const {
+  src,
+  alt,
+  position = 'centre',
+  width,
+  height,
+  sizes = '100vw',
+  class: className,
+  loading = 'lazy',
+  fetchpriority = 'auto',
+} = Astro.props;
+
+// Carte des photos optimisables, indexées par nom de fichier. Chargée au build.
+const sources = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/photos/*.{jpeg,jpg,png,webp,avif}',
+  { eager: true },
+);
+const parNom = new Map<string, ImageMetadata>();
+for (const [chemin, module] of Object.entries(sources)) {
+  const nom = chemin.split('/').pop();
+  if (nom) parNom.set(nom, module.default);
+}
+
+const nomFichier = src.split('/').pop() ?? src;
+const photo = parNom.get(nomFichier);
+
+const objectPosition = POSITIONS[position];
+
+// Largeurs candidates du srcset, jamais au-delà de la taille d'origine (Astro
+// refuse d'agrandir une image). On ajoute toujours la largeur réelle en dernier.
+const CANDIDATES = [480, 768, 1080, 1440, 1920];
+const largeurs = photo
+  ? Array.from(new Set(CANDIDATES.filter((w) => w < photo.width).concat(photo.width))).sort(
+      (a, b) => a - b,
+    )
+  : CANDIDATES;
+---
+
+{
+  photo ? (
+    <Image
+      src={photo}
+      alt={alt}
+      widths={largeurs}
+      sizes={sizes}
+      format="webp"
+      class={className}
+      loading={loading}
+      fetchpriority={fetchpriority}
+      style={`object-position:${objectPosition}`}
+    />
+  ) : (
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      class={className}
+      loading={loading}
+      fetchpriority={fetchpriority}
+      decoding="async"
+      style={`object-position:${objectPosition}`}
+    />
+  )
+}

@@ -1,0 +1,54 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import PrestationCard from '../../components/PrestationCard.astro';
+
+const page = await getEntry('pages', 'prestations');
+if (!page) throw new Error('Contenu manquant : src/content/pages/prestations.md');
+const c = page.data;
+
+const prestations = (await getCollection('prestations')).sort(
+  (a, b) => a.data.ordre - b.data.ordre,
+);
+---
+
+<Base titre={c.titre} description={c.meta_description}>
+  <PageHero titre={c.hero_titre} script={c.hero_script} intro={c.hero_intro} />
+
+  <section class="liste">
+    <div class="wrap liste__grille">
+      {
+        prestations.map((prestation, i) => (
+          <div class="reveal" style={`transition-delay:${i * 80}ms`}>
+            <PrestationCard prestation={prestation} eager={i < 2} />
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .liste {
+    padding-bottom: var(--space-xl);
+  }
+
+  .liste__grille {
+    display: grid;
+    gap: var(--space-m) var(--space-s);
+    grid-template-columns: 1fr;
+  }
+
+  @media (width >= 34rem) {
+    .liste__grille {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (width >= 68rem) {
+    .liste__grille {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>
