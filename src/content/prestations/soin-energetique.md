@@ -6,7 +6,7 @@ extrait: Pour rééquilibrer, libérer les blocages et retrouver votre élan int
 image: /images/prestation-energetique.svg
 image_alt: Soin énergétique, mains en suspension au-dessus du buste d’une personne allongée
 duree: 60 minutes
-prix: CHF 100.–
+prix: CHF 90.–
 ordre: 3
 meta_description: Soin énergétique et harmonisation des chakras à Lentigny (Fribourg) — pour rééquilibrer, libérer les blocages et retrouver votre élan intérieur.
 ---

@@ -1,4 +1,4 @@
-# Est'ailes
+# Les sens d'Estelle
 
 Site vitrine d'une praticienne en techniques complémentaires à Lentigny
 (canton de Fribourg) : réflexologie plantaire, massage crânien, soin
@@ -72,7 +72,7 @@ divergent.
 
 ## Édition du contenu (pour Estelle)
 
-1. Aller sur **https://estailes.ch/admin**
+1. Aller sur **https://lessensdestelle.ch/admin**
 2. Se connecter avec le compte **GitHub** autorisé
 3. Modifier textes et photos, puis **Publier**
 

@@ -1,20 +1,20 @@
 ---
 titre: Politique de confidentialité
-meta_description: Comment sont traitées vos données personnelles sur estailes.ch — données collectées, finalité, durée de conservation et vos droits (nLPD / RGPD).
+meta_description: Comment sont traitées vos données personnelles sur lessensdestelle.ch — données collectées, finalité, durée de conservation et vos droits (nLPD / RGPD).
 hero_titre: Politique de confidentialité
 hero_intro: Ce site collecte le strict minimum. Cette page explique quoi, pourquoi, pendant combien de temps, et ce que vous pouvez exiger.
 ---
 
 La présente politique décrit le traitement des données personnelles dans le cadre
-de l’utilisation du site **estailes.ch** et des prestations d’Est’ailes. Elle
+de l’utilisation du site **lessensdestelle.ch** et des prestations des Sens d’Estelle. Elle
 respecte la loi fédérale suisse sur la protection des données (**nLPD**) et, pour
 les personnes résidant dans l’Union européenne, le **RGPD**.
 
 ## Responsable du traitement
 
-Estelle [NOM À COMPLÉTER] — Est’ailes
-[RUE ET NUMÉRO À COMPLÉTER], 1745 Lentigny, Suisse
-E-mail : contact@estailes.ch — Téléphone : +41 79 123 45 67
+Estelle [NOM À COMPLÉTER] — Les sens d’Estelle
+Route de la Poste 31, 1745 Lentigny, Suisse
+E-mail : contact@lessensdestelle.ch — Téléphone : +41 79 123 45 67
 
 ## Ce que ce site ne fait pas
 
@@ -46,7 +46,7 @@ conclusion d’un contrat de prestation (art. 31 al. 2 let. a nLPD ; art. 6 al. 
 let. b RGPD).
 
 **Destinataire.** Ces informations sont envoyées à l’adresse e-mail
-professionnelle d’Est’ailes, hébergée par Infomaniak Network SA en Suisse. Elles
+professionnelle des Sens d’Estelle, hébergée par Infomaniak Network SA en Suisse. Elles
 ne sont enregistrées dans aucune base de données sur le site, et ne transitent
 par aucun service tiers.
 
@@ -92,7 +92,7 @@ Vous pouvez à tout moment demander :
 - la **limitation** ou l’**opposition** au traitement ;
 - la **portabilité** de vos données dans un format lisible.
 
-Adressez votre demande à **contact@estailes.ch**. Une réponse vous sera apportée
+Adressez votre demande à **contact@lessensdestelle.ch**. Une réponse vous sera apportée
 dans un délai de 30 jours. Une pièce d’identité pourra être demandée afin
 d’éviter toute divulgation à un tiers.
 

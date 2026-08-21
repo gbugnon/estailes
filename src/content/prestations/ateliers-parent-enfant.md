@@ -5,8 +5,8 @@ icone: famille
 extrait: Des outils simples et concrets pour accompagner bébés, enfants et parents.
 image: /images/prestation-ateliers.svg
 image_alt: Atelier parent-enfant, mains d’un adulte guidant les mains d’un enfant
-duree: 1 h 30
-prix: CHF 45.– par duo
+duree: 60 minutes
+prix: CHF 90.–
 ordre: 4
 meta_description: Ateliers parent-enfant à Lentigny (Fribourg) — massage bébé, gestes de détente et outils simples à reprendre à la maison.
 ---

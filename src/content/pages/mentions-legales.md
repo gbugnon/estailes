@@ -1,17 +1,17 @@
 ---
 titre: Mentions légales
-meta_description: Mentions légales du site estailes.ch — éditrice, hébergement, propriété intellectuelle et limitation de responsabilité.
+meta_description: Mentions légales du site lessensdestelle.ch — éditrice, hébergement, propriété intellectuelle et limitation de responsabilité.
 hero_titre: Mentions légales
 ---
 
 ## Éditrice du site
 
 Le présent site est édité par Estelle [NOM À COMPLÉTER], praticienne indépendante
-en techniques complémentaires, exerçant sous l’enseigne **Est’ailes**.
+en techniques complémentaires, exerçant sous l’enseigne **Les sens d’Estelle**.
 
-- Adresse : [RUE ET NUMÉRO À COMPLÉTER], 1745 Lentigny, canton de Fribourg, Suisse
+- Adresse : Route de la Poste 31, 1745 Lentigny, canton de Fribourg, Suisse
 - Téléphone : +41 79 123 45 67
-- E-mail : contact@estailes.ch
+- E-mail : contact@lessensdestelle.ch
 - Numéro IDE : [CHE-XXX.XXX.XXX — à compléter si l’entreprise est inscrite au registre IDE]
 
 Responsable de la publication : Estelle [NOM À COMPLÉTER].
@@ -40,7 +40,7 @@ et éléments graphiques — est protégé par le droit d’auteur suisse. Toute
 reproduction, représentation ou adaptation, totale ou partielle, sur quelque
 support que ce soit, est interdite sans autorisation écrite préalable.
 
-La marque et le logo **Est’ailes** ne peuvent être utilisés sans accord écrit.
+La marque et le logo **Les sens d’Estelle** ne peuvent être utilisés sans accord écrit.
 
 ## Liens externes
 

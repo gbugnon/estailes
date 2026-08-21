@@ -7,21 +7,17 @@ hero_intro: Pas de supplément, pas de forfait obligatoire. Vous payez la séanc
 tarifs:
   - prestation: Réflexologie plantaire
     duree: 60 minutes
-    prix: CHF 100.–
-  - prestation: Réflexologie plantaire — première séance
-    duree: 75 minutes
-    prix: CHF 120.–
-    note: Comprend le temps d’anamnèse initial
+    prix: CHF 90.–
   - prestation: Massage crânien
-    duree: 45 minutes
-    prix: CHF 80.–
+    duree: 60 minutes
+    prix: CHF 90.–
   - prestation: Soin énergétique
     duree: 60 minutes
-    prix: CHF 100.–
+    prix: CHF 90.–
+    note: Possible également à distance
   - prestation: Atelier parent-enfant
-    duree: 1 h 30
-    prix: CHF 45.–
-    note: Par duo parent-enfant
+    duree: 60 minutes
+    prix: CHF 90.–
 tarifs_note: Paiement en espèces ou par TWINT à la fin de la séance. Une facture vous est remise sur simple demande.
 ---
 

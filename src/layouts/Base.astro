@@ -18,14 +18,14 @@ interface Props {
 
 const { titre, description, sansCta = false } = Astro.props;
 
-const titreComplet = titre === 'Accueil' ? `Est'ailes — ${p.accroche}` : `${titre} · Est'ailes`;
+const titreComplet = titre === 'Accueil' ? `Les sens d’Estelle — ${p.accroche}` : `${titre} · Les sens d’Estelle`;
 const canonique = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site).href;
 
 // Référencement local : Lentigny et canton de Fribourg.
 const donneesStructurees = {
   '@context': 'https://schema.org',
   '@type': 'HealthAndBeautyBusiness',
-  name: "Est'ailes",
+  name: "Les sens d’Estelle",
   description: p.accroche,
   url: Astro.site?.href,
   telephone: p.telephone,
@@ -60,7 +60,7 @@ const donneesStructurees = {
     <meta name="theme-color" content="#FAF5F1" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Est'ailes" />
+    <meta property="og:site_name" content="Les sens d’Estelle" />
     <meta property="og:locale" content="fr_CH" />
     <meta property="og:title" content={titreComplet} />
     <meta property="og:description" content={description} />

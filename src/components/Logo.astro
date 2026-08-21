@@ -1,6 +1,6 @@
 ---
 /**
- * Logo Est'ailes — entièrement vectoriel.
+ * Logo Les sens d'Estelle — entièrement vectoriel.
  * L'arc et les étincelles sont des tracés SVG ; le mot est du vrai texte rendu
  * en Parisienne, ce qui le garde net à toute taille et lisible par les lecteurs
  * d'écran via <title>.
@@ -32,7 +32,7 @@ function etoile(cx: number, cy: number, s: number) {
 ---
 
 <span class:list={['logo', className]}>
-  <svg class="logo__svg" viewBox="0 0 210 76" role="img" aria-label="Est'ailes">
+  <svg class="logo__svg" viewBox="0 0 340 76" role="img" aria-label="Les sens d’Estelle">
     <path
       class="logo__arc"
       d="M150 11 A73 30 0 1 0 150 65"
@@ -43,8 +43,8 @@ function etoile(cx: number, cy: number, s: number) {
     />
     <path d={etoile(24, 13, 6)} fill={or} />
     <path d={etoile(40, 8, 3.4)} fill={or} opacity="0.8" />
-    <path d={etoile(160, 20, 4)} fill={or} opacity="0.7" />
-    <text class="logo__mot" x="34" y="52" fill={encre}>Est'ailes</text>
+    <path d={etoile(328, 20, 4)} fill={or} opacity="0.7" />
+    <text class="logo__mot" x="34" y="52" fill={encre}>Les sens d’Estelle</text>
   </svg>
   {baseline && <span class="logo__baseline">{baseline}</span>}
 </span>

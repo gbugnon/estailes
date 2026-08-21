@@ -1,6 +1,6 @@
 ---
 titre: Contact
-meta_description: Contacter Est’ailes à Lentigny (Fribourg) — téléphone, e-mail et accès au cabinet. Réponse sous 48 heures.
+meta_description: Contacter Les sens d’Estelle à Lentigny (Fribourg) — téléphone, e-mail et accès au cabinet. Réponse sous 48 heures.
 hero_titre: Écrivez-moi,
 hero_script: je vous réponds
 hero_intro: "Le plus simple reste le téléphone. Si je suis en séance, laissez un message : je rappelle en fin de journée."

@@ -5,8 +5,8 @@ icone: tete
 extrait: Pour apaiser le mental, relâcher la pression et retrouver de la clarté.
 image: /images/prestation-cranien.svg
 image_alt: Massage crânien, mains posées sur les tempes d’une personne allongée
-duree: 45 minutes
-prix: CHF 80.–
+duree: 60 minutes
+prix: CHF 90.–
 ordre: 2
 meta_description: Massage crânien à Lentigny (Fribourg) — nuque, crâne et visage, pour apaiser le mental, relâcher la pression et retrouver de la clarté.
 ---

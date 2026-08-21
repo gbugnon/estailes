@@ -11,7 +11,7 @@ hero_image_alt: Portrait d’Estelle, praticienne, dans son cabinet de Lentigny
 ## Comment j’en suis arrivée là
 
 Depuis toujours, je suis passionnée par l’humain et le bien-être. Avant d’ouvrir
-Est’ailes, j’ai passé plusieurs années dans des métiers où l’on prend soin des
+mon cabinet, j’ai passé plusieurs années dans des métiers où l’on prend soin des
 autres sans jamais avoir le temps de vraiment s’arrêter. C’est en cherchant ce
 temps pour moi que j’ai découvert la réflexologie — d’abord comme cliente, puis
 comme évidence.

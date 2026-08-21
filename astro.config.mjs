@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://estailes.ch',
+  site: 'https://lessensdestelle.ch',
   output: 'static',
   trailingSlash: 'ignore',
   build: {
