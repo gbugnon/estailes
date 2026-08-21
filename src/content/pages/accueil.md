@@ -10,7 +10,7 @@ hero_intro: |-
 hero_cta_texte: Découvrir mes prestations
 hero_cta_lien: /prestations
 hero_image: /images/hero-cabinet.svg
-hero_image_alt: Le cabinet d’Est’ailes à Lentigny, lumière du matin sur la table de soin et les plantes
+hero_image_alt: Le cabinet des Sens d’Estelle à Lentigny, lumière du matin sur la table de soin et les plantes
 valeurs_titre: Ce qui guide mes accompagnements
 valeurs_intro: Des valeurs qui m’inspirent au quotidien et que je transmets dans chaque rencontre.
 prestations_titre: Mes prestations

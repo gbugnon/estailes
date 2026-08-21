@@ -1,5 +1,5 @@
 # =============================================================================
-# Sveltia CMS — configuration de l'espace d'édition d'Est'ailes
+# Sveltia CMS — configuration de l'espace d'édition des Sens d'Estelle
 #
 # Ce fichier décrit ce qu'Estelle peut modifier depuis /admin. Chaque collection
 # correspond à un dossier de src/content/. Les noms de champs (widget « name »)
@@ -25,8 +25,8 @@ public_folder: /src/assets/photos
 # Interface en français.
 locale: fr
 
-site_url: https://estailes.ch
-display_url: https://estailes.ch
+site_url: https://lessensdestelle.ch
+display_url: https://lessensdestelle.ch
 logo_url: /favicon.svg
 
 # Réglage de cadrage réutilisé par chaque photo. Une photo est souvent recadrée

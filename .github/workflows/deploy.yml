@@ -1,5 +1,5 @@
 # =============================================================================
-# Déploiement d'Est'ailes vers l'hébergement Infomaniak (FTPS)
+# Déploiement des Sens d'Estelle vers l'hébergement Infomaniak (FTPS)
 #
 # À chaque push sur « main » : installation, build, puis envoi du contenu de
 # dist/ vers la racine web d'Infomaniak par FTPS.

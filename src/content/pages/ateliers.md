@@ -7,14 +7,14 @@ hero_intro: Les ateliers ne sont pas des séances de soin. Ce sont des moments o
 ateliers:
   - titre: Massage bébé
     public: De 6 semaines à la marche
-    duree: 1 h 30
+    duree: 60 minutes
     description: >-
       Massage des pieds, des jambes et du ventre, gestes d’apaisement pour les
       coliques, et portage. En petit groupe de quatre duos maximum, pour que
       chacun ait le temps de poser ses questions.
   - titre: Détente des petits
     public: Enfants de 3 à 8 ans, accompagnés
-    duree: 1 h 30
+    duree: 60 minutes
     description: >-
       Points de détente simples avant le coucher, respirations à faire à deux, et
       quelques repères pour traverser les grosses émotions sans s’épuiser. Les

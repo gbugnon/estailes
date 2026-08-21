@@ -1,6 +1,6 @@
 <?php
 /**
- * Traitement du formulaire de contact — Est'ailes
+ * Traitement du formulaire de contact — Les sens d'Estelle
  * =============================================================================
  * Reçoit le formulaire de /contact et /rendez-vous, puis envoie le message par
  * e-mail. Aucune base de données, aucun service tiers : le message part du
@@ -17,8 +17,8 @@
  * =============================================================================
  */
 
-const DESTINATAIRE = 'contact@estailes.ch';
-const EXPEDITEUR   = 'site@estailes.ch';
+const DESTINATAIRE = 'contact@lessensdestelle.ch';
+const EXPEDITEUR   = 'site@lessensdestelle.ch';
 const PAGE_MERCI   = '/merci';
 const PAGE_CONTACT = '/contact';
 
@@ -78,7 +78,7 @@ foreach ([$nom, $email, $sujet] as $valeur) {
 // --- Construction et envoi de l'e-mail --------------------------------------
 $objet = 'Nouveau message du site' . ($sujet !== '' ? ' — ' . $sujet : '');
 
-$corps = "Nouveau message depuis estailes.ch\n"
+$corps = "Nouveau message depuis lessensdestelle.ch\n"
     . "-----------------------------------\n\n"
     . 'Nom       : ' . $nom . "\n"
     . 'E-mail    : ' . $email . "\n"
