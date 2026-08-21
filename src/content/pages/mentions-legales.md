@@ -10,7 +10,7 @@ Le présent site est édité par Estelle [NOM À COMPLÉTER], praticienne indép
 en techniques complémentaires, exerçant sous l’enseigne **Les sens d’Estelle**.
 
 - Adresse : Route de la Poste 31, 1745 Lentigny, canton de Fribourg, Suisse
-- Téléphone : +41 79 123 45 67
+- Téléphone : +41 79 583 82 23
 - E-mail : contact@lessensdestelle.ch
 - Numéro IDE : [CHE-XXX.XXX.XXX — à compléter si l’entreprise est inscrite au registre IDE]
 

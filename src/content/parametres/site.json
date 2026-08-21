@@ -1,8 +1,8 @@
 {
   "nom_site": "Les sens d’Estelle",
   "accroche": "Retrouver son harmonie intérieure",
-  "telephone": "+41 79 123 45 67",
-  "telephone_lien": "+41791234567",
+  "telephone": "+41 79 583 82 23",
+  "telephone_lien": "+41795838223",
   "email": "contact@lessensdestelle.ch",
   "adresse_ligne1": "Route de la Poste 31",
   "adresse_ligne2": "1745 Lentigny",
@@ -16,6 +16,6 @@
   "asca_rme_actif": false,
   "asca_rme_texte": "Praticienne agréée ASCA et RME : mes séances de réflexologie et de massage crânien sont remboursées par la plupart des assurances complémentaires. Vérifiez votre couverture auprès de votre caisse.",
   "reseaux": [
-    { "nom": "instagram", "url": "https://www.instagram.com/A_COMPLETER" }
+    { "nom": "instagram", "url": "https://www.instagram.com/dela_reflexologie" }
   ]
 }
