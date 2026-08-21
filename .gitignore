@@ -6,5 +6,6 @@ dist/
 .env
 .env.production
 
-# Notes de travail destinées au client (jamais publiées : le dépôt est public).
+# Notes de travail et brief de projet : le dépôt est public, ils restent locaux.
 docs/
+CLAUDE.md
