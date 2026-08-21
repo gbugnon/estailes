@@ -58,7 +58,6 @@ public/
   admin/             ← interface d'édition Sveltia (config.yml)
   images/            ← photos et illustrations
   contact-handler.php← traitement du formulaire (exécuté sur Infomaniak)
-design/mockup.jpg    ← maquette client validée (référence visuelle)
 ```
 
 Le modèle de contenu est défini et validé dans
@@ -162,8 +161,9 @@ CMS : la page bascule seule du formulaire vers l'agenda.
 
 ## Design
 
-La maquette validée est [`design/mockup.jpg`](design/mockup.jpg). Les jetons de
-couleur et de typographie sont en tête de
+La maquette client validée n'est pas dans ce dépôt public : elle vit dans
+`design/mockup.jpg` sur la machine du développeur. Les jetons de couleur et de
+typographie qui en sont issus sont en tête de
 [`src/styles/global.css`](src/styles/global.css).
 
 Trois familles de caractères : **Fraunces** (titres, serif), **Parisienne**
