@@ -33,6 +33,6 @@ const schema = z.object({
   ),
 });
 
-export type Parametres = z.infer<typeof schema>;
+export const parametres = schema.parse(donnees);
 
-export const parametres: Parametres = schema.parse(donnees);
+export type Parametres = typeof parametres;
