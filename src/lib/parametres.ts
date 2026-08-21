@@ -1,4 +1,4 @@
-import { z } from 'astro:content';
+import { z } from 'astro/zod';
 import donnees from '../content/parametres/site.json';
 
 /**
@@ -13,7 +13,7 @@ const schema = z.object({
   accroche: z.string(),
   telephone: z.string(),
   telephone_lien: z.string(),
-  email: z.string().email(),
+  email: z.email(),
   adresse_ligne1: z.string(),
   adresse_ligne2: z.string(),
   horaires: z.string().optional(),
@@ -28,11 +28,11 @@ const schema = z.object({
   reseaux: z.array(
     z.object({
       nom: z.enum(['facebook', 'instagram', 'linkedin']),
-      url: z.string().url(),
+      url: z.url(),
     }),
   ),
 });
 
-export const parametres = schema.parse(donnees);
+export type Parametres = z.infer<typeof schema>;
 
-export type Parametres = typeof parametres;
+export const parametres: Parametres = schema.parse(donnees);
