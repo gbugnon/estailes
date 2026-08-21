@@ -22,7 +22,16 @@ name: Déploiement
 on:
   push:
     branches: [main]
-  workflow_dispatch: {} # permet un lancement manuel depuis l'onglet Actions
+  # Lancement manuel depuis l'onglet Actions. Par défaut en simulation :
+  # l'action se connecte, compare, affiche ce qu'elle enverrait — et n'écrit
+  # rien. C'est le moyen de vérifier identifiants et dossier cible sans risquer
+  # de déposer le site au mauvais endroit.
+  workflow_dispatch:
+    inputs:
+      simulation:
+        description: 'Simulation (aucun fichier transféré)'
+        type: boolean
+        default: true
 
 # Un seul déploiement à la fois ; on annule un déploiement en cours si un
 # nouveau push arrive.
@@ -64,3 +73,6 @@ jobs:
           # Ne jamais toucher aux fichiers hors du site (ex. dossiers e-mail,
           # bases, autres applications hébergées sur le même compte).
           dangerous-clean-slate: false
+          # Vrai uniquement pour un lancement manuel coché « Simulation » ;
+          # un push sur main déploie pour de bon.
+          dry-run: ${{ inputs.simulation || false }}

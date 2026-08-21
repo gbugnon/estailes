@@ -93,14 +93,19 @@ vers Infomaniak par FTPS. Voir
 
 | Secret | Valeur |
 |---|---|
-| `FTP_SERVER` | ex. `ftp.infomaniak.com` |
-| `FTP_USERNAME` | identifiant FTP |
-| `FTP_PASSWORD` | mot de passe FTP |
-| `FTP_ROOT` | dossier web **vérifié** (souvent `/web/`) |
+| `FTP_SERVER` | l'hôte lu dans le manager, de la forme `xxxx.ftp.infomaniak.com` |
+| `FTP_USERNAME` | l'identifiant FTP, de la forme `xxxx_yyyy` |
+| `FTP_PASSWORD` | le mot de passe du compte FTP |
+| `FTP_ROOT` | le dossier web **vérifié**, slash final obligatoire (ex. `/web/`) |
 
 > **Vérifier le dossier web AVANT d'automatiser.** Ouvrir le gestionnaire de
 > fichiers Infomaniak et confirmer le chemin réel de la racine du site.
 > Déployer dans le mauvais dossier est la première erreur classique.
+
+Pour cette vérification, lancer le workflow à la main depuis l'onglet Actions
+en laissant **Simulation** cochée : il se connecte, compare, affiche ce qu'il
+enverrait, et n'écrit rien. Une fois la liste des fichiers conforme, décocher
+la case (ou pousser sur `main`) pour déployer réellement.
 
 ### Manuel (secours — à garder opérationnel)
 
