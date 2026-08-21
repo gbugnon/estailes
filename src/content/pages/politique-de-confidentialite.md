@@ -29,30 +29,24 @@ Pour être explicite, parce que c’est inhabituel :
 C’est pour cette raison qu’aucune bannière de consentement ne vous est présentée :
 il n’y a rien à consentir.
 
-## Données collectées via le formulaire de contact
+## Comment vos messages me parviennent
 
-Lorsque vous remplissez le formulaire de contact ou de demande de rendez-vous,
-les données suivantes sont transmises par e-mail :
+**Ce site ne comporte aucun formulaire.** Rien n’y est saisi, rien n’y est
+enregistré. Pour me joindre, vous utilisez votre téléphone, votre messagerie ou
+Instagram.
 
-| Donnée | Caractère | Finalité |
-|---|---|---|
-| Nom et prénom | Obligatoire | Vous identifier et vous répondre |
-| Adresse e-mail | Obligatoire | Vous répondre |
-| Numéro de téléphone | Facultatif | Vous rappeler si vous le préférez |
-| Message | Obligatoire | Comprendre votre demande |
-
-**Base légale.** Le traitement repose sur votre démarche volontaire en vue de la
+**Par téléphone ou par e-mail.** Ce que vous m’adressez arrive dans ma
+messagerie professionnelle, hébergée par Infomaniak Network SA en Suisse, ou sur
+mon téléphone. Le traitement repose sur votre démarche volontaire en vue de la
 conclusion d’un contrat de prestation (art. 31 al. 2 let. a nLPD ; art. 6 al. 1
-let. b RGPD).
+let. b RGPD). Les messages sans suite sont supprimés après 12 mois ; les échanges
+liés à un rendez-vous effectivement pris sont conservés dans le dossier client
+(voir ci-dessous).
 
-**Destinataire.** Ces informations sont envoyées à l’adresse e-mail
-professionnelle des Sens d’Estelle, hébergée par Infomaniak Network SA en Suisse. Elles
-ne sont enregistrées dans aucune base de données sur le site, et ne transitent
-par aucun service tiers.
-
-**Durée de conservation.** Les messages sans suite sont supprimés après 12 mois.
-Les échanges liés à un rendez-vous effectivement pris sont conservés dans le
-dossier client (voir ci-dessous).
+**Par Instagram.** Si vous passez par ce canal, votre message transite par les
+serveurs de Meta et relève de la politique de confidentialité d’Instagram, sur
+laquelle je n’ai aucune prise. Pour toute demande contenant des informations de
+santé, préférez le téléphone ou l’e-mail.
 
 ## Données de santé communiquées en séance
 
@@ -80,7 +74,10 @@ fins d’analyse.
 |---|---|---|
 | Infomaniak Network SA | Hébergement du site et de la messagerie | Suisse |
 
-Aucune donnée n’est transférée hors de Suisse ou de l’Espace économique européen.
+Aucune donnée n’est transférée hors de Suisse ou de l’Espace économique
+européen **par ce site**. Les messages que vous choisissez de m’envoyer via
+Instagram échappent à cette règle : ils sont traités par Meta, selon ses
+propres conditions.
 
 ## Vos droits
 

@@ -1,0 +1,136 @@
+---
+/**
+ * Les moyens de la joindre : téléphone, e-mail, Instagram — et, si demandé,
+ * l'adresse du cabinet et les disponibilités.
+ *
+ * Le site n'a pas de formulaire : l'hébergement Starter d'Infomaniak n'exécute
+ * pas PHP. Cette liste est donc le seul point de contact du site, et elle est
+ * utilisée telle quelle par /contact et par /rendez-vous.
+ */
+import Icon from './Icon.astro';
+import { parametres as p } from '../lib/parametres';
+
+interface Props {
+  /** Ajoute l'adresse du cabinet et les disponibilités sous les trois contacts. */
+  avecAdresse?: boolean;
+}
+
+const { avecAdresse = false } = Astro.props;
+
+const instagram = p.reseaux.find((r) => r.nom === 'instagram');
+/** « https://www.instagram.com/dela_reflexologie » → « @dela_reflexologie » */
+const pseudoInstagram = instagram && '@' + instagram.url.replace(/\/+$/, '').split('/').pop();
+---
+
+<ul class="coordonnees__liste">
+  <li>
+    <span class="coordonnees__icone"><Icon nom="telephone" taille={19} /></span>
+    <div>
+      <strong>Téléphone</strong>
+      <a href={`tel:${p.telephone_lien}`}>{p.telephone}</a>
+    </div>
+  </li>
+
+  <li>
+    <span class="coordonnees__icone"><Icon nom="email" taille={19} /></span>
+    <div>
+      <strong>E-mail</strong>
+      <a href={`mailto:${p.email}`}>{p.email}</a>
+    </div>
+  </li>
+
+  {
+    instagram && (
+      <li>
+        <span class="coordonnees__icone">
+          <Icon nom="instagram" taille={19} />
+        </span>
+        <div>
+          <strong>Instagram</strong>
+          <a href={instagram.url} rel="noopener noreferrer" target="_blank">
+            {pseudoInstagram}
+          </a>
+        </div>
+      </li>
+    )
+  }
+
+  {
+    avecAdresse && (
+      <li>
+        <span class="coordonnees__icone">
+          <Icon nom="lieu" taille={19} />
+        </span>
+        <div>
+          <strong>Cabinet</strong>
+          <span>
+            {p.adresse_ligne1}
+            <br />
+            {p.adresse_ligne2}
+          </span>
+        </div>
+      </li>
+    )
+  }
+
+  {
+    avecAdresse && p.horaires && (
+      <li>
+        <span class="coordonnees__icone">
+          <Icon nom="agenda" taille={19} />
+        </span>
+        <div>
+          <strong>Disponibilités</strong>
+          <span>{p.horaires}</span>
+        </div>
+      </li>
+    )
+  }
+</ul>
+
+<style>
+  .coordonnees__liste {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--space-m);
+  }
+
+  .coordonnees__liste li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding-block: 0.85rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .coordonnees__icone {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background: var(--sage-tint);
+    color: var(--sage);
+  }
+
+  .coordonnees__liste strong {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 0.2rem;
+  }
+
+  .coordonnees__liste a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-line);
+  }
+
+  .coordonnees__liste a:hover {
+    color: var(--gold-text);
+  }
+</style>

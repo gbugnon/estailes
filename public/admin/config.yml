@@ -294,7 +294,7 @@ collections:
             widget: text
             required: false
             hint: >-
-              Laisser vide pour afficher le formulaire de contact. Le jour où vous
+              Laisser vide pour afficher vos coordonnées. Le jour où vous
               ouvrez un agenda en ligne (Cal.com, Calendly…), collez ici le code
               fourni par le service : la page bascule seule.
           - { name: body, label: 'Texte (ce qui se passe ensuite)', widget: markdown }

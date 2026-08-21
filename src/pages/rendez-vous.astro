@@ -2,7 +2,7 @@
 import { getEntry, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
-import ContactForm from '../components/ContactForm.astro';
+import Coordonnees from '../components/Coordonnees.astro';
 import Icon from '../components/Icon.astro';
 import { parametres as p } from '../lib/parametres';
 
@@ -14,8 +14,8 @@ const { Content } = await render(page);
 /**
  * L'unique bascule du système de réservation.
  *
- * Tant que `reservation_embed` est vide, la page propose le formulaire et le
- * téléphone. Le jour où un agenda en ligne est mis en place, il suffit de
+ * Tant que `reservation_embed` est vide, la page propose les moyens de
+ * contact directs. Le jour où un agenda en ligne est mis en place, il suffit de
  * coller son code d'intégration dans src/content/pages/rendez-vous.md (ou via
  * le CMS) : la page bascule seule, aucun autre fichier n'est à toucher.
  */
@@ -35,20 +35,34 @@ const agendaEnLigne = Boolean(c.reservation_embed?.trim());
               <div class="agenda__embed" set:html={c.reservation_embed} />
             </div>
           ) : (
-            <ContactForm titre="Demander un rendez-vous" />
+            <div class="panneau">
+              <h2 class="panneau__titre">Me contacter</h2>
+              <Coordonnees />
+              <p class="panneau__note">
+                Si je suis en séance, laissez un message : je rappelle en fin de journée.
+              </p>
+            </div>
           )
         }
       </div>
 
       <aside class="cote reveal">
-        <div class="appel">
-          <span class="appel__icone"><Icon nom="telephone" taille={22} /></span>
-          <h2 class="appel__titre">Ou appelez-moi</h2>
-          <a href={`tel:${p.telephone_lien}`} class="appel__numero">{p.telephone}</a>
-          <p class="appel__note">
-            Si je suis en séance, laissez un message : je rappelle en fin de journée.
-          </p>
-        </div>
+        {
+          agendaEnLigne && (
+            <div class="appel">
+              <span class="appel__icone">
+                <Icon nom="telephone" taille={22} />
+              </span>
+              <h2 class="appel__titre">Ou appelez-moi</h2>
+              <a href={`tel:${p.telephone_lien}`} class="appel__numero">
+                {p.telephone}
+              </a>
+              <p class="appel__note">
+                Si je suis en séance, laissez un message : je rappelle en fin de journée.
+              </p>
+            </div>
+          )
+        }
 
         <div class="rich cote__texte">
           <Content />
@@ -69,7 +83,8 @@ const agendaEnLigne = Boolean(c.reservation_embed?.trim());
     align-items: start;
   }
 
-  .agenda {
+  .agenda,
+  .panneau {
     background: var(--panel);
     border: 1px solid var(--line);
     border-radius: var(--radius-card);
@@ -77,9 +92,15 @@ const agendaEnLigne = Boolean(c.reservation_embed?.trim());
     box-shadow: var(--shadow-card);
   }
 
-  .agenda__titre {
+  .agenda__titre,
+  .panneau__titre {
     font-size: var(--step-3);
     margin-bottom: var(--space-s);
+  }
+
+  .panneau__note {
+    font-size: var(--step--1);
+    color: var(--ink-muted);
   }
 
   /* Le module de réservation doit défiler seul, jamais la page. */

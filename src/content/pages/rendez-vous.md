@@ -5,11 +5,11 @@ hero_titre: Le premier pas,
 hero_script: commence ici
 hero_intro: Dites-moi ce qui vous amène et quand vous êtes disponible. Je vous recontacte pour fixer un créneau qui vous convient.
 # --- Emplacement du module de réservation en ligne ---------------------------
-# Laisser vide tant qu’il n’y a pas d’agenda en ligne : la page affiche alors le
-# formulaire de contact et le téléphone.
+# Laisser vide tant qu’il n’y a pas d’agenda en ligne : la page affiche alors
+# les moyens de contact directs (téléphone, e-mail, Instagram).
 # Le jour où un agenda est mis en place (Cal.com, Calendly, Acuity…), coller ici
 # le code d’intégration fourni par le service. Rien d’autre n’est à modifier :
-# le formulaire laisse automatiquement la place à l’agenda.
+# les coordonnées laissent automatiquement la place à l’agenda.
 reservation_embed: ''
 ---
 

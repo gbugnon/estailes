@@ -57,7 +57,6 @@ src/
 public/
   admin/             ← interface d'édition Sveltia (config.yml)
   images/            ← photos et illustrations
-  contact-handler.php← traitement du formulaire (exécuté sur Infomaniak)
 ```
 
 Le modèle de contenu est défini et validé dans
@@ -75,60 +74,55 @@ divergent.
 2. Se connecter avec le compte **GitHub** autorisé
 3. Modifier textes et photos, puis **Publier**
 
-Chaque publication crée un enregistrement sur GitHub et **relance le
-déploiement tout seul**. Le site est à jour en quelques minutes.
+Chaque publication crée un enregistrement sur GitHub. **Le site en ligne, lui,
+ne bouge pas encore** : il faut ensuite reconstruire et téléverser (voir
+« Déploiement »). C'est la contrepartie de l'hébergement Starter.
 
 ---
 
 ## Déploiement
 
-### Automatique (une fois configuré)
+**Le déploiement est manuel, et c'est un choix contraint.** Le site est hébergé
+sur l'offre **Starter** d'Infomaniak, celle fournie avec le nom de domaine. Son
+serveur FTP n'accepte **aucun chiffrement** : il refuse `AUTH TLS`, et les ports
+22 (SFTP) et 990 (FTPS implicite) sont fermés. Automatiser depuis GitHub
+Actions impliquerait donc d'envoyer le mot de passe FTP en clair sur Internet à
+chaque publication. Le workflow a existé, il a été retiré pour cette raison.
 
-À chaque `push` sur `main`, GitHub Actions construit le site et envoie `dist/`
-vers Infomaniak par FTPS. Voir
-[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
-
-**Secrets à créer** dans le dépôt (Settings → Secrets and variables → Actions),
-**jamais dans le YAML** :
-
-| Secret | Valeur |
-|---|---|
-| `FTP_SERVER` | l'hôte lu dans le manager, de la forme `xxxx.ftp.infomaniak.com` |
-| `FTP_USERNAME` | l'identifiant FTP, de la forme `xxxx_yyyy` |
-| `FTP_PASSWORD` | le mot de passe du compte FTP |
-| `FTP_ROOT` | le dossier web **vérifié**, slash final obligatoire (ex. `/web/`) |
-
-> **Vérifier le dossier web AVANT d'automatiser.** Ouvrir le gestionnaire de
-> fichiers Infomaniak et confirmer le chemin réel de la racine du site.
-> Déployer dans le mauvais dossier est la première erreur classique.
-
-Pour cette vérification, lancer le workflow à la main depuis l'onglet Actions
-en laissant **Simulation** cochée : il se connecte, compare, affiche ce qu'il
-enverrait, et n'écrit rien. Une fois la liste des fichiers conforme, décocher
-la case (ou pousser sur `main`) pour déployer réellement.
-
-### Manuel (secours — à garder opérationnel)
-
-Si le pipeline casse, le site doit rester publiable à la main :
+Publier une nouvelle version :
 
 ```bash
 npm run build
 ```
 
-Puis, dans le **gestionnaire de fichiers Infomaniak**, envoyer **tout le
-contenu de `dist/`** dans le dossier web. C'est tout.
+Puis, dans le **gestionnaire de fichiers Infomaniak** (dans le navigateur, en
+HTTPS), envoyer **tout le contenu de `dist/`** dans le dossier web du site.
+C'est tout. Le site est entièrement statique : aucune base de données, aucun
+service à redémarrer.
+
+> Un client FTP classique fonctionnerait aussi, mais il enverrait lui aussi le
+> mot de passe en clair. Le gestionnaire de fichiers du navigateur est le seul
+> chemin chiffré vers ce serveur.
+
+**Conséquence à connaître :** quand Estelle modifie un texte depuis `/admin`,
+son changement part sur GitHub mais **pas** en ligne. Il faut reconstruire et
+téléverser. Tant que le contenu bouge peu, c'est tenable ; le jour où ça devient
+pénible, la vraie réponse est de passer à un hébergement Web Apache/PHP, qui
+donne le FTPES et le SSH — et permet de rétablir le déploiement automatique.
 
 ---
 
-## Formulaire de contact
+## Contact
 
-Le formulaire (`/contact` et `/rendez-vous`) est traité par
-[`public/contact-handler.php`](public/contact-handler.php), exécuté sur
-Infomaniak. Il envoie simplement un e-mail : aucune donnée n'est stockée.
+**Le site n'a pas de formulaire.** L'offre Starter n'exécute pas PHP, donc rien
+ne peut traiter un envoi côté serveur. Les pages `/contact` et `/rendez-vous`
+affichent à la place les moyens de la joindre — téléphone, e-mail, Instagram —
+rendus par [`src/components/Coordonnees.astro`](src/components/Coordonnees.astro)
+à partir des valeurs saisies dans le CMS.
 
-Avant la mise en production, vérifier dans ce fichier les constantes
-`DESTINATAIRE` et `EXPEDITEUR` (l'expéditeur doit être une adresse du domaine
-hébergé chez Infomaniak, pour ne pas être filtré comme spam).
+C'est aussi le choix le plus sobre pour des demandes qui touchent à la santé :
+aucune donnée ne transite par ce site, et la politique de confidentialité peut
+le dire sans réserve.
 
 ---
 
@@ -160,7 +154,7 @@ le seul fichier qui sait afficher une photo du site.
 La page `/rendez-vous` est prête à accueillir un agenda en ligne sans
 retouche de code. Le jour venu, coller le code d'intégration (Cal.com,
 Calendly, Acuity…) dans le champ **« Agenda en ligne »** de la page depuis le
-CMS : la page bascule seule du formulaire vers l'agenda.
+CMS : la page bascule seule des coordonnées vers l'agenda.
 
 ---
 
@@ -185,10 +179,11 @@ ligne :
 - **Agrément ASCA / RME** — le bandeau de remboursement est **désactivé** par
   défaut (`asca_rme_actif: false` dans `site.json`). Ne l'activer qu'une fois
   l'agrément réellement obtenu.
-- **Coordonnées** — téléphone, e-mail et adresse dans `site.json` sont des
-  valeurs de démonstration.
-- **Mentions légales / confidentialité** — les champs `[À COMPLÉTER]` (nom
-  complet, adresse exacte, IDE) doivent être renseignés.
+- **Coordonnées** — téléphone, e-mail, adresse et lien Instagram dans
+  `site.json` sont ceux de la cliente. Le lien Instagram pointe sur un compte
+  encore nommé `dela_reflexologie` : il casse si elle le renomme.
+- **Mentions légales / confidentialité** — les champs `[À COMPLÉTER]` restants
+  (nom complet, IDE) doivent être renseignés. L'adresse est en place.
 - **Photos** — les images de `public/images/` sont des illustrations
   provisoires. Voir « Remplacer les photos » ci-dessous : il n'y a rien à
   modifier dans le code.
