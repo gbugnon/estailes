@@ -12,7 +12,7 @@ les personnes résidant dans l’Union européenne, le **RGPD**.
 
 ## Responsable du traitement
 
-Estelle [NOM À COMPLÉTER] — Les sens d’Estelle
+Estelle Delacrétaz — Les sens d’Estelle
 Route de la Poste 31, 1745 Lentigny, Suisse
 E-mail : contact@lessensdestelle.ch — Téléphone : +41 79 583 82 23
 

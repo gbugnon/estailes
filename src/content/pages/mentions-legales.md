@@ -6,15 +6,14 @@ hero_titre: Mentions légales
 
 ## Éditrice du site
 
-Le présent site est édité par Estelle [NOM À COMPLÉTER], praticienne indépendante
+Le présent site est édité par Estelle Delacrétaz, praticienne indépendante
 en techniques complémentaires, exerçant sous l’enseigne **Les sens d’Estelle**.
 
 - Adresse : Route de la Poste 31, 1745 Lentigny, canton de Fribourg, Suisse
 - Téléphone : +41 79 583 82 23
 - E-mail : contact@lessensdestelle.ch
-- Numéro IDE : [CHE-XXX.XXX.XXX — à compléter si l’entreprise est inscrite au registre IDE]
 
-Responsable de la publication : Estelle [NOM À COMPLÉTER].
+Responsable de la publication : Estelle Delacrétaz.
 
 ## Hébergement
 

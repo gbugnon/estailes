@@ -182,8 +182,9 @@ ligne :
 - **Coordonnées** — téléphone, e-mail, adresse et lien Instagram dans
   `site.json` sont ceux de la cliente. Le lien Instagram pointe sur un compte
   encore nommé `dela_reflexologie` : il casse si elle le renomme.
-- **Mentions légales / confidentialité** — les champs `[À COMPLÉTER]` restants
-  (nom complet, IDE) doivent être renseignés. L'adresse est en place.
+- **Mentions légales / confidentialité** — complétées : nom, adresse, téléphone
+  et e-mail sont en place. La cliente n'a pas de numéro IDE, la ligne a été
+  retirée ; à rétablir si elle en obtient un.
 - **Photos** — les images de `public/images/` sont des illustrations
   provisoires. Voir « Remplacer les photos » ci-dessous : il n'y a rien à
   modifier dans le code.
