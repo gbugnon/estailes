@@ -74,55 +74,74 @@ divergent.
 2. Se connecter avec le compte **GitHub** autorisé
 3. Modifier textes et photos, puis **Publier**
 
-Chaque publication crée un enregistrement sur GitHub. **Le site en ligne, lui,
-ne bouge pas encore** : il faut ensuite reconstruire et téléverser (voir
-« Déploiement »). C'est la contrepartie de l'hébergement Starter.
+Chaque publication crée un enregistrement sur GitHub et **relance le
+déploiement tout seul**. Le site est à jour en quelques minutes.
 
 ---
 
 ## Déploiement
 
-**Le déploiement est manuel, et c'est un choix contraint.** Le site est hébergé
-sur l'offre **Starter** d'Infomaniak, celle fournie avec le nom de domaine. Son
-serveur FTP n'accepte **aucun chiffrement** : il refuse `AUTH TLS`, et les ports
-22 (SFTP) et 990 (FTPS implicite) sont fermés. Automatiser depuis GitHub
-Actions impliquerait donc d'envoyer le mot de passe FTP en clair sur Internet à
-chaque publication. Le workflow a existé, il a été retiré pour cette raison.
+### Automatique
 
-Publier une nouvelle version :
+À chaque `push` sur `main`, GitHub Actions construit le site et envoie `dist/`
+vers Infomaniak en **FTPES** — port 21 avec chiffrement TLS. Voir
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+
+**Secrets à créer** dans le dépôt (Settings → Secrets and variables → Actions),
+**jamais dans le YAML** :
+
+| Secret | Valeur |
+|---|---|
+| `FTP_SERVER` | l'hôte lu dans le manager, de la forme `xxxx.ftp.infomaniak.com` |
+| `FTP_USERNAME` | l'identifiant FTP, de la forme `xxxx_yyyy` |
+| `FTP_PASSWORD` | le mot de passe du compte FTP |
+| `FTP_ROOT` | le dossier web **vérifié**, slash final obligatoire (ex. `/web/`) |
+
+> **Vérifier le dossier web AVANT d'automatiser.** Ouvrir le gestionnaire de
+> fichiers Infomaniak et confirmer le chemin réel de la racine du site.
+> Déployer dans le mauvais dossier est la première erreur classique.
+
+Pour cette vérification, lancer le workflow à la main depuis l'onglet Actions
+en laissant **Simulation** cochée : il se connecte, compare, affiche ce qu'il
+enverrait, et n'écrit rien. Une fois la liste des fichiers conforme, décocher
+la case (ou pousser sur `main`) pour déployer réellement.
+
+> Le FTPES exige un **hébergement Web Apache/PHP**. Sur l'offre Starter, le
+> serveur refuse `AUTH TLS` et ce workflow échoue à la connexion — c'est pour
+> cette raison qu'il avait été retiré pendant un temps. Si l'hébergement
+> redevient un Starter un jour, il faut le retirer à nouveau plutôt que de
+> passer en FTP non chiffré.
+
+### Manuel (secours — à garder opérationnel)
+
+Si le pipeline casse, le site doit rester publiable à la main :
 
 ```bash
 npm run build
 ```
 
-Puis, dans le **gestionnaire de fichiers Infomaniak** (dans le navigateur, en
-HTTPS), envoyer **tout le contenu de `dist/`** dans le dossier web du site.
-C'est tout. Le site est entièrement statique : aucune base de données, aucun
-service à redémarrer.
-
-> Un client FTP classique fonctionnerait aussi, mais il enverrait lui aussi le
-> mot de passe en clair. Le gestionnaire de fichiers du navigateur est le seul
-> chemin chiffré vers ce serveur.
-
-**Conséquence à connaître :** quand Estelle modifie un texte depuis `/admin`,
-son changement part sur GitHub mais **pas** en ligne. Il faut reconstruire et
-téléverser. Tant que le contenu bouge peu, c'est tenable ; le jour où ça devient
-pénible, la vraie réponse est de passer à un hébergement Web Apache/PHP, qui
-donne le FTPES et le SSH — et permet de rétablir le déploiement automatique.
+Puis, dans le **gestionnaire de fichiers Infomaniak**, envoyer **tout le
+contenu de `dist/`** dans le dossier web. C'est tout. Le site est entièrement
+statique : aucune base de données, aucun service à redémarrer.
 
 ---
 
 ## Contact
 
-**Le site n'a pas de formulaire.** L'offre Starter n'exécute pas PHP, donc rien
-ne peut traiter un envoi côté serveur. Les pages `/contact` et `/rendez-vous`
-affichent à la place les moyens de la joindre — téléphone, e-mail, Instagram —
-rendus par [`src/components/Coordonnees.astro`](src/components/Coordonnees.astro)
-à partir des valeurs saisies dans le CMS.
+**Le site n'a pas de formulaire, par choix.** Les pages `/contact` et
+`/rendez-vous` affichent les moyens de la joindre — téléphone, e-mail,
+Instagram — rendus par
+[`src/components/Coordonnees.astro`](src/components/Coordonnees.astro) à partir
+des valeurs saisies dans le CMS.
 
-C'est aussi le choix le plus sobre pour des demandes qui touchent à la santé :
-aucune donnée ne transite par ce site, et la politique de confidentialité peut
-le dire sans réserve.
+C'est le choix le plus sobre pour des demandes qui touchent à la santé : aucune
+donnée ne transite par ce site, et la politique de confidentialité peut le dire
+sans réserve.
+
+L'hébergement actuel exécute PHP, donc un formulaire redeviendrait techniquement
+possible. Le remettre demanderait de rétablir le composant et son traitement
+côté serveur, et de réécrire la section correspondante de la politique de
+confidentialité.
 
 ---
 
