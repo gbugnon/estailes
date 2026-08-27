@@ -4,8 +4,8 @@ meta_description: Estelle, praticienne en réflexologie et soins énergétiques 
 hero_titre: Mon chemin,
 hero_script: au service de l’essentiel
 hero_intro: Accompagner avec le cœur, écouter avec présence, et aider chacun à retrouver sa lumière intérieure.
-hero_image: /images/portrait-estelle.svg
-hero_image_alt: Portrait d’Estelle, praticienne, dans son cabinet de Lentigny
+hero_image: /src/assets/photos/apropos-mains-huile.jpg
+hero_image_alt: Des mains versent quelques gouttes d’huile essentielle d’un flacon ambré
 ---
 
 ## Comment j’en suis arrivée là

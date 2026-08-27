@@ -3,8 +3,8 @@ titre: Massage crânien
 sous_titre: Nuque · Crâne · Visage
 icone: tete
 extrait: Pour apaiser le mental, relâcher la pression et retrouver de la clarté.
-image: /images/prestation-cranien.svg
-image_alt: Massage crânien, mains posées sur les tempes d’une personne allongée
+image: /src/assets/photos/cranien-visage.jpg
+image_alt: Mains posées sur le visage d’une personne allongée, les yeux fermés
 duree: 60 minutes
 prix: CHF 90.–
 ordre: 2

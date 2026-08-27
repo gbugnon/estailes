@@ -3,8 +3,8 @@ titre: Soin énergétique
 sous_titre: Harmonisation des chakras
 icone: energie
 extrait: Pour rééquilibrer, libérer les blocages et retrouver votre élan intérieur.
-image: /images/prestation-energetique.svg
-image_alt: Soin énergétique, mains en suspension au-dessus du buste d’une personne allongée
+image: /src/assets/photos/energetique-bols.jpg
+image_alt: Bols chantants en laiton posés près d’une personne assise en tailleur
 duree: 60 minutes
 prix: CHF 90.–
 ordre: 3

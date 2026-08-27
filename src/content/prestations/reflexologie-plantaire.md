@@ -3,7 +3,7 @@ titre: Réflexologie plantaire
 sous_titre: Pieds · Détente profonde
 icone: pieds
 extrait: Pour relâcher les tensions, soutenir l’équilibre du corps et retrouver du confort.
-image: /images/prestation-reflexologie.svg
+image: /src/assets/photos/reflexologie-pieds.jpg
 image_alt: Séance de réflexologie plantaire, mains travaillant la voûte du pied
 duree: 60 minutes
 prix: CHF 90.–

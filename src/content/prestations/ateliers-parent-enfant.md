@@ -3,8 +3,8 @@ titre: Ateliers Parent-Enfant
 sous_titre: Bébés · Enfants · Parents
 icone: famille
 extrait: Des outils simples et concrets pour accompagner bébés, enfants et parents.
-image: /images/prestation-ateliers.svg
-image_alt: Atelier parent-enfant, mains d’un adulte guidant les mains d’un enfant
+image: /src/assets/photos/ateliers-bebe.jpg
+image_alt: Les mains d’un adulte tiennent délicatement les pieds d’un bébé
 duree: 60 minutes
 prix: CHF 90.–
 ordre: 4
