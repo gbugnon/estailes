@@ -1,4 +1,6 @@
 ---
+import frauncesUrl from '@fontsource-variable/fraunces/files/fraunces-latin-soft-normal.woff2?url';
+
 import '@fontsource-variable/fraunces/soft.css';
 import '@fontsource-variable/karla/wght.css';
 import '@fontsource/parisienne/400.css';
@@ -14,29 +16,52 @@ interface Props {
   description: string;
   /** Masquer la bande d'appel à l'action (page /rendez-vous, où elle ferait doublon). */
   sansCta?: boolean;
+  /** Exclure la page des moteurs (404) : pas d'indexation, pas de canonique. */
+  horsIndex?: boolean;
+  /** Schémas propres à la page, ajoutés au graphe (Service, fil d'Ariane…). */
+  schemas?: Record<string, unknown>[];
 }
 
-const { titre, description, sansCta = false } = Astro.props;
+const { titre, description, sansCta = false, horsIndex = false, schemas = [] } = Astro.props;
 
 const titreComplet = titre === 'Accueil' ? `Les sens d’Estelle — ${p.accroche}` : `${titre} · Les sens d’Estelle`;
-const canonique = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site).href;
+// Le build produit des dossiers (/a-propos/index.html) et le sitemap déclare la
+// barre finale : la canonique doit suivre, sinon les moteurs arbitrent entre deux
+// formes de la même page.
+const chemin = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonique = new URL(chemin, Astro.site).href;
 
-// Référencement local : Lentigny et canton de Fribourg.
-const donneesStructurees = {
-  '@context': 'https://schema.org',
+// Référencement local : Lentigny et canton de Fribourg. Un seul nœud d'entreprise,
+// identifié par @id, que les schémas de page peuvent référencer sans le redéclarer.
+const idEntreprise = new URL('/#entreprise', Astro.site).href;
+
+const entreprise = {
   '@type': 'HealthAndBeautyBusiness',
-  name: "Les sens d’Estelle",
+  '@id': idEntreprise,
+  name: p.nom_site,
   description: p.accroche,
   url: Astro.site?.href,
   telephone: p.telephone,
   email: p.email,
+  image: new URL('/images/og-lessensdestelle.png', Astro.site).href,
+  logo: new URL('/images/logo.svg', Astro.site).href,
+  priceRange: 'CHF 90',
+  currenciesAccepted: 'CHF',
+  paymentAccepted: 'Espèces, TWINT',
   address: {
     '@type': 'PostalAddress',
+    streetAddress: p.adresse_ligne1,
     addressLocality: 'Lentigny',
     addressRegion: 'Fribourg',
     postalCode: '1745',
     addressCountry: 'CH',
   },
+  // Émis seulement si les coordonnées ont été relevées : mieux vaut rien qu'un
+  // point au mauvais endroit. Pas d'openingHoursSpecification non plus — elle
+  // reçoit sur rendez-vous, donc aucun horaire fixe à déclarer.
+  ...(p.latitude !== undefined && p.longitude !== undefined
+    ? { geo: { '@type': 'GeoCoordinates', latitude: p.latitude, longitude: p.longitude } }
+    : {}),
   areaServed: [
     { '@type': 'City', name: 'Lentigny' },
     { '@type': 'AdministrativeArea', name: 'Canton de Fribourg' },
@@ -44,6 +69,13 @@ const donneesStructurees = {
   availableLanguage: 'fr-CH',
   sameAs: p.reseaux.map((r) => r.url),
 };
+
+const donneesStructurees = {
+  '@context': 'https://schema.org',
+  '@graph': [entreprise, ...schemas],
+};
+
+const jsonLd = JSON.stringify(donneesStructurees).replace(/</g, '\\u003c');
 ---
 
 <!doctype html>
@@ -53,7 +85,9 @@ const donneesStructurees = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{titreComplet}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonique} />
+    {horsIndex ? <meta name="robots" content="noindex, follow" /> : <link rel="canonical" href={canonique} />}
+
+    <link rel="preload" href={frauncesUrl} as="font" type="font/woff2" crossorigin />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -70,9 +104,7 @@ const donneesStructurees = {
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <set:html
-      value={`<script type="application/ld+json">${JSON.stringify(donneesStructurees)}</script>`}
-    />
+    <script type="application/ld+json" set:html={jsonLd} />
   </head>
 
   <body>

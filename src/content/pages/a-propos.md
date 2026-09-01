@@ -1,6 +1,6 @@
 ---
 titre: À propos
-meta_description: Estelle, praticienne en réflexologie et soins énergétiques à Lentigny (Fribourg). Mon parcours, ma façon de travailler et ce que vous pouvez attendre d’une séance.
+meta_description: Estelle, praticienne en réflexologie et soins énergétiques à Lentigny (Fribourg). Mon parcours et ce que vous pouvez attendre d’une séance.
 hero_titre: Mon chemin,
 hero_script: au service de l’essentiel
 hero_intro: Accompagner avec le cœur, écouter avec présence, et aider chacun à retrouver sa lumière intérieure.

@@ -5,6 +5,7 @@ import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import Sparkles from '../../components/Sparkles.astro';
 import Photo from '../../components/Photo.astro';
+import { serviceSchema, filAriane } from '../../lib/schema';
 
 export const getStaticPaths = (async () => {
   const prestations = await getCollection('prestations');
@@ -22,9 +23,19 @@ const { Content } = await render(prestation);
 const autres = (await getCollection('prestations'))
   .filter((p) => p.id !== prestation.id)
   .sort((a, b) => a.data.ordre - b.data.ordre);
+
+const url = new URL(`/prestations/${prestation.id}/`, Astro.site).href;
+const schemas = [
+  serviceSchema(c, url, Astro.site),
+  filAriane([
+    { nom: 'Accueil', url: new URL('/', Astro.site).href },
+    { nom: 'Prestations', url: new URL('/prestations/', Astro.site).href },
+    { nom: c.titre, url },
+  ]),
+];
 ---
 
-<Base titre={c.titre} description={c.meta_description}>
+<Base titre={c.titre} description={c.meta_description} schemas={schemas}>
   <article>
     <header class="tete">
       <Sparkles

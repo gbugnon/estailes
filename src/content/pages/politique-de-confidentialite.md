@@ -1,6 +1,6 @@
 ---
 titre: Politique de confidentialité
-meta_description: Comment sont traitées vos données personnelles sur lessensdestelle.ch — données collectées, finalité, durée de conservation et vos droits (nLPD / RGPD).
+meta_description: Comment sont traitées vos données personnelles sur lessensdestelle.ch — ce qui est collecté, pourquoi, et vos droits selon la nLPD.
 hero_titre: Politique de confidentialité
 hero_intro: Ce site collecte le strict minimum. Cette page explique quoi, pourquoi, pendant combien de temps, et ce que vous pouvez exiger.
 ---

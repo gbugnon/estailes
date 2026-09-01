@@ -17,6 +17,11 @@ const schema = z.object({
   adresse_ligne1: z.string(),
   adresse_ligne2: z.string(),
   horaires: z.string().optional(),
+  /* Coordonnées exactes du cabinet, à relever sur une carte. Laissées vides tant
+     qu'elles ne sont pas vérifiées : une position fausse placerait le cabinet au
+     mauvais endroit sur Google Maps, ce qui est pire que pas de position du tout. */
+  latitude: z.number().optional(),
+  longitude: z.number().optional(),
   citation: z.string().optional(),
   citation_auteur: z.string().optional(),
   cta_titre: z.string(),

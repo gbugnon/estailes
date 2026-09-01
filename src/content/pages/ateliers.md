@@ -1,6 +1,6 @@
 ---
 titre: Ateliers
-meta_description: Ateliers parent-enfant à Lentigny (Fribourg) — massage bébé, gestes de détente et outils simples à reprendre à la maison. Petits groupes, quatre duos maximum.
+meta_description: Ateliers parent-enfant à Lentigny (Fribourg) — massage bébé et gestes de détente à reprendre à la maison. Petits groupes, quatre duos maximum.
 hero_titre: Apprendre des gestes,
 hero_script: à refaire à la maison
 hero_intro: Les ateliers ne sont pas des séances de soin. Ce sont des moments où vous repartez avec quelque chose que vous savez faire vous-même.
