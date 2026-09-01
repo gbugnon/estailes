@@ -2,6 +2,7 @@
 import Icon from './Icon.astro';
 import Sparkles from './Sparkles.astro';
 import Photo from './Photo.astro';
+import { surligner } from '../lib/texte';
 import type { PositionPhoto } from './Photo.astro';
 
 interface Props {
@@ -38,7 +39,7 @@ const paragraphes = intro?.split(/\n{2,}/).filter(Boolean) ?? [];
         {script && <span class="script hero__script">{script}</span>}
       </h1>
 
-      {paragraphes.map((para) => <p class="hero__intro">{para}</p>)}
+      {paragraphes.map((para) => <p class="hero__intro" set:html={surligner(para)} />)}
 
       {
         ctaTexte && ctaLien && (

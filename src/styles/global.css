@@ -7,20 +7,38 @@
 /* --- Jetons ------------------------------------------------------------- */
 
 :root {
-  /* Couleurs — échantillonnées sur design/mockup.jpg puis ajustées pour le
-     contraste. Ne pas remplacer par une autre palette. */
-  --cream: #faf5f1; /* fond de page */
-  --cream-deep: #f5ece5; /* bandes alternées, panneau « à propos » */
-  --panel: #fffcfa; /* cartes */
-  --sage: #5f6a56; /* bande CTA, boutons principaux */
-  --sage-deep: #4a5342; /* survol */
-  --sage-tint: #e8ebe3; /* aplats discrets */
-  --gold: #c4a063; /* étincelles, arcs — décoratif */
-  --gold-line: #dfc79c; /* filets fins */
-  --gold-text: #8f6a2c; /* or lisible : contraste 4.9:1 sur --cream */
-  --ink: #37342e; /* texte courant */
-  --ink-muted: #6e665b; /* texte secondaire — 5.4:1 sur --cream */
-  --line: #eaded2; /* séparateurs */
+  /* Couleurs — charte graphique officielle (design/charte/). Les cinq teintes
+     de marque sont reprises telles quelles ; les variantes « -text », « -deep »,
+     « -tint » et « -line » en sont dérivées pour le contraste.
+     Ne pas remplacer par une autre palette.
+
+     Le fond #f8f7f3 est échantillonné sur la charte elle-même (teinte claire
+     dominante du document). --panel et --cream-deep en sont dérivés. */
+  --cream: #f8f7f3; /* fond de page — charte */
+  --cream-deep: #eef0ec; /* bandes alternées — vert d'eau à 12 % */
+  --panel: #fcfbfa; /* cartes */
+
+  /* Vert de marque #63734C. Suffisant en fond (blanc dessus : 5.1:1), mais
+     seulement 4.4:1 en texte sur --cream-deep et 4.0:1 sur --sage-tint :
+     d'où --sage-text, assombri de 9 %, qui passe sur les quatre fonds. */
+  --sage: #63734C; /* bande CTA, boutons principaux — en fond */
+  --sage-text: #5a6945; /* vert lisible : 4.6:1 au pire des fonds */
+  --sage-deep: #515e3e; /* survol — blanc dessus : 7.0:1 */
+  --sage-tint: #e3e5dc; /* aplats discrets */
+
+  /* Or de marque #BF8A26 : 2.8:1 sur crème, donc jamais de texte dessus. */
+  --gold: #BF8A26; /* étincelles, arcs — décoratif */
+  --gold-line: #dec697; /* filets fins */
+  --gold-text: #8a631b; /* or lisible : 4.6:1 au pire des fonds */
+
+  --ink: #474747; /* texte courant — 8.1:1 au pire des fonds */
+  --ink-muted: #6a6a69; /* texte secondaire — 4.7:1 au pire des fonds */
+  --line: #e6e5e2; /* séparateurs */
+
+  /* Les deux dernières teintes de la charte. Aucune ne tient en texte sur fond
+     clair (1.3:1 et 1.9:1) : elles ne servent qu'en aplat, avec --ink dessus. */
+  --jaune: #F2D57E; /* surlignage, encarts — --ink dessus : 6.5:1 */
+  --eau: #A7BCB7; /* pastilles, bandes diluées — --ink dessus : 4.7:1 */
 
   /* Typographie */
   --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
@@ -50,8 +68,8 @@
   --wrap-prose: 40rem;
   --radius: 4px;
   --radius-card: 6px;
-  --shadow-card: 0 1px 2px rgb(55 52 46 / 4%), 0 8px 28px -14px rgb(55 52 46 / 18%);
-  --shadow-lift: 0 2px 6px rgb(55 52 46 / 6%), 0 20px 44px -20px rgb(55 52 46 / 26%);
+  --shadow-card: 0 1px 2px rgb(71 71 71 / 4%), 0 8px 28px -14px rgb(71 71 71 / 18%);
+  --shadow-lift: 0 2px 6px rgb(71 71 71 / 6%), 0 20px 44px -20px rgb(71 71 71 / 26%);
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
@@ -162,6 +180,16 @@ strong {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold-text);
+}
+
+/* Surlignage d'un mot clé — saisi `**ainsi**` dans le CMS.
+   Le jaune de la charte ne tient pas en texte, mais en fond il donne 6.5:1
+   avec --ink par-dessus. */
+.surlignage {
+  background: var(--jaune);
+  color: var(--ink);
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
 }
 
 /* --- Mise en page ------------------------------------------------------- */
