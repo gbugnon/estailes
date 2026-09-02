@@ -4,24 +4,27 @@ meta_description: Réflexologie plantaire, massage crânien et soins énergétiq
 hero_titre: Retrouver son
 hero_script: harmonie intérieure
 hero_intro: |-
-  Des soins complémentaires pour apaiser le corps, le mental et retrouver votre équilibre.
+  Bienvenue chez **Les sens d’Estelle**, un espace dédié au bien-être, à l’écoute et à la reconnexion à soi.
 
-  Un espace pour **souffler**, se recentrer et avancer plus sereinement, à chaque étape de vie.
+  À travers la réflexologie, le massage et les soins énergétiques, je vous accompagne avec douceur et bienveillance, en m’adaptant à vos besoins et à ce que vous traversez.
+
+  Un moment pour ralentir, relâcher et simplement prendre soin de vous.
 hero_cta_texte: Découvrir mes prestations
 hero_cta_lien: /prestations
-hero_image: /src/assets/photos/hero-bol-chantant.jpg
-hero_image_alt: Une femme assise tient un bol chantant et son maillet, la fumée d’un encens s’élève à côté d’elle
+hero_image: /src/assets/photos/IMG_0318.JPG
+hero_image_alt: Une table de massage avec un couverture et un coussin dessus. Ambiance cosy.
+hero_image_position: centre
 valeurs_titre: Ce qui guide mes accompagnements
-valeurs_intro: Des valeurs qui m’inspirent au quotidien et que je transmets dans chaque rencontre.
+valeurs_intro: Au-delà des techniques et des soins, ma pratique est avant tout guidée par des valeurs qui me tiennent à coeur. Elles sont le fil conducteur de chaque rencontre et donnent du sens à ma manière de vous accompagner.
 prestations_titre: Mes prestations
-prestations_intro: Quatre façons de prendre soin de vous, à choisir selon ce dont vous avez besoin aujourd’hui.
+prestations_intro: Trois façons de prendre soin de vous, à choisir selon ce dont vous avez besoin aujourd’hui.
 apropos_surtitre: À propos
 apropos_titre: Mon chemin,
 apropos_script: au service de l’essentiel
-apropos_texte: |-
-  Depuis toujours, je suis passionnée par l’humain et le bien-être. Chaque rencontre, chaque étape de vie m’a menée à aujourd’hui : accompagner avec le cœur, écouter avec présence et aider chacun à retrouver sa lumière intérieure.
+apropos_texte: 'Depuis toujours, je suis passionnée par l’humain et le bien-être. Chaque rencontre, chaque étape de vie m’a menée à aujourd’hui : accompagner avec le cœur, écouter avec présence et aider chacun à retrouver sa lumière intérieure.'
 apropos_cta_texte: En savoir plus sur mon parcours
 apropos_cta_lien: /a-propos
-apropos_image: /src/assets/photos/apropos-bougies.jpg
-apropos_image_alt: Trois bougies posées sur un tissu clair, dans une lumière chaude et tamisée
+apropos_image: /src/assets/photos/2026-08-10_FamilleDelacrétaz_Elvimotion-35.jpg
+apropos_image_alt: Portrait
+apropos_image_position: centre
 ---
