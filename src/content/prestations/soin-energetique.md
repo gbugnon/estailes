@@ -1,11 +1,21 @@
 ---
 titre: Soin énergétique
-sous_titre: Harmonisation des chakras
+sous_titre: Recentrer · Harmoniser · Reconnecter
 icone: energie
-extrait: Pour rééquilibrer, libérer les blocages et retrouver votre élan intérieur.
-image: /src/assets/photos/energetique-bols.jpg
+extrait: |-
+  Le soin énergétique est un moment de reconnexion à soi, particulièrement adapté lorsque l’on ressent le besoin de ralentir, de se recentrer ou de retrouver un équilibre intérieur.
+
+  Durant la séance, je travaille notamment autour des différents centres énergétiques, les chakras, à travers mon ressenti et les techniques auxquelles je me suis formée. Le soin se déroule habillé, confortablement installé, et ne nécessite rien de particulier de votre part.
+
+  Chaque séance commence par un temps d’échange afin de comprendre ce que vous traversez et ce dont vous avez besoin à cet instant. Je laisse ensuite une grande place à mon intuition et à mes ressentis pour vous proposer un soin entièrement personnalisé.
+
+  À la fin de la séance, nous prenons quelques instants pour échanger sur vos ressentis et, si cela est pertinent, sur les miens.
+
+  Un temps pour revenir à soi, tout simplement.
+image: /src/assets/photos/c26b905a-0b5a-48aa-a07f-bc5a7d9992aa.png
 image_alt: Bols chantants en laiton posés près d’une personne assise en tailleur
-duree: 60 minutes
+image_position: centre
+duree: ≈ 60 minutes
 prix: CHF 90.–
 ordre: 3
 meta_description: Soin énergétique et harmonisation des chakras à Lentigny (Fribourg) — pour rééquilibrer, libérer les blocages et retrouver votre élan intérieur.
