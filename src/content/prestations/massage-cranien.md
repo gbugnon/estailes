@@ -2,14 +2,7 @@
 titre: Massage crânien
 sous_titre: Relâcher · Apaiser · Déconnecter
 icone: tete
-extrait: |-
-  Le massage crânien est un soin profondément relaxant qui invite à ralentir et à relâcher les tensions accumulées. Le massage débute au niveau des omoplates, puis remonte progressivement vers les épaules, la nuque, le crâne et le visage.
-
-  À travers des mouvements doux, enveloppants et des pressions ciblées, il favorise le relâchement physique tout en offrant une véritable pause au mental. Il est particulièrement apprécié lors de périodes de stress, fatigue, tensions au niveau de la nuque et des épaules, charge mentale ou simplement lorsque le besoin de déconnecter se fait sentir.
-
-  Comme pour chacun de mes soins, je prends un temps d’échange avec vous avant de commencer afin d’adapter la séance à vos besoins et à votre état du moment.
-
-  Puis vient le temps de vous installer confortablement, de fermer les yeux… et de vous laisser porter.
+extrait: Un massage enveloppant, des omoplates jusqu’au visage, pour relâcher les tensions et calmer le mental. Une véritable parenthèse pour ralentir et lâcher prise.
 image: /src/assets/photos/cranien-visage.jpg
 image_alt: Mains posées sur le visage d’une personne allongée, les yeux fermés
 image_position: centre
