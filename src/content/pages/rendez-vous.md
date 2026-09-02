@@ -4,7 +4,14 @@ meta_description: Prendre rendez-vous pour une séance de réflexologie, un mass
 hero_titre: Le premier pas,
 hero_script: commence ici
 hero_intro: ''
-reservation_embed: https://app.terap.ch/booking/1742/1329
+reservation_embed: |-
+  <iframe
+    src="https://app.terap.ch/booking/1742/1329"
+    width="100%"
+    height="800"
+    style="border:0;"
+    loading="lazy">
+  </iframe>
 ---
 
 Choisissez simplement le soin et le créneau qui vous conviennent directement dans mon agenda en ligne. Votre rendez-vous sera confirmé en quelques instants.
