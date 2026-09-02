@@ -13,7 +13,7 @@ extrait: |-
 image: /src/assets/photos/cranien-visage.jpg
 image_alt: Mains posées sur le visage d’une personne allongée, les yeux fermés
 image_position: centre
-duree: 60 minutes
+duree: ≈ 60 minutes
 prix: CHF 90.–
 ordre: 2
 meta_description: Massage crânien à Lentigny (Fribourg) — nuque, crâne et visage, pour apaiser le mental, relâcher la pression et retrouver de la clarté.
