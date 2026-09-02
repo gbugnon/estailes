@@ -24,7 +24,7 @@ apropos_script: au service de l’essentiel
 apropos_texte: 'Depuis toujours, je suis passionnée par l’humain et le bien-être. Chaque rencontre, chaque étape de vie m’a menée à aujourd’hui : accompagner avec le cœur, écouter avec présence et aider chacun à retrouver sa lumière intérieure.'
 apropos_cta_texte: En savoir plus sur mon parcours
 apropos_cta_lien: /a-propos
-apropos_image: /src/assets/photos/2026-08-10_FamilleDelacrétaz_Elvimotion-35.jpg
+apropos_image: /src/assets/photos/ChatGPT Image 7 juil. 2026 à 14_34_34.png
 apropos_image_alt: Portrait
 apropos_image_position: centre
 ---
