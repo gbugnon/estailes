@@ -11,7 +11,7 @@ hero_intro: |-
   Un moment pour ralentir, relâcher et simplement prendre soin de vous.
 hero_cta_texte: Découvrir mes prestations
 hero_cta_lien: /prestations
-hero_image: /src/assets/photos/IMG_0318.JPG
+hero_image: /src/assets/photos/IMG_0318.png
 hero_image_alt: Une table de massage avec un couverture et un coussin dessus. Ambiance cosy.
 hero_image_position: centre
 valeurs_titre: Ce qui guide mes accompagnements
