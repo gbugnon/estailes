@@ -25,14 +25,12 @@ Je ne crois pas aux protocoles identiques pour tout le monde. Deux personnes qui
 C’est pourquoi chaque rendez-vous commence par un temps d’échange. Nous prenons le temps de faire le point sur vos besoins, votre état du moment et vos attentes, afin de définir ensemble l’intention de la séance.
 Le soin peut alors commencer. Je m’appuie sur les techniques auxquelles je suis formée, tout en laissant une place importante à mon ressenti et à mon intuition.
 
-
 Chaque séance est ainsi unique, parce que vous l’êtes aussi.
 
 ## Ce que je ne fais pas
 
 Mon accompagnement s’inscrit dans une démarche de bien-être et ne se substitue jamais à un suivi médical. Je ne pose pas de diagnostic et je ne vous demanderai jamais d’interrompre ou de modifier un traitement médical.
 Si votre état de santé me semble nécessiter un avis médical, je peux choisir de reporter ou de ne pas réaliser le soin et vous inviter à vous adresser à un professionnel de santé. De la même manière, si un élément m’interpelle au cours d’une séance, je vous en parlerai en toute transparence.
-
 
 Pour moi, prendre soin de vous, c’est aussi connaître les limites de ma pratique et les respecter.
 
