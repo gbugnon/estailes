@@ -3,14 +3,12 @@ titre: Contact
 meta_description: Contacter Les sens d’Estelle à Lentigny (Fribourg) — téléphone, e-mail et accès au cabinet. Réponse sous 48 heures.
 hero_titre: Écrivez-moi,
 hero_script: je vous réponds
-hero_intro: "Le plus simple reste le téléphone. Si je suis en séance, laissez un message : je rappelle en fin de journée."
+hero_intro: 'Le plus simple reste le téléphone. Si je suis en séance, laissez un message : je rappelle en fin de journée.'
 ---
 
 ## Venir au cabinet
 
-Le cabinet se trouve à Lentigny, à une quinzaine de minutes de Fribourg et de
-Romont. Vous pouvez vous garer devant le bâtiment. L’accès se fait de plain-pied,
-sans marche.
+Le cabinet se trouve à Lentigny, à une quinzaine de minutes de Fribourg et de Romont. Une place de parc est disponible devant le bâtiment. Une fois sur place, laissez-vous simplement guider par le panneau « Les sens d’Estelle ».
 
 Je reçois uniquement sur rendez-vous, afin que vous ne croisiez personne en
 arrivant ou en repartant.
