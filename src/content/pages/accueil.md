@@ -18,7 +18,7 @@ valeurs_titre: Ce qui guide mes accompagnements
 valeurs_intro: Au-delà des techniques et des soins, ma pratique est avant tout guidée par des valeurs qui me tiennent à coeur. Elles sont le fil conducteur de chaque rencontre et donnent du sens à ma manière de vous accompagner.
 prestations_titre: Mes prestations
 prestations_intro: Trois façons de prendre soin de vous, à choisir selon ce dont vous avez besoin aujourd’hui.
-apropos_surtitre: À propos
+apropos_surtitre: Derrière les sens d'Estelle
 apropos_titre: Mon chemin,
 apropos_script: au service de l’essentiel
 apropos_texte: 'Depuis toujours, je suis passionnée par l’humain et le bien-être. Chaque rencontre, chaque étape de vie m’a menée à aujourd’hui : accompagner avec le cœur, écouter avec présence et aider chacun à retrouver sa lumière intérieure.'
