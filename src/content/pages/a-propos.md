@@ -36,7 +36,7 @@ Pour moi, prendre soin de vous, c’est aussi connaître les limites de ma prati
 
 ## Où me trouver
 
-e vous accueille dans mon cabinet à Lentigny, dans le canton de Fribourg, à environ 15 minutes de Fribourg et de Romont.
+Je vous accueille dans mon cabinet à Lentigny, dans le canton de Fribourg, à environ 15 minutes de Fribourg et de Romont.
 J’ai imaginé cet espace comme une petite parenthèse : un lieu calme, chaleureux et propice au relâchement.
 Le cabinet est facilement accessible en voiture et une place de parc est disponible directement devant.
 Je vous reçois uniquement sur rendez-vous
