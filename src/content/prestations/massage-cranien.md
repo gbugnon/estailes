@@ -3,7 +3,7 @@ titre: Massage crânien
 sous_titre: Relâcher · Apaiser · Déconnecter
 icone: tete
 extrait: Un massage enveloppant, des omoplates jusqu’au visage, pour relâcher les tensions et calmer le mental. Une véritable parenthèse pour ralentir et lâcher prise.
-image: /src/assets/photos/cranien-visage.jpg
+image: /src/assets/photos/massage_cranien_sans_linge.png
 image_alt: Mains posées sur le visage d’une personne allongée, les yeux fermés
 image_position: centre
 duree: ≈ 60 minutes
