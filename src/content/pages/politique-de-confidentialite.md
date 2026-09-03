@@ -71,7 +71,7 @@ fins d’analyse.
 ## Sous-traitants
 
 | Sous-traitant | Rôle | Pays |
-|---|---|---|
+| --- | --- | --- |
 | Infomaniak Network SA | Hébergement du site et de la messagerie | Suisse |
 
 Aucune donnée n’est transférée hors de Suisse ou de l’Espace économique
@@ -96,8 +96,8 @@ d’éviter toute divulgation à un tiers.
 ## Réclamation
 
 Si vous estimez que le traitement de vos données n’est pas conforme, vous pouvez
-saisir le **Préposé fédéral à la protection des données et à la transparence
-(PFPDT)**, Feldeggweg 1, 3003 Berne — [edoeb.admin.ch](https://www.edoeb.admin.ch).
+saisir le \*\*Préposé fédéral à la protection des données et à la transparence
+(PFPDT)\*\*, Feldeggweg 1, 3003 Berne — [edoeb.admin.ch](https://www.edoeb.admin.ch).
 Les personnes résidant dans l’UE peuvent saisir l’autorité de contrôle de leur
 pays de résidence.
 
@@ -112,4 +112,4 @@ des données de santé sont conservés sous clé.
 Cette politique peut être adaptée en cas d’évolution du site ou de la
 législation. La date de dernière mise à jour figure ci-dessous.
 
-*Dernière mise à jour : juillet 2026.*
+_Dernière mise à jour : juillet 2026._
