@@ -3,7 +3,7 @@ titre: Réflexologie plantaire
 sous_titre: Apaiser · Rééquilibrer · Soutenir
 icone: pieds
 extrait: Une approche douce et personnalisée pour soutenir l’équilibre du corps et favoriser un mieux-être global. Un moment pour relâcher, apaiser et prendre soin de soi.
-image: /src/assets/photos/reflexologie-pieds.jpg
+image: /src/assets/photos/reflexologie_plantaire.png
 image_alt: Séance de réflexologie plantaire, mains travaillant la voûte du pied
 image_position: centre
 duree: 60 minutes
