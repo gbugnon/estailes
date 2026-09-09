@@ -55,6 +55,10 @@ collections:
   - name: prestations
     label: Prestations
     label_singular: Prestation
+    description: >-
+      Le texte complet de chaque soin — c'est ce qui s'affiche quand on clique
+      « En savoir plus » depuis la page d'accueil. Ouvrez un soin, puis
+      modifiez le champ « Contenu de la page ».
     folder: src/content/prestations
     extension: md
     format: frontmatter
@@ -81,6 +85,12 @@ collections:
           label: Extrait,
           widget: text,
           hint: 'Une ou deux phrases affichées sur la carte de la page d’accueil.',
+        }
+      - {
+          name: body,
+          label: Contenu de la page,
+          widget: markdown,
+          hint: 'Le texte complet du soin — celui qui s’affiche après « En savoir plus ».',
         }
       - {
           name: image,
@@ -113,12 +123,6 @@ collections:
           widget: text,
           pattern: ['^.{0,160}$', '160 caractères maximum'],
           hint: 'Résumé affiché dans les résultats de recherche (≤ 160 caractères).',
-        }
-      - {
-          name: body,
-          label: Contenu de la page,
-          widget: markdown,
-          hint: 'Le texte complet de la fiche prestation.',
         }
 
   # ---------------------------------------------------------------------------
@@ -211,7 +215,7 @@ collections:
           - { name: body, label: 'Contenu de la page', widget: markdown }
 
       - name: prestations
-        label: 'Prestations (en-tête)'
+        label: 'Prestations — en-tête de la liste'
         file: src/content/pages/prestations.md
         fields:
           - { name: titre, label: Nom de la page, widget: hidden, default: Prestations }
@@ -289,14 +293,23 @@ collections:
           - { name: hero_titre, label: Titre principal, widget: string }
           - { name: hero_script, label: Accroche manuscrite, widget: string, required: false }
           - { name: hero_intro, label: Introduction, widget: text, required: false }
+          - name: reservation_url
+            label: 'Agenda en ligne (adresse)'
+            widget: string
+            required: false
+            hint: >-
+              Adresse de votre agenda TERAP. Le bouton « Voir mes
+              disponibilités » y renvoie. Laisser vide retire le bouton : la
+              page réaffiche alors votre téléphone et votre e-mail.
           - name: reservation_embed
             label: 'Agenda en ligne (code d’intégration)'
             widget: text
             required: false
             hint: >-
-              Laisser vide pour afficher vos coordonnées. Le jour où vous
-              ouvrez un agenda en ligne (Cal.com, Calendly…), collez ici le code
-              fourni par le service : la page bascule seule.
+              À laisser vide. TERAP n’autorise pas son affichage à l’intérieur
+              d’un autre site : c’est le champ « adresse » ci-dessus qui sert.
+              Ce champ n’est utile que si un jour un service fournit un vrai
+              code d’intégration — il prendrait alors la place du bouton.
           - { name: body, label: 'Texte (ce qui se passe ensuite)', widget: markdown }
 
       - name: mentions-legales
