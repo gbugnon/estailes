@@ -125,13 +125,15 @@ const libelleReseau = {
     padding-bottom: var(--space-l);
   }
 
+  /* --logo-w ne servait à rien : Logo.astro se dimensionne en hauteur, le logo
+     de la charte étant rond et non horizontal. Remplacé par le réglage réel. */
   .pied__marque {
-    --logo-w: 223px;
+    --logo-h: 96px;
 
     display: flex;
     flex-direction: column;
     gap: var(--space-s);
-    align-items: flex-start;
+    align-items: center;
   }
 
   .pied__titre {

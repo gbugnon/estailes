@@ -75,7 +75,7 @@
      là où des pourcentages additionnés à 100 déborderaient de la largeur.
      Les deux nombres n'ont pas besoin de totaliser 100, seul leur rapport
      compte — mais les écrire ainsi les rend lisibles d'un coup d'œil. */
-  --hero-colonnes: minmax(0, 41fr) minmax(0, 59fr); /* texte 41 % · photo 59 % */
+  --hero-colonnes: minmax(0, 41fr) minmax(0, 51fr); /* texte 41 % · photo 59 % */
   --apropos-colonnes: minmax(0, 48fr) minmax(0, 52fr); /* texte 48 % · photo 52 % */
 
   /* Débord du cercle doré à gauche de la photo du hero. Le cercle a exactement
