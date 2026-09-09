@@ -106,9 +106,11 @@ const pages = defineCollection({
     tarifs: z.array(ligneTarif).optional(),
     tarifs_note: z.string().optional(),
 
-    // Rendez-vous uniquement — l'emplacement réservé au module de réservation.
-    // Coller ici le code d'intégration (Cal.com, Calendly, Acuity) le jour venu :
-    // rien d'autre ne doit changer.
+    // Rendez-vous uniquement — les deux formes possibles de l'agenda en ligne.
+    // `reservation_url` renvoie vers un agenda hébergé ailleurs (TERAP…) ;
+    // `reservation_embed` accueille un code d'intégration si un jour un service
+    // en fournit un. L'intégration prime sur le lien. Rien d'autre ne change.
+    reservation_url: z.string().optional(),
     reservation_embed: z.string().optional(),
 
     // Ateliers uniquement

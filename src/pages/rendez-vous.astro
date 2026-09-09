@@ -12,14 +12,19 @@ const c = page.data;
 const { Content } = await render(page);
 
 /**
- * L'unique bascule du système de réservation.
+ * L'unique bascule du système de réservation, en trois états.
  *
- * Tant que `reservation_embed` est vide, la page propose les moyens de
- * contact directs. Le jour où un agenda en ligne est mis en place, il suffit de
- * coller son code d'intégration dans src/content/pages/rendez-vous.md (ou via
- * le CMS) : la page bascule seule, aucun autre fichier n'est à toucher.
+ * 1. `reservation_embed` rempli — l'agenda s'affiche dans la page.
+ * 2. sinon `reservation_url` rempli — un bouton renvoie vers l'agenda externe.
+ *    C'est le cas de TERAP, qui interdit son affichage dans un autre site.
+ * 3. sinon — la page propose les moyens de contact directs.
+ *
+ * Tout se règle depuis src/content/pages/rendez-vous.md (ou le CMS) : la page
+ * bascule seule, aucun autre fichier n'est à toucher.
  */
-const agendaEnLigne = Boolean(c.reservation_embed?.trim());
+const embedAgenda = c.reservation_embed?.trim();
+const lienAgenda = c.reservation_url?.trim();
+const agendaEnLigne = Boolean(embedAgenda || lienAgenda);
 ---
 
 <Base titre={c.titre} description={c.meta_description} sansCta>
@@ -28,22 +33,42 @@ const agendaEnLigne = Boolean(c.reservation_embed?.trim());
   <section class="rdv">
     <div class="wrap rdv__grille">
       <div class="reveal">
-        {
-          agendaEnLigne ? (
-            <div class="agenda">
-              <h2 class="agenda__titre">Choisir un créneau</h2>
-              <div class="agenda__embed" set:html={c.reservation_embed} />
-            </div>
-          ) : (
-            <div class="panneau">
-              <h2 class="panneau__titre">Me contacter</h2>
-              <Coordonnees />
-              <p class="panneau__note">
-                Si je suis en séance, laissez un message : je rappelle en fin de journée.
-              </p>
-            </div>
-          )
-        }
+        {embedAgenda && (
+          <div class="agenda">
+            <h2 class="agenda__titre">Choisir un créneau</h2>
+            <div class="agenda__embed" set:html={embedAgenda} />
+          </div>
+        )}
+
+        {!embedAgenda && lienAgenda && (
+          <div class="panneau">
+            <h2 class="panneau__titre">Réserver en ligne</h2>
+            <p class="panneau__intro">
+              Mon agenda est tenu à jour : vous y voyez mes disponibilités réelles et
+              choisissez vous-même le créneau qui vous convient.
+            </p>
+            <a
+              href={lienAgenda}
+              class="btn btn--primary panneau__cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Voir mes disponibilités
+              <Icon nom="agenda" taille={16} />
+              <span class="sr-only"> (s’ouvre dans un nouvel onglet)</span>
+            </a>
+          </div>
+        )}
+
+        {!agendaEnLigne && (
+          <div class="panneau">
+            <h2 class="panneau__titre">Me contacter</h2>
+            <Coordonnees />
+            <p class="panneau__note">
+              Si je suis en séance, laissez un message : je rappelle en fin de journée.
+            </p>
+          </div>
+        )}
       </div>
 
       <aside class="cote reveal">
@@ -96,6 +121,14 @@ const agendaEnLigne = Boolean(c.reservation_embed?.trim());
   .panneau__titre {
     font-size: var(--step-3);
     margin-bottom: var(--space-s);
+  }
+
+  .panneau__intro {
+    color: var(--ink-muted);
+  }
+
+  .panneau__cta {
+    margin-top: var(--space-s);
   }
 
   .panneau__note {
