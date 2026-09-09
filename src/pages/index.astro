@@ -178,11 +178,14 @@ const prestations = (await getCollection('prestations')).sort(
     }
   }
 
+  /* Même parti que le hero : aucune respiration sur la bande elle-même, pour
+     que la photo touche les bords haut et bas. L'air est redonné à la seule
+     colonne de texte. */
   .apropos {
     position: relative;
     background: var(--cream-deep);
     border-block: 1px solid var(--line);
-    padding-block: var(--space-xl);
+    padding-block: 0;
     overflow: hidden;
   }
 
@@ -203,6 +206,7 @@ const prestations = (await getCollection('prestations')).sort(
   .apropos__texte {
     position: relative;
     z-index: 3;
+    padding-block: var(--space-xl);
   }
 
   .apropos__titre {

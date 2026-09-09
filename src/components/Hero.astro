@@ -171,13 +171,24 @@ const paragraphes = intro?.split(/\n{2,}/).filter(Boolean) ?? [];
       gap: var(--space-xl);
     }
 
-    /* La photo file jusqu'au bord droit de la fenêtre, comme sur la maquette. */
+    /* La photo file jusqu'au bord droit de la fenêtre, comme sur la maquette,
+       et occupe toute la hauteur de la bande : centrée, elle laissait 59 px de
+       crème au-dessus et en dessous.
+
+       La photo est sortie du flux : c'est la colonne de texte qui fixe la
+       hauteur de la bande, et l'image la remplit. Sans cela une photo au
+       cadrage portrait impose sa propre hauteur — ici 1149 px au lieu de 776. */
     .hero__media {
+      position: relative;
+      align-self: stretch;
       margin-right: calc(50% - 50vw);
     }
 
     .hero__media :global(img) {
-      aspect-ratio: 4 / 3;
+      position: absolute;
+      inset: 0;
+      aspect-ratio: auto;
+      height: 100%;
       border-radius: 999px 0 0 999px;
     }
   }
