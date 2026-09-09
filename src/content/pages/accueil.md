@@ -25,6 +25,6 @@ apropos_texte: 'Depuis toujours, je suis passionnée par l’humain et le bien-�
 apropos_cta_texte: En savoir plus sur mon parcours
 apropos_cta_lien: /a-propos
 apropos_image: /src/assets/photos/ChatGPT Image 7 juil. 2026 à 14_34_34.png
-apropos_image_alt: Portrait
+apropos_image_alt: Estelle debout près de la baie vitrée de son cabinet, une tasse à la main, à côté de sa table de massage et de ses plantes
 apropos_image_position: centre
 ---

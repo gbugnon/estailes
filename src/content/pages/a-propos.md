@@ -5,7 +5,7 @@ hero_titre: Mon chemin,
 hero_script: au service de l’essentiel
 hero_intro: Accompagner avec le cœur, écouter avec présence, et aider chacun à retrouver sa lumière intérieure.
 hero_image: /src/assets/photos/2026-08-10_FamilleDelacrétaz_Elvimotion-35.jpg
-hero_image_alt: Portait
+hero_image_alt: Portrait d’Estelle, praticienne en réflexologie et soins énergétiques, souriante en extérieur au bord d’une rivière
 hero_image_position: centre
 ---
 
