@@ -5,11 +5,6 @@
 # FTPS envoie dist/. Ne pas déplacer ce fichier.
 # =============================================================================
 
-# --- Sonde de diagnostic ----------------------------------------------------
-# mod_alias, indépendant de mod_rewrite : si /_htaccess-actif répond 301, c'est
-# qu'Apache lit bien ce fichier. À retirer une fois les redirections confirmées.
-Redirect 301 /_htaccess-actif https://lessensdestelle.ch/
-
 # --- Le journal de déploiement ne regarde personne --------------------------
 # Il liste tous les fichiers du site avec leurs empreintes, et était servi
 # publiquement en 200.
@@ -18,8 +13,12 @@ Redirect 301 /_htaccess-actif https://lessensdestelle.ch/
 </Files>
 
 # --- Redirections -----------------------------------------------------------
-# Forme recommandée par Infomaniak. Si une boucle apparaît, remplacer
+# Forme recommandée par Infomaniak. Si une boucle apparaît un jour, remplacer
 # « %{HTTPS} off » par « %{HTTP:X-Forwarded-Proto} !https ».
+#
+# Attention en cas de test : l'hébergement sert des réponses en cache. Une
+# redirection qui semble absente peut n'être qu'une réponse mise en cache —
+# ajouter « ?v=<horodatage> » à l'URL pour contourner.
 RewriteEngine On
 
 RewriteCond %{HTTPS} off [OR]
