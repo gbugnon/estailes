@@ -81,10 +81,17 @@ const paragraphes = intro?.split(/\n{2,}/).filter(Boolean) ?? [];
 </section>
 
 <style>
+  /* Aucune respiration sur le bloc lui-même : sur la maquette la photo touche
+     l'en-tête en haut et la bande des valeurs en bas. L'air est redonné à la
+     colonne de texte seule (.hero__texte), sinon le titre collerait au menu. */
   .hero {
     position: relative;
-    padding-block: var(--space-l) var(--space-xl);
+    padding-block: 0;
     overflow: hidden;
+  }
+
+  .hero__texte {
+    padding-block: var(--space-l) var(--space-xl);
   }
 
   .hero__inner {
@@ -128,14 +135,17 @@ const paragraphes = intro?.split(/\n{2,}/).filter(Boolean) ?? [];
     border-radius: 999px 12px 12px 999px;
   }
 
-  /* Le grand cercle doré déborde à gauche de la photo et passe dessous.
-     C'est une surcouche SVG, jamais un élément incrusté dans l'image. */
+  /* Le cercle doré passe SOUS la photo : seul le croissant qui dépasse à
+     gauche reste visible, dans la gouttière entre le texte et la photo.
+     Dimensions relevées sur design/mockup.jpg — 52 % de la largeur du média,
+     débordant de 7 % à gauche. Élargir le cercle ou le décaler davantage à
+     gauche le fait repasser en travers de la photo. */
   .hero__arc {
     position: absolute;
     z-index: 0;
     top: 50%;
-    left: -26%;
-    width: 78%;
+    left: -7%;
+    width: 52%;
     aspect-ratio: 1;
     translate: 0 -50%;
     overflow: visible;
@@ -152,7 +162,7 @@ const paragraphes = intro?.split(/\n{2,}/).filter(Boolean) ?? [];
   }
 
   @media (width >= 62rem) {
-    .hero {
+    .hero__texte {
       padding-block: var(--space-m) var(--space-2xl);
     }
 

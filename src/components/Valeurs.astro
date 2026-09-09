@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import Sparkles from './Sparkles.astro';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -19,6 +20,20 @@ const { titre, intro, valeurs } = Astro.props;
     </div>
 
     <div class="valeurs__zone">
+      {/* Étincelles de la maquette : deux grandes aux extrémités du fil, trois
+          plus discrètes le long du tracé. Surcouche SVG indépendante, comme
+          partout ailleurs — jamais incrustée dans une image. */}
+      <Sparkles
+        class="valeurs__etincelles"
+        etincelles={[
+          { x: 1, y: 6, r: 11, opacite: 0.85 },
+          { x: 21, y: 2, r: 5, opacite: 0.5 },
+          { x: 50, y: 8, r: 6, opacite: 0.55 },
+          { x: 78, y: 1, r: 5, opacite: 0.5 },
+          { x: 99, y: 5, r: 10, opacite: 0.8 },
+        ]}
+      />
+
       {/* Le fil doré relie les sept valeurs. Purement décoratif : il disparaît
           dès que la rangée se replie en grille. */}
       <svg class="valeurs__fil" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true">
@@ -58,6 +73,12 @@ const { titre, intro, valeurs } = Astro.props;
 
   .valeurs__zone {
     position: relative;
+  }
+
+  /* Les étincelles suivent le fil : masquées tant qu'il l'est, c'est-à-dire
+     tant que la rangée est repliée en grille. */
+  .valeurs__etincelles {
+    display: none;
   }
 
   .valeurs__fil {
@@ -118,7 +139,8 @@ const { titre, intro, valeurs } = Astro.props;
   }
 
   @media (width >= 64rem) {
-    .valeurs__fil {
+    .valeurs__fil,
+    .valeurs__etincelles {
       display: block;
     }
 

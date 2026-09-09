@@ -141,23 +141,40 @@ const prestations = (await getCollection('prestations')).sort(
     padding-block: var(--space-xl);
   }
 
-  /* Quatre prestations : une seule colonne, puis 2×2, puis la rangée de
-     quatre de la maquette. Jamais d'orphelin en 3+1. */
+  /* Le nombre de colonnes suit le nombre de fiches, sans être écrit nulle
+     part : `auto-fit` supprime les colonnes vides, et la largeur de fiche est
+     plafonnée pour que la rangée se centre au lieu de s'étirer. Trois
+     prestations se centrent, quatre reforment la rangée de la maquette. Rien
+     à retoucher si elle en ajoute ou en retire une depuis le CMS. */
   .prestations__grille {
     display: grid;
     gap: var(--space-m) var(--space-s);
     grid-template-columns: 1fr;
+    justify-content: center;
   }
 
   @media (width >= 34rem) {
     .prestations__grille {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* Une fiche seule en dernière ligne se centre au lieu de rester à gauche. */
+    .prestations__grille > :last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      width: calc(50% - var(--space-s) / 2);
+      justify-self: center;
     }
   }
 
   @media (width >= 68rem) {
     .prestations__grille {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(0, 17rem));
+    }
+
+    /* Au-delà de deux colonnes, plus d'orphelin à rattraper. */
+    .prestations__grille > :last-child:nth-child(odd) {
+      grid-column: auto;
+      width: auto;
     }
   }
 
