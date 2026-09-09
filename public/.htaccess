@@ -1,0 +1,24 @@
+# =============================================================================
+# Redirections canoniques — d'après la documentation Infomaniak (faq 1961).
+#
+# Ce fichier est déployé à la racine du site : Astro recopie public/ dans dist/,
+# et l'action FTPS envoie dist/. Ne pas le déplacer.
+#
+# Les deux conditions du premier bloc sont CUMULATIVES (pas de [OR]) : la
+# redirection ne se déclenche que si ni Apache ni un éventuel proxy en amont ne
+# voient de https. C'est ce qui évite la boucle de redirection décrite par
+# Infomaniak lorsque le SSL est terminé avant Apache.
+# =============================================================================
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # http → https
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule (.*) https://lessensdestelle.ch/$1 [R=301,L]
+
+  # www → domaine nu
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule (.*) https://lessensdestelle.ch/$1 [R=301,L]
+</IfModule>
