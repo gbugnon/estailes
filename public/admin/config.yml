@@ -50,104 +50,6 @@ cadrage: &cadrage
 
 collections:
   # ---------------------------------------------------------------------------
-  # Prestations — 4 fiches (réflexologie, crânien, énergétique, ateliers)
-  # ---------------------------------------------------------------------------
-  - name: prestations
-    label: Prestations
-    label_singular: Prestation
-    description: >-
-      Le texte complet de chaque soin — c'est ce qui s'affiche quand on clique
-      « En savoir plus » depuis la page d'accueil. Ouvrez un soin, puis
-      modifiez le champ « Contenu de la page ».
-    folder: src/content/prestations
-    extension: md
-    format: frontmatter
-    create: true
-    slug: '{{slug}}'
-    summary: '{{titre}} (ordre {{ordre}})'
-    sortable_fields: [ordre, titre]
-    fields:
-      - { name: titre, label: Titre, widget: string }
-      - {
-          name: sous_titre,
-          label: Sous-titre,
-          widget: string,
-          required: false,
-          hint: 'Court, sous le titre — ex. « Pieds · Détente profonde »',
-        }
-      - name: icone
-        label: Icône
-        widget: select
-        options: [pieds, tete, energie, famille, coeur, temps, presence, liens, respect, nature, douceur]
-        hint: 'Icône ronde affichée sur la fiche.'
-      - {
-          name: extrait,
-          label: Extrait,
-          widget: text,
-          hint: 'Une ou deux phrases affichées sur la carte de la page d’accueil.',
-        }
-      - {
-          name: body,
-          label: Contenu de la page,
-          widget: markdown,
-          hint: 'Le texte complet du soin — celui qui s’affiche après « En savoir plus ».',
-        }
-      - {
-          name: image,
-          label: Photo,
-          widget: image,
-          hint: 'Format paysage (4:3 conseillé). Elle est optimisée automatiquement.',
-        }
-      - {
-          name: image_alt,
-          label: Description de la photo,
-          widget: string,
-          hint: 'Décrit la photo pour les personnes malvoyantes et pour Google.',
-        }
-      - <<: *cadrage
-        name: image_position
-        label: Cadrage de la photo
-      - { name: duree, label: Durée, widget: string, required: false, hint: 'ex. « 60 minutes »' }
-      - { name: prix, label: Tarif, widget: string, required: false, hint: 'ex. « CHF 100.– »' }
-      - {
-          name: ordre,
-          label: Ordre d’affichage,
-          widget: number,
-          value_type: int,
-          min: 1,
-          hint: '1 en premier, puis 2, 3, 4…',
-        }
-      - {
-          name: meta_description,
-          label: Description pour Google,
-          widget: text,
-          pattern: ['^.{0,160}$', '160 caractères maximum'],
-          hint: 'Résumé affiché dans les résultats de recherche (≤ 160 caractères).',
-        }
-
-  # ---------------------------------------------------------------------------
-  # Valeurs — 7 items de la rangée « Ce qui guide mes accompagnements »
-  # ---------------------------------------------------------------------------
-  - name: valeurs
-    label: Valeurs
-    label_singular: Valeur
-    folder: src/content/valeurs
-    extension: md
-    format: frontmatter
-    create: true
-    slug: '{{ordre}}-{{slug}}'
-    summary: '{{titre}} (ordre {{ordre}})'
-    sortable_fields: [ordre, titre]
-    fields:
-      - { name: titre, label: Titre, widget: string }
-      - { name: description, label: Description, widget: text }
-      - name: icone
-        label: Icône
-        widget: select
-        options: [coeur, temps, presence, liens, respect, nature, douceur, pieds, tete, energie, famille]
-      - { name: ordre, label: Ordre d’affichage, widget: number, value_type: int, min: 1 }
-
-  # ---------------------------------------------------------------------------
   # Pages — contenu propre à chaque page. Fichiers fixes (pas de création).
   # ---------------------------------------------------------------------------
   - name: pages
@@ -312,25 +214,117 @@ collections:
               code d’intégration — il prendrait alors la place du bouton.
           - { name: body, label: 'Texte (ce qui se passe ensuite)', widget: markdown }
 
-      - name: mentions-legales
-        label: Mentions légales
-        file: src/content/pages/mentions-legales.md
-        fields:
-          - { name: titre, label: Nom de la page, widget: hidden, default: Mentions légales }
-          - { name: meta_description, label: Description pour Google, widget: text }
-          - { name: hero_titre, label: Titre principal, widget: string }
-          - { name: hero_intro, label: Introduction, widget: text, required: false }
-          - { name: body, label: Contenu, widget: markdown }
+  # ---------------------------------------------------------------------------
+  # Séparateur — Sveltia ne sait pas imbriquer une collection de dossier dans
+  # une collection de fichiers. À défaut, l'ordre et les séparateurs font que
+  # la barre latérale suit la structure du site.
+  # ---------------------------------------------------------------------------
+  - divider: true
 
-      - name: confidentialite
-        label: Politique de confidentialité
-        file: src/content/pages/politique-de-confidentialite.md
-        fields:
-          - { name: titre, label: Nom de la page, widget: hidden, default: Politique de confidentialité }
-          - { name: meta_description, label: Description pour Google, widget: text }
-          - { name: hero_titre, label: Titre principal, widget: string }
-          - { name: hero_intro, label: Introduction, widget: text, required: false }
-          - { name: body, label: Contenu, widget: markdown }
+  # ---------------------------------------------------------------------------
+  # Prestations — 4 fiches (réflexologie, crânien, énergétique, ateliers)
+  # ---------------------------------------------------------------------------
+  - name: prestations
+    label: Prestations
+    label_singular: Prestation
+    description: >-
+      Le texte complet de chaque soin — c'est ce qui s'affiche quand on clique
+      « En savoir plus » depuis la page d'accueil. Ouvrez un soin, puis
+      modifiez le champ « Contenu de la page ».
+    folder: src/content/prestations
+    extension: md
+    format: frontmatter
+    create: true
+    slug: '{{slug}}'
+    summary: '{{titre}} (ordre {{ordre}})'
+    sortable_fields: [ordre, titre]
+    fields:
+      - { name: titre, label: Titre, widget: string }
+      - {
+          name: sous_titre,
+          label: Sous-titre,
+          widget: string,
+          required: false,
+          hint: 'Court, sous le titre — ex. « Pieds · Détente profonde »',
+        }
+      - name: icone
+        label: Icône
+        widget: select
+        options: [pieds, tete, energie, famille, coeur, temps, presence, liens, respect, nature, douceur]
+        hint: 'Icône ronde affichée sur la fiche.'
+      - {
+          name: extrait,
+          label: Extrait,
+          widget: text,
+          hint: 'Une ou deux phrases affichées sur la carte de la page d’accueil.',
+        }
+      - {
+          name: body,
+          label: Contenu de la page,
+          widget: markdown,
+          hint: 'Le texte complet du soin — celui qui s’affiche après « En savoir plus ».',
+        }
+      - {
+          name: image,
+          label: Photo,
+          widget: image,
+          hint: 'Format paysage (4:3 conseillé). Elle est optimisée automatiquement.',
+        }
+      - {
+          name: image_alt,
+          label: Description de la photo,
+          widget: string,
+          hint: 'Décrit la photo pour les personnes malvoyantes et pour Google.',
+        }
+      - <<: *cadrage
+        name: image_position
+        label: Cadrage de la photo
+      - { name: duree, label: Durée, widget: string, required: false, hint: 'ex. « 60 minutes »' }
+      - { name: prix, label: Tarif, widget: string, required: false, hint: 'ex. « CHF 100.– »' }
+      - {
+          name: ordre,
+          label: Ordre d’affichage,
+          widget: number,
+          value_type: int,
+          min: 1,
+          hint: '1 en premier, puis 2, 3, 4…',
+        }
+      - {
+          name: meta_description,
+          label: Description pour Google,
+          widget: text,
+          pattern: ['^.{0,160}$', '160 caractères maximum'],
+          hint: 'Résumé affiché dans les résultats de recherche (≤ 160 caractères).',
+        }
+
+  # ---------------------------------------------------------------------------
+  # Valeurs — 7 items de la rangée « Ce qui guide mes accompagnements »
+  # ---------------------------------------------------------------------------
+  - name: valeurs
+    label: Valeurs
+    label_singular: Valeur
+    folder: src/content/valeurs
+    extension: md
+    format: frontmatter
+    create: true
+    slug: '{{ordre}}-{{slug}}'
+    summary: '{{titre}} (ordre {{ordre}})'
+    sortable_fields: [ordre, titre]
+    fields:
+      - { name: titre, label: Titre, widget: string }
+      - { name: description, label: Description, widget: text }
+      - name: icone
+        label: Icône
+        widget: select
+        options: [coeur, temps, presence, liens, respect, nature, douceur, pieds, tete, energie, famille]
+      - { name: ordre, label: Ordre d’affichage, widget: number, value_type: int, min: 1 }
+
+  # ---------------------------------------------------------------------------
+  # Séparateur — Sveltia ne sait pas imbriquer une collection de dossier dans
+  # une collection de fichiers. À défaut, l'ordre et les séparateurs font que
+  # la barre latérale suit la structure du site.
+  # ---------------------------------------------------------------------------
+  - divider: true
 
   # ---------------------------------------------------------------------------
   # Paramètres — coordonnées, réseaux, bandeau d'appel à l'action.
@@ -355,6 +349,21 @@ collections:
           - { name: email, label: E-mail, widget: string }
           - { name: adresse_ligne1, label: 'Adresse — ligne 1', widget: string }
           - { name: adresse_ligne2, label: 'Adresse — ligne 2', widget: string }
+          - name: latitude
+            label: 'Position — latitude'
+            widget: number
+            value_type: float
+            required: false
+            hint: >-
+              Coordonnées du cabinet, transmises à Google pour la carte et la
+              recherche locale. Relevées sur map.geo.admin.ch. Mieux vaut les
+              laisser vides qu'approximatives : un point au mauvais endroit
+              envoie les client·es ailleurs.
+          - name: longitude
+            label: 'Position — longitude'
+            widget: number
+            value_type: float
+            required: false
           - { name: horaires, label: Disponibilités, widget: string, required: false }
           - { name: citation, label: 'Citation (pied de page)', widget: text, required: false }
           - { name: citation_auteur, label: 'Citation — signature', widget: string, required: false }
@@ -380,3 +389,23 @@ collections:
                 widget: select
                 options: [facebook, instagram, linkedin]
               - { name: url, label: 'Adresse (URL)', widget: string }
+
+      - name: mentions-legales
+        label: 'Page — mentions légales'
+        file: src/content/pages/mentions-legales.md
+        fields:
+          - { name: titre, label: Nom de la page, widget: hidden, default: Mentions légales }
+          - { name: meta_description, label: Description pour Google, widget: text }
+          - { name: hero_titre, label: Titre principal, widget: string }
+          - { name: hero_intro, label: Introduction, widget: text, required: false }
+          - { name: body, label: Contenu, widget: markdown }
+
+      - name: confidentialite
+        label: 'Page — politique de confidentialité'
+        file: src/content/pages/politique-de-confidentialite.md
+        fields:
+          - { name: titre, label: Nom de la page, widget: hidden, default: Politique de confidentialité }
+          - { name: meta_description, label: Description pour Google, widget: text }
+          - { name: hero_titre, label: Titre principal, widget: string }
+          - { name: hero_intro, label: Introduction, widget: text, required: false }
+          - { name: body, label: Contenu, widget: markdown }
