@@ -2,6 +2,7 @@
 import Icon from './Icon.astro';
 import Sparkles from './Sparkles.astro';
 import Photo from './Photo.astro';
+import { parametres as reglages } from '../lib/parametres';
 import type { PositionPhoto } from './Photo.astro';
 
 interface Props {
@@ -28,6 +29,18 @@ const {
 
 // hero_intro accepte plusieurs paragraphes séparés par une ligne vide.
 const paragraphes = intro?.split(/\n{2,}/).filter(Boolean) ?? [];
+
+/**
+ * Le nom du cabinet est composé dans la serif de titrage au milieu du texte
+ * courant, pour qu'il se détache.
+ *
+ * Repéré automatiquement à partir de `nom_site` : elle n'a aucune syntaxe à
+ * retenir, et un changement d'enseigne suit tout seul. Le découpage produit un
+ * tableau rendu en JSX — jamais de set:html, donc le texte venu du CMS reste
+ * échappé par Astro et rien ne peut être injecté.
+ */
+const nom = reglages.nom_site;
+const motifNom = new RegExp(`(${nom.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'g');
 ---
 
 <section class="hero">
@@ -38,7 +51,15 @@ const paragraphes = intro?.split(/\n{2,}/).filter(Boolean) ?? [];
         {script && <span class="script hero__script">{script}</span>}
       </h1>
 
-      {paragraphes.map((para) => <p class="hero__intro">{para}</p>)}
+      {
+        paragraphes.map((para) => (
+          <p class="hero__intro">
+            {para
+              .split(motifNom)
+              .map((bout) => (bout === nom ? <span class="hero__marque">{bout}</span> : bout))}
+          </p>
+        ))
+      }
 
       {
         ctaTexte && ctaLien && (
@@ -115,6 +136,18 @@ const paragraphes = intro?.split(/\n{2,}/).filter(Boolean) ?? [];
 
   .hero__intro + .hero__intro {
     margin-top: 0.9rem;
+  }
+
+  /* Le nom du cabinet dans la serif de titrage. La serif dessine plus petit que
+     la sans à taille égale : d'où la légère correction. Pas de couleur ni de
+     fond — c'est la lettre seule qui marque. */
+  .hero__marque {
+    font-family: var(--font-display);
+    font-variation-settings: 'SOFT' 60;
+    font-weight: 400;
+    font-size: 1.09em;
+    letter-spacing: -0.01em;
+    color: var(--ink);
   }
 
   .hero__cta {
