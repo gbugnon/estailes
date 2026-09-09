@@ -87,12 +87,17 @@ const motifNom = new RegExp(`(${nom.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, '
             loading="eager"
             fetchpriority="high"
           />
+          {/* Écartées du tracé du cercle. Celui-ci a pour centre (hauteur/2 moins
+              le débord, mi-hauteur) et pour rayon la moitié de la hauteur : à
+              mi-hauteur son bord passe pile là où se trouvaient les deux
+              premières étincelles. On les tient donc en haut et en bas, où le
+              cercle s'éloigne — vérifié à 1200 et 1600 px de large. */}
           <Sparkles
             class="hero__etincelles"
             etincelles={[
-              { x: 2, y: 22, r: 10, opacite: 0.9 },
-              { x: -4, y: 46, r: 5, opacite: 0.6 },
-              { x: 7, y: 68, r: 7, opacite: 0.75 },
+              { x: 3, y: 8, r: 10, opacite: 0.9 },
+              { x: -3, y: 88, r: 5, opacite: 0.6 },
+              { x: 8, y: 78, r: 7, opacite: 0.75 },
             ]}
           />
         </div>
