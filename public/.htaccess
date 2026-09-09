@@ -1,24 +1,27 @@
 # =============================================================================
 # Redirections canoniques — d'après la documentation Infomaniak (faq 1961).
 #
-# Ce fichier est déployé à la racine du site : Astro recopie public/ dans dist/,
-# et l'action FTPS envoie dist/. Ne pas le déplacer.
-#
-# Les deux conditions du premier bloc sont CUMULATIVES (pas de [OR]) : la
-# redirection ne se déclenche que si ni Apache ni un éventuel proxy en amont ne
-# voient de https. C'est ce qui évite la boucle de redirection décrite par
-# Infomaniak lorsque le SSL est terminé avant Apache.
+# Déployé à la racine du site : Astro recopie public/ dans dist/, et l'action
+# FTPS envoie dist/. Ne pas déplacer ce fichier.
 # =============================================================================
 
-<IfModule mod_rewrite.c>
-  RewriteEngine On
+# --- Sonde de diagnostic ----------------------------------------------------
+# mod_alias, indépendant de mod_rewrite : si /_htaccess-actif répond 301, c'est
+# qu'Apache lit bien ce fichier. À retirer une fois les redirections confirmées.
+Redirect 301 /_htaccess-actif https://lessensdestelle.ch/
 
-  # http → https
-  RewriteCond %{HTTPS} off
-  RewriteCond %{HTTP:X-Forwarded-Proto} !https
-  RewriteRule (.*) https://lessensdestelle.ch/$1 [R=301,L]
+# --- Le journal de déploiement ne regarde personne --------------------------
+# Il liste tous les fichiers du site avec leurs empreintes, et était servi
+# publiquement en 200.
+<Files ".ftp-deploy-sync-state.json">
+  Require all denied
+</Files>
 
-  # www → domaine nu
-  RewriteCond %{HTTP_HOST} ^www\. [NC]
-  RewriteRule (.*) https://lessensdestelle.ch/$1 [R=301,L]
-</IfModule>
+# --- Redirections -----------------------------------------------------------
+# Forme recommandée par Infomaniak. Si une boucle apparaît, remplacer
+# « %{HTTPS} off » par « %{HTTP:X-Forwarded-Proto} !https ».
+RewriteEngine On
+
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule (.*) https://lessensdestelle.ch/$1 [R=301,L]
