@@ -135,17 +135,18 @@ const paragraphes = intro?.split(/\n{2,}/).filter(Boolean) ?? [];
     border-radius: 999px 12px 12px 999px;
   }
 
-  /* Le cercle doré passe SOUS la photo : seul le croissant qui dépasse à
-     gauche reste visible, dans la gouttière entre le texte et la photo.
-     Dimensions relevées sur design/mockup.jpg — 52 % de la largeur du média,
-     débordant de 7 % à gauche. Élargir le cercle ou le décaler davantage à
-     gauche le fait repasser en travers de la photo. */
+  /* Le cercle doré a exactement le rayon de l'arrondi gauche de la photo :
+     celui-ci vaut la moitié de la hauteur (border-radius 999px, donc plafonné),
+     donc un cercle de diamètre égal à la hauteur épouse la courbe au pixel.
+     Décalé à gauche de --hero-arc-debord, il n'en laisse dépasser qu'un
+     croissant régulier — le reste passe sous la photo. */
   .hero__arc {
     position: absolute;
     z-index: 0;
     top: 50%;
-    left: -7%;
-    width: 52%;
+    left: calc(-1 * var(--hero-arc-debord));
+    height: 100%;
+    width: auto;
     aspect-ratio: 1;
     translate: 0 -50%;
     overflow: visible;
@@ -167,7 +168,7 @@ const paragraphes = intro?.split(/\n{2,}/).filter(Boolean) ?? [];
     }
 
     .hero__inner {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      grid-template-columns: var(--hero-colonnes);
       gap: var(--space-xl);
     }
 

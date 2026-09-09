@@ -80,14 +80,14 @@ const estActif = (href: string) =>
     align-items: center;
     justify-content: space-between;
     gap: var(--space-m);
-    min-height: 7.25rem;
+    min-height: 8.25rem;
   }
 
   /* Gabarit A : badge circulaire à gauche, navigation à droite.
      Le logo de la charte est rond, pas horizontal : il se dimensionne en
      hauteur et impose un en-tête un peu plus haut que le lockup du mockup. */
   .entete__logo {
-    --logo-h: 84px;
+    --logo-h: 100px;
 
     display: block;
     flex: none;
@@ -168,11 +168,11 @@ const estActif = (href: string) =>
 
   @media (width < 62rem) {
     .entete__inner {
-      min-height: 5.5rem;
+      min-height: 6rem;
     }
 
     .entete__logo {
-      --logo-h: 62px;
+      --logo-h: 70px;
     }
 
     .burger {
@@ -181,7 +181,7 @@ const estActif = (href: string) =>
 
     .nav {
       position: fixed;
-      inset: 5.5rem 0 auto;
+      inset: 6rem 0 auto;
       flex-direction: column;
       align-items: stretch;
       gap: 0;

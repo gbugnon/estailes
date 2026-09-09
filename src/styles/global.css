@@ -64,6 +64,18 @@
   --space-xl: clamp(3.5rem, 2.5rem + 4vw, 6rem);
   --space-2xl: clamp(5rem, 3.5rem + 6vw, 8.5rem);
 
+  /* Répartition texte / photo des deux bandes à deux colonnes, sur ordinateur
+     uniquement (en dessous de 62rem tout se met sur une colonne). Le premier
+     `minmax` est la colonne de texte, le second la photo : augmenter le second
+     élargit la photo. C'est le seul endroit à toucher pour rééquilibrer. */
+  --hero-colonnes: minmax(0, 1fr) minmax(0, 1.45fr);
+  --apropos-colonnes: minmax(0, 0.95fr) minmax(0, 1.05fr);
+
+  /* Débord du cercle doré à gauche de la photo du hero. Le cercle a exactement
+     le rayon de l'arrondi de la photo : ce décalage est donc la largeur du
+     croissant visible dans la gouttière. */
+  --hero-arc-debord: 46px;
+
   --wrap: 74rem;
   --wrap-prose: 40rem;
   --radius: 4px;

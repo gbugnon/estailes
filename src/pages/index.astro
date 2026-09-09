@@ -230,7 +230,7 @@ const prestations = (await getCollection('prestations')).sort(
 
   @media (width >= 62rem) {
     .apropos__inner {
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      grid-template-columns: var(--apropos-colonnes);
       gap: var(--space-xl);
     }
 
