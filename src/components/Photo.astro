@@ -5,11 +5,10 @@
  *
  *  1. OPTIMISATION — une vraie photo déposée dans src/assets/photos/ passe par
  *     le composant <Image> d'Astro : redimensionnée, convertie en WebP, avec un
- *     srcset responsive. Les illustrations provisoires (SVG dans public/images/)
- *     ne s'y trouvent pas : elles retombent sur un <img> simple, sans
- *     rastérisation inutile. Résultat : les placeholders fonctionnent
- *     aujourd'hui, et chaque photo réelle téléversée est optimisée sans étape
- *     manuelle.
+ *     srcset responsive. Toute autre valeur retombe sur un <img> simple, servi
+ *     tel quel : c'était la porte de sortie des illustrations provisoires, et
+ *     elle reste le filet pour une image servie depuis public/. Chaque photo
+ *     téléversée est donc optimisée sans étape manuelle.
  *
  *  2. CADRAGE — `position` fixe le point focal (object-position) pour qu'un
  *     visage ou un sujet ne soit pas coupé quand la photo est recadrée dans un

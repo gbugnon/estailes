@@ -17,8 +17,8 @@ backend:
 
 # Les photos téléversées atterrissent dans src/assets/photos/ : Astro les
 # redimensionne et les convertit en WebP au build (voir src/components/Photo.astro).
-# Les illustrations provisoires restent dans public/images/ et continuent de
-# s'afficher telles quelles tant qu'aucune vraie photo ne les remplace.
+# Les illustrations provisoires ont été retirées : toutes les photos du site
+# sont désormais les siennes, et passent donc par l'optimisation.
 media_folder: src/assets/photos
 public_folder: /src/assets/photos
 
