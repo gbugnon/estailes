@@ -65,11 +65,18 @@
   --space-2xl: clamp(5rem, 3.5rem + 6vw, 8.5rem);
 
   /* Répartition texte / photo des deux bandes à deux colonnes, sur ordinateur
-     uniquement (en dessous de 62rem tout se met sur une colonne). Le premier
-     `minmax` est la colonne de texte, le second la photo : augmenter le second
-     élargit la photo. C'est le seul endroit à toucher pour rééquilibrer. */
-  --hero-colonnes: minmax(0, 1fr) minmax(0, 1.45fr);
-  --apropos-colonnes: minmax(0, 0.95fr) minmax(0, 1.05fr);
+     uniquement (en dessous de 62rem, tout se met sur une seule colonne).
+     C'est le seul endroit à toucher pour rééquilibrer.
+
+     Les deux nombres se lisent comme des pourcentages : le premier est la
+     colonne de TEXTE, le second la PHOTO. « 50fr 50fr » donne moitié-moitié,
+     « 60fr 40fr » donne 60 % au texte et 40 % à la photo. L'unité `fr` plutôt
+     que `%` est volontaire : elle tient compte de l'espace entre les colonnes,
+     là où des pourcentages additionnés à 100 déborderaient de la largeur.
+     Les deux nombres n'ont pas besoin de totaliser 100, seul leur rapport
+     compte — mais les écrire ainsi les rend lisibles d'un coup d'œil. */
+  --hero-colonnes: minmax(0, 41fr) minmax(0, 59fr); /* texte 41 % · photo 59 % */
+  --apropos-colonnes: minmax(0, 48fr) minmax(0, 52fr); /* texte 48 % · photo 52 % */
 
   /* Débord du cercle doré à gauche de la photo du hero. Le cercle a exactement
      le rayon de l'arrondi de la photo : ce décalage est donc la largeur du
