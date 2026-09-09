@@ -7,7 +7,7 @@ image: /src/assets/photos/ChatGPT Image 3 sept. 2026 à 21_30_55.png
 image_alt: Séance de réflexologie plantaire, mains travaillant la voûte du pied
 image_position: centre
 duree: 60 minutes
-prix: CHF 90.–
+prix: CHF 80.–
 ordre: 1
 meta_description: Réflexologie plantaire à Lentigny (Fribourg) — une séance douce pour relâcher les tensions, soutenir l’équilibre du corps et retrouver du confort.
 ---

@@ -65,8 +65,13 @@ const {
 } = Astro.props;
 
 // Carte des photos optimisables, indexées par nom de fichier. Chargée au build.
+// Les extensions en majuscules sont listées explicitement : le motif est
+// sensible à la casse, et un appareil photo ou un iPhone produit des « .JPG ».
+// Sans elles, une photo téléversée depuis un téléphone n'était pas captée et
+// retombait silencieusement sur son chemin source — donc une image cassée en
+// production, sans la moindre erreur au build.
 const sources = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/photos/*.{jpeg,jpg,png,webp,avif}',
+  '../assets/photos/*.{jpeg,jpg,png,webp,avif,JPEG,JPG,PNG,WEBP,AVIF}',
   { eager: true },
 );
 const parNom = new Map<string, ImageMetadata>();

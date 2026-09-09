@@ -1,6 +1,6 @@
 ---
 titre: Accueil
-meta_description: Réflexologie plantaire, massage crânien et soins énergétiques à Lentigny, canton de Fribourg. Un espace pour souffler et retrouver votre équilibre.
+meta_description: 'Réflexologie plantaire, massage crânien et soins énergétiques à Lentigny (Fribourg). Séances adultes et enfants, en cabinet ou à distance.'
 hero_titre: Retrouver son
 hero_script: harmonie intérieure
 hero_intro: |-

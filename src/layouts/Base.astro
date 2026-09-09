@@ -9,6 +9,8 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CtaBand from '../components/CtaBand.astro';
+import { getEntry } from 'astro:content';
+import { catalogueSchema } from '../lib/schema';
 import { parametres as p } from '../lib/parametres';
 
 interface Props {
@@ -35,6 +37,11 @@ const canonique = new URL(chemin, Astro.site).href;
 // identifié par @id, que les schémas de page peuvent référencer sans le redéclarer.
 const idEntreprise = new URL('/#entreprise', Astro.site).href;
 
+// La grille de /tarifs est la seule liste exhaustive de ce qu'elle propose :
+// elle sert donc de source au catalogue déclaré aux moteurs de recherche.
+const pageTarifs = await getEntry('pages', 'tarifs');
+const catalogue = catalogueSchema(pageTarifs?.data.tarifs, Astro.site);
+
 const entreprise = {
   '@type': 'HealthAndBeautyBusiness',
   '@id': idEntreprise,
@@ -45,7 +52,7 @@ const entreprise = {
   email: p.email,
   image: new URL('/images/og-lessensdestelle.png', Astro.site).href,
   logo: new URL('/images/logo.svg', Astro.site).href,
-  priceRange: 'CHF 90',
+  priceRange: 'CHF 60–80',
   currenciesAccepted: 'CHF',
   paymentAccepted: 'Espèces, TWINT',
   address: {
@@ -62,6 +69,7 @@ const entreprise = {
   ...(p.latitude !== undefined && p.longitude !== undefined
     ? { geo: { '@type': 'GeoCoordinates', latitude: p.latitude, longitude: p.longitude } }
     : {}),
+  ...(catalogue ? { hasOfferCatalog: catalogue } : {}),
   areaServed: [
     { '@type': 'City', name: 'Lentigny' },
     { '@type': 'AdministrativeArea', name: 'Canton de Fribourg' },

@@ -7,7 +7,7 @@ image: /src/assets/photos/c26b905a-0b5a-48aa-a07f-bc5a7d9992aa.png
 image_alt: Bols chantants en laiton posés près d’une personne assise en tailleur
 image_position: centre
 duree: ≈ 60 minutes
-prix: CHF 90.–
+prix: CHF 80.–
 ordre: 3
 meta_description: Soin énergétique et harmonisation des chakras à Lentigny (Fribourg) — pour rééquilibrer, libérer les blocages et retrouver votre élan intérieur.
 ---
