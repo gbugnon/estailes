@@ -55,8 +55,18 @@ const prestations = (await getCollection('prestations')).sort(
   }
 
   @media (width >= 68rem) {
+    /* Même logique que la rangée de l'accueil : les colonnes suivent le nombre
+       de fiches, largeur plafonnée pour que la rangée se centre au lieu de
+       s'étirer. */
     .liste__grille {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(0, 17rem));
+    }
+
+    /* Au-delà de deux colonnes, plus d'orphelin à rattraper — sans ce retour à
+       zéro, la règle ci-dessus renvoyait la troisième fiche sur sa propre ligne. */
+    .liste__grille > :last-child:nth-child(odd) {
+      grid-column: auto;
+      width: auto;
     }
   }
 </style>
