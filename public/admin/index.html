@@ -15,12 +15,26 @@
       base de données, aucun serveur : l'édition passe par des commits Git,
       et le déploiement se relance tout seul.
 
-      On charge la dernière version stable de Sveltia. Pour figer une version
-      précise (recommandé une fois le site en production, afin qu'une mise à
-      jour distante ne casse jamais l'interface sans prévenir), remplacer par :
-        https://unpkg.com/@sveltia/cms@<version>/dist/sveltia-cms.js
-      en relevant le numéro publié sur https://github.com/sveltia/sveltia-cms
+      VERSION FIGÉE — ne pas repasser sur « dernière version » sans raison.
+
+      Le 2026-09-10, l'interface a été chargée sans numéro de version : elle
+      suivait donc la dernière publication d'unpkg, qui change plusieurs fois
+      par semaine. Deux versions sont sorties entre les explications données à
+      l'éditrice et sa session du lendemain matin (0.209.0 le 09.09 à 20h19,
+      0.209.1 le 10.09 à 05h49), et la séance d'édition a mal tourné : un titre
+      de prestation vidé de son contenu, deux fiches impossibles à enregistrer.
+
+      0.208.2 est la dernière version publiée avant la refonte du slug et de
+      l'`identifier_field` introduite par 0.209.0 (« nested collections »).
+      Avec la configuration de ce site — collections `prestations` et `valeurs`
+      sans champ `title` ni `identifier_field` — 0.209.x classe une fiche
+      nouvellement créée sous un identifiant hexadécimal aléatoire au lieu de
+      son titre, ce qui donnerait des adresses du type
+      /prestations/02a903f26ce1. Vérifié en comparant les deux réglages.
+
+      Avant de monter de version : créer une prestation de test et vérifier que
+      son nom de fichier reprend bien le titre.
     -->
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <script src="https://unpkg.com/@sveltia/cms@0.208.2/dist/sveltia-cms.js"></script>
   </body>
 </html>
