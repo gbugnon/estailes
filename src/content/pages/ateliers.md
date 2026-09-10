@@ -5,17 +5,6 @@ hero_titre: Apprendre des gestes,
 hero_script: à refaire à la maison
 hero_intro: Les ateliers ne sont pas des séances de soin. Ce sont des moments où vous repartez avec quelque chose que vous savez faire vous-même.
 ateliers:
-  - titre: Accompagnement Parents-Enfant
-    public: Dès la naissance
-    duree: 60 minutes
-    description: |-
-      Un moment de partage pour découvrir des gestes simples de réflexologie à reproduire facilement à la maison.
-
-      Au cours de l’atelier, je vous accompagne dans l’apprentissage de points réflexes adaptés aux besoins de votre enfant : inconforts digestifs, poussées dentaires, sommeil, agitation, stress, émotions, concentration ou petits maux du quotidien.
-
-      Une jolie façon de prendre soin de son enfant tout en créant un moment privilégié, à travers le toucher, l’écoute et la présence.
-
-      Vous repartez avec des outils simples et concrets à utiliser en toute autonomie au quotidien.
   - titre: Ateliers thématiques
     public: Adultes & enfants
     duree: Selon l'atelier
