@@ -132,6 +132,21 @@ const { titre, intro, valeurs } = Astro.props;
     margin-inline: auto;
   }
 
+  /* Sept valeurs sur deux colonnes : la septième restait seule et calée à
+     gauche, avec la moitié de la rangée vide à sa droite. Elle reprend la
+     largeur d'une colonne et se centre — même rattrapage que la liste des
+     prestations.
+
+     Borné à la bande deux colonnes : au-delà la grille passe à quatre puis à
+     sept, où « dernier enfant de rang impair » ne désigne plus un orphelin. */
+  @media (width < 40rem) {
+    .valeurs__grille > :last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      width: calc(50% - var(--space-s) / 2);
+      justify-self: center;
+    }
+  }
+
   @media (width >= 40rem) {
     .valeurs__grille {
       grid-template-columns: repeat(4, 1fr);
