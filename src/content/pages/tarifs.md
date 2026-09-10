@@ -7,32 +7,28 @@ hero_intro: Chaque soin est une parenthèse pensée selon vos besoins du moment.
 tarifs:
   - prestation: Réflexologie plantaire
     duree: 60 minutes
-    prix: CHF 80.–
-    note: ''
-  - prestation: Réflexologie plantaire enfant
-    duree: 45 minutes
-    prix: CHF 60.–
-    note: ''
+    prix: CHF 100.–
+    note: En cabinet
   - prestation: Massage crânien
     duree: 60 minutes
-    prix: CHF 80.–
-    note: ''
+    prix: CHF 100.–
+    note: En cabinet
   - prestation: Soin énergétique
     duree: 60 minutes
-    prix: CHF 80.–
+    prix: CHF 100.–
     note: En cabinet
-  - prestation: Soin énergétique à distance
+  - prestation: Soin énergétique
     duree: 60 minutes
-    prix: CHF 80.–
-    note: ''
-  - prestation: Soin personnalisé
+    prix: CHF 75.–
+    note: A distance
+  - prestation: Soin enfant 0-12 ans
+    duree: 45 minutes
+    prix: CHF 70.–
+    note: 'En cabinet : réflexologie plantaire - massage crânien - soin énergétique'
+  - prestation: Accompagnement Parent-Enfant
     duree: 60 minutes
-    prix: CHF 80.–
-    note: ''
-  - prestation: Atelier parent-enfant
-    duree: 60 minutes
-    prix: CHF 80.–
-    note: ''
+    prix: CHF 100.–
+    note: En cabinet
 tarifs_note: Pour le règlement de votre séance, le paiement en espèces est privilégié, mais TWINT reste bien sûr possible.
 ---
 
