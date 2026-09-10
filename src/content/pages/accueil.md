@@ -17,7 +17,7 @@ hero_image_position: centre
 valeurs_titre: Ce qui guide mes accompagnements
 valeurs_intro: Au-delà des techniques et des soins, ma pratique est avant tout guidée par des valeurs qui me tiennent à coeur. Elles sont le fil conducteur de chaque rencontre et donnent du sens à ma manière de vous accompagner.
 prestations_titre: Mes prestations
-prestations_intro: Trois façons de prendre soin de vous, à choisir selon ce dont vous avez besoin aujourd’hui.
+prestations_intro: Cinq façons de prendre soin de vous, à choisir selon ce dont vous avez besoin aujourd’hui.
 apropos_surtitre: Derrière les sens d'Estelle
 apropos_titre: Mon chemin,
 apropos_script: au service de l’essentiel
