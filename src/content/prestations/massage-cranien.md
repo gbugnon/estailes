@@ -1,5 +1,5 @@
 ---
-titre: Ma
+titre: Massage crânien
 sous_titre: Relâcher · Apaiser · Déconnecter
 icone: tete
 extrait: Un massage enveloppant, des omoplates jusqu’au visage, pour relâcher les tensions et calmer le mental. Une véritable parenthèse pour ralentir et lâcher prise.
