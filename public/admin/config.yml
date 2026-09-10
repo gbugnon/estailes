@@ -235,6 +235,12 @@ collections:
     extension: md
     format: frontmatter
     create: true
+    # Sans cette ligne, le CMS cherche un champ nommé « title » pour fabriquer
+    # le nom de fichier. Ici le champ s'appelle « titre » : à partir de Sveltia
+    # 0.209.0, faute de le trouver, une fiche nouvellement créée était classée
+    # sous un identifiant aléatoire (/prestations/02a903f26ce1). Le nom de
+    # fichier devient l'adresse de la page : il doit suivre le titre.
+    identifier_field: titre
     slug: '{{slug}}'
     summary: '{{titre}} (ordre {{ordre}})'
     sortable_fields: [ordre, titre]
@@ -307,6 +313,8 @@ collections:
     extension: md
     format: frontmatter
     create: true
+    # Même raison que pour les prestations : le champ s'appelle « titre ».
+    identifier_field: titre
     slug: '{{ordre}}-{{slug}}'
     summary: '{{titre}} (ordre {{ordre}})'
     sortable_fields: [ordre, titre]
