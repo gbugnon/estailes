@@ -5,7 +5,7 @@ hero_titre: Apprendre des gestes,
 hero_script: à refaire à la maison
 hero_intro: Les ateliers ne sont pas des séances de soin. Ce sont des moments où vous repartez avec quelque chose que vous savez faire vous-même.
 ateliers:
-  - titre: Atelier Parents-Enfant
+  - titre: Accompagnement Parents-Enfant
     public: Dès la naissance
     duree: 60 minutes
     description: |-
