@@ -8,23 +8,23 @@ tarifs:
   - prestation: Réflexologie plantaire
     duree: 60 minutes
     prix: CHF 100.–
-    note: En cabinet
+    note: ''
   - prestation: Massage crânien
     duree: 60 minutes
     prix: CHF 100.–
-    note: En cabinet
+    note: ''
   - prestation: Soin énergétique
     duree: 60 minutes
     prix: CHF 100.–
-    note: En cabinet
-  - prestation: Soin énergétique
+    note: ''
+  - prestation: Soin énergétique - à distance
     duree: 60 minutes
     prix: CHF 75.–
-    note: A distance
+    note: ''
   - prestation: Soin enfant 0-12 ans
     duree: 45 minutes
     prix: CHF 70.–
-    note: 'En cabinet : réflexologie plantaire - massage crânien - soin énergétique'
+    note: Réflexologie plantaire - Massage crânien - Soin énergétique
   - prestation: Accompagnement Parent-Enfant
     duree: 60 minutes
     prix: CHF 100.–
