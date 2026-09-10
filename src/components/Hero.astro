@@ -180,6 +180,29 @@ const motifNom = new RegExp(`(${nom.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, '
     border-radius: 999px 12px 12px 999px;
   }
 
+  /* La photo est déjà à l'écran au chargement : elle n'a pas de révélation au
+     défilement comme le reste de la page, et surgissait donc d'un coup quand le
+     WebP finissait de se décoder. D'où l'impression de clignotement.
+
+     Fondu à l'ouverture, sans JS. `both` retient l'opacité à zéro avant le
+     premier tour — sans lui, la photo apparaît pleine puis repart de zéro, ce
+     qui aggrave le défaut au lieu de le corriger.
+
+     Le mouvement réduit est déjà couvert par la règle globale, qui ramène toute
+     animation à 0,01 ms. */
+  .hero__media :global(img) {
+    animation: hero-apparition 0.6s var(--ease) both;
+  }
+
+  @keyframes hero-apparition {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
   /* Le cercle doré a exactement le rayon de l'arrondi gauche de la photo :
      celui-ci vaut la moitié de la hauteur (border-radius 999px, donc plafonné),
      donc un cercle de diamètre égal à la hauteur épouse la courbe au pixel.
