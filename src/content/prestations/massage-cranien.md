@@ -1,5 +1,5 @@
 ---
-titre: M
+titre: Ma
 sous_titre: Relâcher · Apaiser · Déconnecter
 icone: tete
 extrait: Un massage enveloppant, des omoplates jusqu’au visage, pour relâcher les tensions et calmer le mental. Une véritable parenthèse pour ralentir et lâcher prise.
@@ -22,7 +22,7 @@ Le massage débute habillé et sans huile au niveau du haut du dos et de la nuqu
 
 Petit conseil : prévoyez simplement de ne pas avoir à vous recoiffer juste après le soin. **Vos cheveux garderont certainement quelques traces d’huile… comme le souvenir de cette parenthèse de détente.**
 
-## Pour qui 
+## Pour qui ?
 
 Pour celles et ceux qui ressentent le besoin de **relâcher la pression et de faire une vraie pause**.
 
