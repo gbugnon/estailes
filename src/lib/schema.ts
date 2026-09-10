@@ -83,6 +83,26 @@ export function catalogueSchema(
     : undefined;
 }
 
+/**
+ * Fourchette de prix du cabinet, pour le champ `priceRange` de l'entreprise.
+ * Même source que le catalogue : la grille de /tarifs.
+ *
+ * Elle était écrite en dur dans le layout, et a survécu telle quelle à une
+ * hausse des tarifs — « CHF 60–80 » là où la grille annonçait 70 à 100, sur
+ * toutes les pages du site et sans que rien ne le signale.
+ *
+ * undefined si aucun prix n'est lisible : mieux vaut ne rien déclarer aux
+ * moteurs qu'une fourchette fausse.
+ */
+export function fourchettePrix(lignes: { prix: string }[] | undefined) {
+  const montants = (lignes ?? []).map((l) => Number(montant(l.prix))).filter(Number.isFinite);
+  if (!montants.length) return undefined;
+
+  const bas = Math.min(...montants);
+  const haut = Math.max(...montants);
+  return bas === haut ? `CHF ${bas}` : `CHF ${bas}–${haut}`;
+}
+
 /** Fil d'Ariane : chaque étape est { nom, url } ; la dernière est la page courante. */
 export function filAriane(etapes: { nom: string; url: string }[]) {
   return {

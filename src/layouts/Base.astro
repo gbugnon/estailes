@@ -10,7 +10,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { getEntry } from 'astro:content';
-import { catalogueSchema } from '../lib/schema';
+import { catalogueSchema, fourchettePrix } from '../lib/schema';
 import { parametres as p } from '../lib/parametres';
 
 interface Props {
@@ -41,6 +41,7 @@ const idEntreprise = new URL('/#entreprise', Astro.site).href;
 // elle sert donc de source au catalogue déclaré aux moteurs de recherche.
 const pageTarifs = await getEntry('pages', 'tarifs');
 const catalogue = catalogueSchema(pageTarifs?.data.tarifs, Astro.site);
+const fourchette = fourchettePrix(pageTarifs?.data.tarifs);
 
 const entreprise = {
   '@type': 'HealthAndBeautyBusiness',
@@ -52,7 +53,7 @@ const entreprise = {
   email: p.email,
   image: new URL('/images/og-lessensdestelle.png', Astro.site).href,
   logo: new URL('/images/logo.svg', Astro.site).href,
-  priceRange: 'CHF 60–80',
+  ...(fourchette && { priceRange: fourchette }),
   currenciesAccepted: 'CHF',
   paymentAccepted: 'Espèces, TWINT',
   address: {

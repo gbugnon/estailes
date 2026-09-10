@@ -1,6 +1,6 @@
 ---
 titre: Tarifs
-meta_description: 'Tarifs des séances à Lentigny (Fribourg) : réflexologie plantaire dès CHF 60, massage crânien, soin énergétique en cabinet ou à distance, atelier parent-enfant.'
+meta_description: 'Tarifs des séances à Lentigny (Fribourg) : réflexologie plantaire dès CHF 70, massage crânien, soin énergétique en cabinet ou à distance, atelier parent-enfant.'
 hero_titre: Mes tarifs
 hero_script: Un temps pour vous
 hero_intro: Chaque soin est une parenthèse pensée selon vos besoins du moment. Retrouvez ci-dessous les tarifs de mes différents accompagnements.
