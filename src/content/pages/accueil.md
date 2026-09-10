@@ -4,7 +4,7 @@ meta_description: 'Réflexologie plantaire, massage crânien et soins énergéti
 hero_titre: Retrouver son
 hero_script: harmonie intérieure
 hero_intro: |-
-  Bienvenue chez Les sens d’Estelle, un espace dédié au bien-être, à l’écoute et à la reconnexion à soi.
+  Bienvenue chez les sens d’Estelle, un espace dédié au bien-être, à l’écoute et à la reconnexion à soi.
 
   À travers la réflexologie, le massage et les soins énergétiques, je vous accompagne avec douceur et bienveillance, en m’adaptant à vos besoins et à ce que vous traversez.
 
