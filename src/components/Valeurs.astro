@@ -147,9 +147,26 @@ const { titre, intro, valeurs } = Astro.props;
     }
   }
 
-  @media (width >= 40rem) {
+  /* Bande tablette : quatre par rangée, donc 4 + 3, et la seconde rangée
+     restait calée à gauche avec une colonne entière de vide à sa droite.
+
+     Flex et non grille, comme pour les fiches de prestations : c'est ce qui
+     centre une dernière rangée incomplète. Trois éléments dans une rangée de
+     quatre ne se rattrapent pas au `nth-child` — contrairement à l'orpheline
+     unique de la bande deux colonnes juste au-dessus. La base de flex vaut une
+     colonne sur quatre, gouttières déduites.
+
+     Au-delà de 64rem la grille reprend la main : les sept tiennent sur une
+     ligne, il n'y a plus de rangée incomplète à centrer. */
+  @media (width >= 40rem) and (width < 64rem) {
     .valeurs__grille {
-      grid-template-columns: repeat(4, 1fr);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .valeurs__grille > * {
+      flex: 0 0 calc((100% - 3 * var(--space-s)) / 4);
     }
   }
 
