@@ -24,3 +24,22 @@ RewriteEngine On
 RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^www\. [NC]
 RewriteRule (.*) https://lessensdestelle.ch/$1 [R=301,L]
+
+# --- Anciennes adresses des prestations -------------------------------------
+# Le 2026-09-10, le CMS a fabriqué les noms de fichiers à partir du premier
+# titre du corps de texte (« Pour qui ? », « Pour quels besoins ? ») ou d'un
+# identifiant aléatoire, au lieu du titre de la prestation. Les cinq adresses
+# fautives sont parties dans le sitemap remis à Google ; elles sont renvoyées
+# ici vers les bonnes.
+#
+# Trois des cibles (réflexologie, massage crânien, soin énergétique) sont les
+# adresses d'origine, rétablies par le renommage des fichiers : elles
+# répondaient 404 depuis ce jour-là. Les deux autres sont nouvelles.
+#
+# À garder. Une redirection ne coûte rien et une adresse indexée peut être
+# rappelée des années plus tard — depuis un signet, un lien, un cache.
+RewriteRule ^prestations/60962089e11c/?$        /prestations/reflexologie-plantaire/ [R=301,L]
+RewriteRule ^prestations/d251e7f6c1ba/?$        /prestations/soin-energetique/ [R=301,L]
+RewriteRule ^prestations/pour-qui/?$            /prestations/massage-cranien/ [R=301,L]
+RewriteRule ^prestations/pour-quels-besoins-1/?$ /prestations/accompagnement-parent-enfant/ [R=301,L]
+RewriteRule ^prestations/pour-quels-besoins/?$  /prestations/soin-enfant/ [R=301,L]
