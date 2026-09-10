@@ -1,5 +1,5 @@
 ---
-titre: M
+titre: Ma
 sous_titre: Relâcher · Apaiser · Déconnecter
 icone: tete
 extrait: Un massage enveloppant, des omoplates jusqu’au visage, pour relâcher les tensions et calmer le mental. Une véritable parenthèse pour ralentir et lâcher prise.
@@ -11,8 +11,6 @@ prix: CHF 80.–
 ordre: 2
 meta_description: Massage crânien à Lentigny (Fribourg) — nuque, crâne et visage, pour apaiser le mental, relâcher la pression et retrouver de la clarté.
 ---
-
-## Massage crânien
 
 Le massage crânien vient dénouer les zones où les tensions ont tendance à s’installer au fil des journées : **le haut du dos, les épaules, la nuque, le cuir chevelu, le visage et les mâchoires**.
 
