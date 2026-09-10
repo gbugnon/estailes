@@ -50,7 +50,10 @@ const prestations = defineCollection({
     duree: z.string().optional(),
     prix: z.string().optional(),
     ordre: z.number(),
-    meta_description: z.string(),
+    // Facultative : à défaut, src/pages/prestations/[slug].astro reprend
+    // l'extrait. Un champ obligatoire de moins à remplir pour ajouter un
+    // simple paragraphe — sans laisser la page sans description.
+    meta_description: z.string().optional(),
   }),
 });
 

@@ -35,7 +35,7 @@ const schemas = [
 ];
 ---
 
-<Base titre={c.titre} description={c.meta_description} schemas={schemas}>
+<Base titre={c.titre} description={c.meta_description ?? c.extrait} schemas={schemas}>
   <article>
     <header class="tete">
       <Sparkles

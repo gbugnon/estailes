@@ -299,8 +299,9 @@ collections:
           name: meta_description,
           label: Description pour Google,
           widget: text,
+          required: false,
           pattern: ['^.{0,160}$', '160 caractères maximum'],
-          hint: 'Résumé affiché dans les résultats de recherche (≤ 160 caractères).',
+          hint: 'Résumé affiché dans les résultats de recherche (≤ 160 caractères). Laissé vide, l’extrait ci-dessus est repris.',
         }
 
   # ---------------------------------------------------------------------------
