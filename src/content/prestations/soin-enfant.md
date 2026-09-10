@@ -4,7 +4,7 @@ sous_titre: Douceur · Apaisement · Équilibre
 icone: coeur
 extrait: Un moment de douceur adapté au rythme et aux besoins de votre enfant. Réflexologie plantaire ou soin énergétique dès la naissance, massage crânien dès 4 ans.
 image: /src/assets/photos/ChatGPT Image 10 sept. 2026 à 11_31_21.png
-image_alt: bébé couché sur une table
+image_alt: bébé couché qui reçoit une réflexologie plantaire
 image_position: centre
 duree: 45 minutes
 prix: CHF 70 .-
