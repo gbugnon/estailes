@@ -12,7 +12,7 @@ ordre: 2
 meta_description: Massage crânien à Lentigny (Fribourg) — nuque, crâne et visage, pour apaiser le mental, relâcher la pression et retrouver de la clarté.
 ---
 
-Le massage crânien vient dénouer les zones où les tensions ont tendance à s’installer au fil des journées : **le haut du dos, les épaules, la nuque, le cuir chevelu, le visage et les mâchoires**.
+Le  crânien vient dénouer les zones où les tensions ont tendance à s’installer au fil des journées : **le haut du dos, les épaules, la nuque, le cuir chevelu, le visage et les mâchoires**.
 
 Stress, écrans, rythme soutenu, charge mentale… sans même nous en rendre compte, nous pouvons accumuler de nombreuses tensions dans ces différentes zones.
 
