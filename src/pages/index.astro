@@ -141,11 +141,10 @@ const prestations = (await getCollection('prestations')).sort(
     padding-block: var(--space-xl);
   }
 
-  /* Le nombre de colonnes suit le nombre de fiches, sans être écrit nulle
-     part : `auto-fit` supprime les colonnes vides, et la largeur de fiche est
-     plafonnée pour que la rangée se centre au lieu de s'étirer. Trois
-     prestations se centrent, quatre reforment la rangée de la maquette. Rien
-     à retoucher si elle en ajoute ou en retire une depuis le CMS. */
+  /* Une fiche par ligne, puis deux, puis trois au plus (voir plus bas). La
+     largeur de fiche est plafonnée pour que la rangée se centre au lieu de
+     s'étirer. Rien à retoucher si elle ajoute ou retire une prestation depuis
+     le CMS : c'est le retour à la ligne qui absorbe le changement. */
   .prestations__grille {
     display: grid;
     gap: var(--space-m) var(--space-s);
@@ -167,14 +166,24 @@ const prestations = (await getCollection('prestations')).sort(
   }
 
   @media (width >= 68rem) {
+    /* Trois fiches par rangée, jamais plus : à cinq prestations, `auto-fit` en
+       logeait quatre et laissait la cinquième seule, calée à gauche. Le plafond
+       de largeur vaut exactement trois fiches et leurs deux gouttières, ce qui
+       provoque le retour à la ligne.
+
+       Flex et non grille : c'est ce qui centre une dernière rangée incomplète.
+       La grille, elle, aligne toujours ses items sur les colonnes. Le rattrapage
+       d'orphelin des deux colonnes devient inutile ici — `flex-basis` l'emporte
+       sur la largeur qu'il posait. */
     .prestations__grille {
-      grid-template-columns: repeat(auto-fit, minmax(0, 17rem));
+      display: flex;
+      flex-wrap: wrap;
+      max-width: calc(3 * 17rem + 2 * var(--space-s));
+      margin-inline: auto;
     }
 
-    /* Au-delà de deux colonnes, plus d'orphelin à rattraper. */
-    .prestations__grille > :last-child:nth-child(odd) {
-      grid-column: auto;
-      width: auto;
+    .prestations__grille > * {
+      flex: 0 0 17rem;
     }
   }
 
